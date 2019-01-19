@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="CBC模式：Cipher Black Chaining mode (密码分组链接模式)CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。">
+<meta name="description" content="CBC字节翻转攻击原理">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writup | 小维同学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CBC字节翻转攻击原理">
 <meta property="og:url" content="http://yoursite.com/2019/01/20/CBC字节翻转攻击原理/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="CBC模式：Cipher Black Chaining mode (密码分组链接模式)CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。">
+<meta property="og:description" content="CBC字节翻转攻击原理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/g3hwPAu.png">
-<meta property="og:updated_time" content="2019-01-19T18:36:21.291Z">
+<meta property="og:image" content="https://i.imgur.com/73EAF3c.png">
+<meta property="og:updated_time" content="2019-01-19T19:11:27.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CBC字节翻转攻击原理">
-<meta name="twitter:description" content="CBC模式：Cipher Black Chaining mode (密码分组链接模式)CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。">
-<meta name="twitter:image" content="https://i.imgur.com/g3hwPAu.png">
+<meta name="twitter:description" content="CBC字节翻转攻击原理">
+<meta name="twitter:image" content="https://i.imgur.com/73EAF3c.png">
 
 
 
@@ -296,7 +296,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  517字
+                  532字
                 </span>
               
 
@@ -333,17 +333,12 @@
       
 
       
-        <p>CBC模式：Cipher Black Chaining mode (密码分组链接模式)<br>CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。<br><a id="more"></a></p>
+        <p><strong>CBC字节翻转攻击原理</strong><br><a id="more"></a><br>CBC模式：Cipher Black Chaining mode (密码分组链接模式)<br>CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。</p>
 <p>任何字符与本身xor都是为0，任何字符与0xor都为本身，如A xor A=0，A xor 0=A</p>
-<p>加密过程</p>
-<ol>
-<li>将明文分为若干组（16个字节为一组），最后一组不足则用特殊字符填充<br>2.生成一个初始向量iv和key密钥<br>3.用iv与第一组明文异或（iv只影响第一组生成的密文）生成密文</li>
-<li>然后再用前n组密文与后n+1组明文异或生成第n+1组密文，以次重复<br>5.最后将生成的密文拼接起来，就成了最终密文<br>加密公式：<br>Ciphertext-0 = Encrypt(Plaintext XOR IV)—只用于第一个组块<br>Ciphertext-N= Encrypt(Plaintext XOR Ciphertext-N-1)—用于第二及剩下的组块</li>
-</ol>
-<p>解密过程：<br>1.将密文分组<br>2.用iv与第一组密文xor，解密得到第一组明文<br>3.用第n组密文与第n+1组密文xor，解密得到第n+1组明文，以此类推<br>4.将各组的明文拼接在一起就是最终要得到的明文了</p>
+<p>加密过程<br>1、将明文分为若干组（16个字节为一组），最后一组不足则用特殊字符填充<br>2、生成一个初始向量iv和key密钥<br>3、用iv与第一组明文异或（iv只影响第一组生成的密文）生成密文<br>4、然后再用前n组密文与后n+1组明文异或生成第n+1组密文，以次重复<br>5、最后将生成的密文拼接起来，就成了最终密文<br>加密公式：<br>Ciphertext-0 = Encrypt(Plaintext XOR IV)—只用于第一个组块<br>Ciphertext-N= Encrypt(Plaintext XOR Ciphertext-N-1)—用于第二及剩下的组块</p>
+<p>解密过程：<br>1、将密文分组<br>2、用iv与第一组密文xor，解密得到第一组明文<br>3、用第n组密文与第n+1组密文xor，解密得到第n+1组明文，以此类推<br>4、将各组的明文拼接在一起就是最终要得到的明文了</p>
 <p>注意一下：解密的时候前一组密文只影响后一组明文的结果，而不会影响其他组明文的结果，由图也可看得出，这个也是进行攻击的重要之处。</p>
-<p>有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：<br>CBC字节翻转攻击原理图<br><img src="https://i.imgur.com/g3hwPAu.png" alt=""><br><a href="http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png" target="_blank" rel="noopener">http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png</a></p>
-<p>XOR异或运算<br>异或，英文为exclusive OR，缩写成xor<br>异或的数学符号为“⊕”<br>异或略称为XOR、EOR、EX-OR<br>程序中有三种演算子：XOR、xor、⊕。<br>两个输入相同时为0，不同则为1</p>
+<p>有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：<br>CBC字节翻转攻击原理图<br><img src="https://i.imgur.com/73EAF3c.png" alt=""><br><a href="http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png" target="_blank" rel="noopener">http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png</a><br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">XOR</span>异或运算</span><br><span class="line">异或，英文为exclusive <span class="keyword">OR</span>，缩写成<span class="keyword">xor</span></span><br><span class="line">异或的数学符号为“⊕”</span><br><span class="line">异或略称为<span class="keyword">XOR</span>、EOR、EX-<span class="keyword">OR</span></span><br><span class="line">程序中有三种演算子：<span class="keyword">XOR</span>、<span class="keyword">xor</span>、⊕。</span><br><span class="line">两个输入相同时为<span class="number">0</span>，不同则为<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -377,6 +372,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/20/SQL注入攻击/" rel="prev" title="SQL注入攻击">
+                SQL注入攻击 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -473,7 +472,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -490,8 +489,7 @@
           
 		  <!-- 网易音乐播放器 -->
 			<div id="music163player">
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=0&id=2466312782&auto=0height=66">
-			</iframe>
+				
 			</div>
 
           
