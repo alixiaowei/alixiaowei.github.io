@@ -79,20 +79,29 @@
 
 
 
-<meta name="description" content="CBC字节翻转攻击原理">
+<meta name="description" content="怀疑人生–wirtup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writup | 小维同学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CBC字节翻转攻击原理">
-<meta property="og:url" content="http://yoursite.com/2019/01/20/CBC字节翻转攻击原理/index.html">
+<meta property="og:title" content="Bugku-怀疑人生">
+<meta property="og:url" content="http://yoursite.com/2019/01/20/Bugku_怀疑人生/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="CBC字节翻转攻击原理">
+<meta property="og:description" content="怀疑人生–wirtup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/73EAF3c.png">
-<meta property="og:updated_time" content="2019-01-19T19:11:27.111Z">
+<meta property="og:image" content="https://i.imgur.com/9M2hHLn.png">
+<meta property="og:image" content="https://i.imgur.com/mldDoms.png">
+<meta property="og:image" content="https://i.imgur.com/pkbrD3G.png">
+<meta property="og:image" content="https://i.imgur.com/VOEilaR.png">
+<meta property="og:image" content="https://i.imgur.com/x4Rh5yY.png">
+<meta property="og:image" content="https://i.imgur.com/gue2JOc.png">
+<meta property="og:image" content="https://i.imgur.com/XdBTGKe.png">
+<meta property="og:image" content="https://i.imgur.com/Nnz7wrq.png">
+<meta property="og:image" content="https://i.imgur.com/tvUNpw9.png">
+<meta property="og:image" content="https://i.imgur.com/c0xrBxW.png">
+<meta property="og:updated_time" content="2019-01-20T12:25:25.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CBC字节翻转攻击原理">
-<meta name="twitter:description" content="CBC字节翻转攻击原理">
-<meta name="twitter:image" content="https://i.imgur.com/73EAF3c.png">
+<meta name="twitter:title" content="Bugku-怀疑人生">
+<meta name="twitter:description" content="怀疑人生–wirtup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也">
+<meta name="twitter:image" content="https://i.imgur.com/9M2hHLn.png">
 
 
 
@@ -122,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/20/CBC字节翻转攻击原理/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/20/Bugku_怀疑人生/">
 
 
 
 
 
-  <title>CBC字节翻转攻击原理 | 小维的博客</title>
+  <title>Bugku-怀疑人生 | 小维的博客</title>
   
 
 
@@ -235,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/CBC字节翻转攻击原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/Bugku_怀疑人生/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小维同学">
@@ -252,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CBC字节翻转攻击原理</h1>
+          <h1 class="post-title" itemprop="name headline">Bugku-怀疑人生</h1>
         
 
         <div class="post-meta">
@@ -264,7 +273,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T02:34:44+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T20:25:25+08:00">
                 2019-01-20
               </time>
             
@@ -296,7 +305,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  532字
+                  279字
                 </span>
               
 
@@ -312,7 +321,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  1分钟
                 </span>
               
             </div>
@@ -333,12 +342,7 @@
       
 
       
-        <p><strong>CBC字节翻转攻击原理</strong><br><a id="more"></a><br>CBC模式：Cipher Black Chaining mode (密码分组链接模式)<br>CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。</p>
-<p>任何字符与本身xor都是为0，任何字符与0xor都为本身，如A xor A=0，A xor 0=A</p>
-<p>加密过程<br>1、将明文分为若干组（16个字节为一组），最后一组不足则用特殊字符填充<br>2、生成一个初始向量iv和key密钥<br>3、用iv与第一组明文异或（iv只影响第一组生成的密文）生成密文<br>4、然后再用前n组密文与后n+1组明文异或生成第n+1组密文，以次重复<br>5、最后将生成的密文拼接起来，就成了最终密文<br>加密公式：<br>Ciphertext-0 = Encrypt(Plaintext XOR IV)—只用于第一个组块<br>Ciphertext-N= Encrypt(Plaintext XOR Ciphertext-N-1)—用于第二及剩下的组块</p>
-<p>解密过程：<br>1、将密文分组<br>2、用iv与第一组密文xor，解密得到第一组明文<br>3、用第n组密文与第n+1组密文xor，解密得到第n+1组明文，以此类推<br>4、将各组的明文拼接在一起就是最终要得到的明文了</p>
-<p>注意一下：解密的时候前一组密文只影响后一组明文的结果，而不会影响其他组明文的结果，由图也可看得出，这个也是进行攻击的重要之处。</p>
-<p>有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：<br>CBC字节翻转攻击原理图<br><img src="https://i.imgur.com/73EAF3c.png" alt=""><br><a href="http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png" target="_blank" rel="noopener">http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png</a><br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">XOR</span>异或运算</span><br><span class="line">异或，英文为exclusive <span class="keyword">OR</span>，缩写成<span class="keyword">xor</span></span><br><span class="line">异或的数学符号为“⊕”</span><br><span class="line">异或略称为<span class="keyword">XOR</span>、EOR、EX-<span class="keyword">OR</span></span><br><span class="line">程序中有三种演算子：<span class="keyword">XOR</span>、<span class="keyword">xor</span>、⊕。</span><br><span class="line">两个输入相同时为<span class="number">0</span>，不同则为<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+        <p>怀疑人生–wirtup<br>打开题目<br><img src="https://i.imgur.com/9M2hHLn.png" alt=""><br>得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint<br><img src="https://i.imgur.com/mldDoms.png" alt=""><br>直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包<br><img src="https://i.imgur.com/pkbrD3G.png" alt=""><br>解压，里面存在一个txt文本，发现一串加密得密文<br><img src="https://i.imgur.com/VOEilaR.png" alt=""><br>Brainfuck/Ook!编码，拿去Ook解密<br><img src="https://i.imgur.com/x4Rh5yY.png" alt=""><br>来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容<br><img src="https://i.imgur.com/gue2JOc.png" alt=""><br>折腾了挺久也好像没有其他信息了，字典破解，尝试下，还真有！<br><img src="https://i.imgur.com/XdBTGKe.png" alt=""><br>解压得到一串base64，进行base64解密，得到一串unicode，进行解密<br><img src="https://i.imgur.com/Nnz7wrq.png" alt=""><br><img src="https://i.imgur.com/tvUNpw9.png" alt=""><br>解密后进行拼接，提交发现失败，尝试多次，很纳闷，感觉不对劲，中间那Ook解密后感觉还是一个密文，查了一下是一个base58？？？<br>进行解密<br><img src="https://i.imgur.com/c0xrBxW.png" alt=""><br>得到明文，进行ctf1+ctf2+ctf3进行拼接，提交成功。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">此题出现了几种编码：</span><br><span class="line"><span class="keyword">base64</span></span><br><span class="line"><span class="keyword">base58</span></span><br><span class="line"><span class="keyword">unicode</span></span><br><span class="line"><span class="keyword">Brainfuck/Ook</span></span><br><span class="line"><span class="keyword">二维码</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -363,8 +367,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/20/Bugku_论剑/" rel="next" title="Bugku-论剑">
-                <i class="fa fa-chevron-left"></i> Bugku-论剑
+              <a href="/2019/01/20/SQL注入攻击/" rel="next" title="SQL注入攻击">
+                <i class="fa fa-chevron-left"></i> SQL注入攻击
               </a>
             
           </div>
@@ -372,10 +376,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/20/SQL注入攻击/" rel="prev" title="SQL注入攻击">
-                SQL注入攻击 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
