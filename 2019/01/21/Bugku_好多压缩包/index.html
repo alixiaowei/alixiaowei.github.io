@@ -79,22 +79,34 @@
 
 
 
-<meta name="description" content="web基础$_GET-writeup">
+<meta name="description" content="好多压缩包-writeup">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bugku-web基础$_GET">
-<meta property="og:url" content="http://yoursite.com/2019/01/19/Bugku_web基础$_GET/index.html">
+<meta property="og:title" content="Bugku-好多压缩包">
+<meta property="og:url" content="http://yoursite.com/2019/01/21/Bugku_好多压缩包/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="web基础$_GET-writeup">
+<meta property="og:description" content="好多压缩包-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/YCTC6zg.png">
-<meta property="og:image" content="https://i.imgur.com/HNprRLc.png">
-<meta property="og:image" content="https://i.imgur.com/YhHqhl5.png">
-<meta property="og:updated_time" content="2019-01-21T01:12:34.621Z">
+<meta property="og:image" content="https://i.imgur.com/BMnMK4r.png">
+<meta property="og:image" content="https://i.imgur.com/pOGMgAo.png">
+<meta property="og:image" content="https://i.imgur.com/f3fGhls.png">
+<meta property="og:image" content="https://i.imgur.com/0ZEOQn9.png">
+<meta property="og:image" content="https://i.imgur.com/VcQONYA.png">
+<meta property="og:image" content="https://i.imgur.com/UbbtW2p.png">
+<meta property="og:image" content="https://i.imgur.com/WXppXRP.png">
+<meta property="og:image" content="https://i.imgur.com/JY8689h.png">
+<meta property="og:image" content="https://i.imgur.com/gxr9XvA.png">
+<meta property="og:image" content="https://i.imgur.com/lsgfCVx.png">
+<meta property="og:image" content="https://i.imgur.com/MmRlgY5.png">
+<meta property="og:image" content="https://i.imgur.com/aQqOqrR.png">
+<meta property="og:image" content="https://i.imgur.com/EJcQ818.png">
+<meta property="og:image" content="https://i.imgur.com/wZMZEuC.png">
+<meta property="og:image" content="https://i.imgur.com/tzy48zT.png">
+<meta property="og:updated_time" content="2019-01-21T06:44:52.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bugku-web基础$_GET">
-<meta name="twitter:description" content="web基础$_GET-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/YCTC6zg.png">
+<meta name="twitter:title" content="Bugku-好多压缩包">
+<meta name="twitter:description" content="好多压缩包-writeup">
+<meta name="twitter:image" content="https://i.imgur.com/BMnMK4r.png">
 
 
 
@@ -124,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/19/Bugku_web基础$_GET/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/21/Bugku_好多压缩包/">
 
 
 
 
 
-  <title>Bugku-web基础$_GET | 小维的博客</title>
+  <title>Bugku-好多压缩包 | 小维的博客</title>
   
 
 
@@ -237,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/Bugku_web基础$_GET/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/21/Bugku_好多压缩包/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小维同学">
@@ -254,7 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bugku-web基础$_GET</h1>
+          <h1 class="post-title" itemprop="name headline">Bugku-好多压缩包</h1>
         
 
         <div class="post-meta">
@@ -266,8 +278,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-19T18:15:27+08:00">
-                2019-01-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-21T12:23:43+08:00">
+                2019-01-21
               </time>
             
 
@@ -298,7 +310,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  150字
+                  822字
                 </span>
               
 
@@ -314,7 +326,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -335,9 +347,9 @@
       
 
       
-        <p><strong>web基础$_GET-writeup</strong><br><a id="more"></a><br><img src="https://i.imgur.com/YCTC6zg.png" alt=""><br>点击访问链接，分析给出的代码<br><img src="https://i.imgur.com/HNprRLc.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$what=$_GET[<span class="string">'what'</span>];  <span class="comment">//Get方式获取参数</span></span><br><span class="line"><span class="keyword">echo</span> $what;  </span><br><span class="line"><span class="keyword">if</span>($what==<span class="string">'flag'</span>) <span class="comment">//这里有个if判断当what的值等于flag时就输出flag</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;****&#125;'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>分析完代码，我们直接在URL中，后面直接加上?what=flag，Get请求<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Get</span>请求：从指定的资源请求数据。</span><br><span class="line">GET提交，请求的数据会附在<span class="keyword">URL</span>之后（就是把数据放置在HTTP协议头中），以?分割<span class="keyword">URL</span>和传输数据，多个参数用&amp;连接。</span><br><span class="line"><span class="keyword">URL</span>中的?号：分隔实际的<span class="keyword">URL</span>和参数</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/YhHqhl5.png" alt=""></p>
+        <p><strong>好多压缩包-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/BMnMK4r.png" alt=""><br>得到一个压缩包附件，进行解压，查看到里面有68个压缩包<br><img src="https://i.imgur.com/pOGMgAo.png" alt=""><br>打开68个文件发现里面每个压缩包里都有一个四个字节得加密得txt文档，首先尝试下是不是<strong>伪加密</strong>，发现不是尝试下爆破无果。。。然后想了下，这么多压缩包，不可能让我们爆破吧，尝试下<strong>crc32碰撞</strong><br>CRC32碰撞可以参考我写的文章<br><img src="https://i.imgur.com/f3fGhls.png" alt=""><br><img src="https://i.imgur.com/0ZEOQn9.png" alt=""><br><img src="https://i.imgur.com/VcQONYA.png" alt=""><br><img src="https://i.imgur.com/UbbtW2p.png" alt=""><br><img src="https://i.imgur.com/WXppXRP.png" alt=""><br><img src="https://i.imgur.com/JY8689h.png" alt=""><br>分析里面得文件得四个字节，想着应该是英文，中文字符得话跟爆破没区别…<br>猜测里面为四个字符（英文），获取zip文件得crc32值，进行crc碰撞<br>碰撞出来发现是一串base64，拿去解密(有些网站解码不了，解码了也是有问题的，多尝试几个)，放入winhex，发现导入进去的时候老是有问题，我不知道怎么处理，莫名其妙的多了很多空格，搜索了下感觉他们很顺利的就放进去了<br><img src="https://i.imgur.com/gxr9XvA.png" alt=""><br>尝试多次发现无果。然后无奈就自己写python实现直接base64解密后直接写入文件里<br>python脚本：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line">import binascii</span><br><span class="line">import <span class="keyword">string</span></span><br><span class="line">import zipfile</span><br><span class="line">import base64</span><br><span class="line"></span><br><span class="line">dicts = <span class="keyword">string</span>.printable  <span class="comment"># 可打印字符的字符串。ascii码33-126号</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def collision_crc(crc):</span><br><span class="line">    <span class="built_in">global</span> out_file</span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">a</span> <span class="keyword">in</span> dicts:</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> dicts:</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> dicts:</span><br><span class="line">                <span class="keyword">for</span> d <span class="keyword">in</span> dicts:</span><br><span class="line">                    strings = <span class="keyword">a</span> + b + c + d</span><br><span class="line">                    strings = strings.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(strings)):</span><br><span class="line">                        out_file.<span class="built_in">write</span>(strings.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">                        <span class="comment"># print(strings)</span></span><br><span class="line">                        <span class="literal">return</span></span><br><span class="line">                        <span class="comment"># 以上定义一个方法，组合随机字符与CRC进行碰撞，判断如果相等及写入文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def obtain_zip():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">68</span>):</span><br><span class="line">        <span class="built_in">file</span> = <span class="string">'out'</span> + str(i) + <span class="string">'.zip'</span></span><br><span class="line">        zip_file = zipfile.ZipFile(<span class="built_in">file</span>, <span class="string">'r'</span>)  <span class="comment"># 读取创建zip_file对象</span></span><br><span class="line">        get_crc = zip_file.getinfo(<span class="string">'data.txt'</span>)  <span class="comment"># 压缩文件夹里的data.txt文件，获取文档内指定的文件信息</span></span><br><span class="line">        crc = get_crc.CRC</span><br><span class="line">        <span class="comment">#  以上定义一个方法，获取68个zip的CRC的值</span></span><br><span class="line">        collision_crc(crc)  <span class="comment"># 再调用collision方法传参</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">out_file = <span class="built_in">open</span>(<span class="string">'out.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line">obtain_zip()</span><br><span class="line">out_file.<span class="built_in">close</span>()</span><br><span class="line"></span><br><span class="line">out_file2 = <span class="built_in">open</span>(<span class="string">'out.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'flag.rar'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> rar:</span><br><span class="line">    rar.<span class="built_in">write</span>(base64.b64decode(out_file2.<span class="built_in">read</span>()))   <span class="comment"># 二进制将转换后的base64位写入文件</span></span><br></pre></td></tr></table></figure></p>
+<p>运行完成后将写出的文件，打开发现打开失败，导入16进制编辑器，观察数据，发现存在rar的文件尾C4 3D 7B 00 40 07 00，但缺少文件头，于是补上rar的文件头52 61 72 21 1A 07 00，发现文件修复成功，解压发现是一个flag在压缩包注释上。二进制上也可以看到CMT，CMT即为comment（注释）<br><img src="https://i.imgur.com/lsgfCVx.png" alt=""><br><img src="https://i.imgur.com/MmRlgY5.png" alt=""></p>
+<p><strong>这里说明下我之前base64导入进去的出现的问题，因为心里一直纳闷，所以去<br>多次尝试发现需要利用notepad++32位的进行base64解密，就可以得到正确的值，保存为.rar文件，然后进行导入十六进制编辑工具里是可以实现的。（之前用的时notepad++64位的会出现解密不出来的情况，几个在线工具解密出来的值都是错误的或者跟上面导进去不知道为什么多了很多空格这些）这里举几个对比：</strong><br><img src="https://i.imgur.com/aQqOqrR.png" alt=""><br><img src="https://i.imgur.com/EJcQ818.png" alt=""><br><img src="https://i.imgur.com/wZMZEuC.png" alt=""><br><img src="https://i.imgur.com/tzy48zT.png" alt=""></p>
 
       
     </div>
@@ -362,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/19/Bugku_color/" rel="next" title="Bugku-color">
-                <i class="fa fa-chevron-left"></i> Bugku-color
+              <a href="/2019/01/20/Bugku_怀疑人生/" rel="next" title="Bugku-怀疑人生">
+                <i class="fa fa-chevron-left"></i> Bugku-怀疑人生
               </a>
             
           </div>
@@ -371,10 +383,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/19/Bugku_web基础$_POST/" rel="prev" title="Bugku-web基础$_POST">
-                Bugku-web基础$_POST <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
