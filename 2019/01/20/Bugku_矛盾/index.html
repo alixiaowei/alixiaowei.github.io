@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="矛盾-writup">
-<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writup | 小维同学">
+<meta name="description" content="矛盾-writeup">
+<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bugku-矛盾">
 <meta property="og:url" content="http://yoursite.com/2019/01/20/Bugku_矛盾/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="矛盾-writup">
+<meta property="og:description" content="矛盾-writeup">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/69R3VJ0.png">
 <meta property="og:image" content="https://i.imgur.com/n9UI7Bx.png">
 <meta property="og:image" content="https://i.imgur.com/AqiUkJ5.png">
-<meta property="og:updated_time" content="2019-01-19T16:28:55.176Z">
+<meta property="og:updated_time" content="2019-01-21T01:13:27.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-矛盾">
-<meta name="twitter:description" content="矛盾-writup">
+<meta name="twitter:description" content="矛盾-writeup">
 <meta name="twitter:image" content="https://i.imgur.com/69R3VJ0.png">
 
 
@@ -335,7 +335,7 @@
       
 
       
-        <p><strong>矛盾-writup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/69R3VJ0.png" alt=""><br>访问链接，得到一串代码，又是一道代码审计的题<br><img src="https://i.imgur.com/n9UI7Bx.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码分析</span></span><br><span class="line">$num=$_GET[<span class="string">'num'</span>];  <span class="comment">//Get方式获取参数</span></span><br><span class="line"><span class="keyword">if</span>(!is_numeric($num)) <span class="comment">//is_numeric()函数是否为数字或者数字字符串-&gt;&gt;加个！取反,通俗点讲这里不能为数字</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">echo</span> $num; <span class="comment">//如果不是数字就输出</span></span><br><span class="line"><span class="keyword">if</span>($num==<span class="number">1</span>) <span class="comment">//矛盾吧，上面又不要数字，这里又要是1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;**********&#125;'</span>; <span class="comment">//如果值为1则输出flag</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p><strong>矛盾-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/69R3VJ0.png" alt=""><br>访问链接，得到一串代码，又是一道代码审计的题<br><img src="https://i.imgur.com/n9UI7Bx.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码分析</span></span><br><span class="line">$num=$_GET[<span class="string">'num'</span>];  <span class="comment">//Get方式获取参数</span></span><br><span class="line"><span class="keyword">if</span>(!is_numeric($num)) <span class="comment">//is_numeric()函数是否为数字或者数字字符串-&gt;&gt;加个！取反,通俗点讲这里不能为数字</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">echo</span> $num; <span class="comment">//如果不是数字就输出</span></span><br><span class="line"><span class="keyword">if</span>($num==<span class="number">1</span>) <span class="comment">//矛盾吧，上面又不要数字，这里又要是1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;**********&#125;'</span>; <span class="comment">//如果值为1则输出flag</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>根据提示，可以用科学计数法表示1，构造URL：?num=1<em>e</em>0.1 既不是纯数字，其值又等于1<br><img src="https://i.imgur.com/AqiUkJ5.png" alt=""></p>
 <p>其实还有很多种姿势获取到flag，授人以鱼不如授人以渔。以下讲解几个特征。<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">php是一个弱类型语言</span><br><span class="line">==表示的是等于 ，比较两个变量的值，不比较数据类型。只要数值等于就成立了</span><br><span class="line">===表示的是全等，比较的是两个变量的值和类型</span><br><span class="line"><span class="section">== 判断时，当数字与字符串比较时，系统先将字符串转化为数字，再与数字进行比较。</span></span><br><span class="line"></span><br><span class="line">is<span class="emphasis">_numeric（）函数用于检测变量是否为数字或数字字符串。</span></span><br><span class="line"><span class="emphasis">is_</span>numeric函数对于空字符%00，无论是%00放在前后都可以判断为非数值，怎么构造有思路了吗？</span><br><span class="line"></span><br><span class="line">PHP浅谈==和===：https://blog.csdn.net/auuuuuuuu/article/details/79621635</span><br><span class="line">科学计数法：https://baike.baidu.com/item/科学记数法/1612882?fr=aladdin</span><br></pre></td></tr></table></figure></p>
 

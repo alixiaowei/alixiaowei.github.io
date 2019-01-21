@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="计算器-writup">
-<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writup | 小维同学">
+<meta name="description" content="计算器-writeup">
+<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bugku-计算器">
 <meta property="og:url" content="http://yoursite.com/2019/01/19/Bugku_计算器/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="计算器-writup">
+<meta property="og:description" content="计算器-writeup">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/Fmnj0L7.png">
 <meta property="og:image" content="https://i.imgur.com/4l5aRb0.png">
 <meta property="og:image" content="https://i.imgur.com/ZGuOXFK.png">
 <meta property="og:image" content="https://i.imgur.com/w0SvpIj.png">
 <meta property="og:image" content="https://i.imgur.com/YGgU8hC.png">
-<meta property="og:updated_time" content="2019-01-19T08:01:03.837Z">
+<meta property="og:updated_time" content="2019-01-21T01:13:43.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-计算器">
-<meta name="twitter:description" content="计算器-writup">
+<meta name="twitter:description" content="计算器-writeup">
 <meta name="twitter:image" content="https://i.imgur.com/Fmnj0L7.png">
 
 
@@ -337,7 +337,7 @@
       
 
       
-        <p><strong>计算器-writup</strong><br><a id="more"></a><br>查看题目，访问题目给出的链接<br><img src="https://i.imgur.com/Fmnj0L7.png" alt=""><br>查看是一个随机数字运算的验证码，输入结果值发现最大只能输入一位长度的值<br><img src="https://i.imgur.com/4l5aRb0.png" alt=""><br>点击提交看看有什么结果，并没有什么用！<br><img src="https://i.imgur.com/ZGuOXFK.png" alt=""><br>浏览器上按F12,审核元素，查看源代码，发现maxlength=”1”,把maxlength=”1”修改为maxlength=”2”<br><img src="https://i.imgur.com/w0SvpIj.png" alt=""><br>把结果值填上，点击验证得到flag  </p>
+        <p><strong>计算器-writeup</strong><br><a id="more"></a><br>查看题目，访问题目给出的链接<br><img src="https://i.imgur.com/Fmnj0L7.png" alt=""><br>查看是一个随机数字运算的验证码，输入结果值发现最大只能输入一位长度的值<br><img src="https://i.imgur.com/4l5aRb0.png" alt=""><br>点击提交看看有什么结果，并没有什么用！<br><img src="https://i.imgur.com/ZGuOXFK.png" alt=""><br>浏览器上按F12,审核元素，查看源代码，发现maxlength=”1”,把maxlength=”1”修改为maxlength=”2”<br><img src="https://i.imgur.com/w0SvpIj.png" alt=""><br>把结果值填上，点击验证得到flag  </p>
 <p>我发现一个骚姿势就是，只要你够耐心的话一直点击刷新，会有意向不到的结果<br><img src="https://i.imgur.com/YGgU8hC.png" alt=""><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTML <span class="built_in">input</span> maxlength属性</span><br><span class="line">定义和用法  </span><br><span class="line">maxlength 属性规定 <span class="symbol">&lt;input&gt;</span> 元素中允许的最大字符数。  </span><br><span class="line">语法  </span><br><span class="line">&lt;<span class="built_in">input</span> maxlength=<span class="string">"number"</span>&gt;  </span><br><span class="line">属性值  </span><br><span class="line"><span class="keyword">number</span> 在<span class="symbol">&lt;input&gt;</span>元素中允许的最大字符串</span><br></pre></td></tr></table></figure></p>
 
       
