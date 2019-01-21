@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="怀疑人生–wirtup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也">
+<meta name="description" content="怀疑人生–wirtup">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writup | 小维同学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bugku-怀疑人生">
 <meta property="og:url" content="http://yoursite.com/2019/01/20/Bugku_怀疑人生/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="怀疑人生–wirtup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也">
+<meta property="og:description" content="怀疑人生–wirtup">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/9M2hHLn.png">
 <meta property="og:image" content="https://i.imgur.com/mldDoms.png">
@@ -97,10 +97,10 @@
 <meta property="og:image" content="https://i.imgur.com/Nnz7wrq.png">
 <meta property="og:image" content="https://i.imgur.com/tvUNpw9.png">
 <meta property="og:image" content="https://i.imgur.com/c0xrBxW.png">
-<meta property="og:updated_time" content="2019-01-20T12:25:25.947Z">
+<meta property="og:updated_time" content="2019-01-21T00:41:35.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-怀疑人生">
-<meta name="twitter:description" content="怀疑人生–wirtup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也">
+<meta name="twitter:description" content="怀疑人生–wirtup">
 <meta name="twitter:image" content="https://i.imgur.com/9M2hHLn.png">
 
 
@@ -305,7 +305,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  279字
+                  773字
                 </span>
               
 
@@ -321,7 +321,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -342,7 +342,7 @@
       
 
       
-        <p>怀疑人生–wirtup<br>打开题目<br><img src="https://i.imgur.com/9M2hHLn.png" alt=""><br>得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint<br><img src="https://i.imgur.com/mldDoms.png" alt=""><br>直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包<br><img src="https://i.imgur.com/pkbrD3G.png" alt=""><br>解压，里面存在一个txt文本，发现一串加密得密文<br><img src="https://i.imgur.com/VOEilaR.png" alt=""><br>Brainfuck/Ook!编码，拿去Ook解密<br><img src="https://i.imgur.com/x4Rh5yY.png" alt=""><br>来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容<br><img src="https://i.imgur.com/gue2JOc.png" alt=""><br>折腾了挺久也好像没有其他信息了，字典破解，尝试下，还真有！<br><img src="https://i.imgur.com/XdBTGKe.png" alt=""><br>解压得到一串base64，进行base64解密，得到一串unicode，进行解密<br><img src="https://i.imgur.com/Nnz7wrq.png" alt=""><br><img src="https://i.imgur.com/tvUNpw9.png" alt=""><br>解密后进行拼接，提交发现失败，尝试多次，很纳闷，感觉不对劲，中间那Ook解密后感觉还是一个密文，查了一下是一个base58？？？<br>进行解密<br><img src="https://i.imgur.com/c0xrBxW.png" alt=""><br>得到明文，进行ctf1+ctf2+ctf3进行拼接，提交成功。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">此题出现了几种编码：</span><br><span class="line"><span class="keyword">base64</span></span><br><span class="line"><span class="keyword">base58</span></span><br><span class="line"><span class="keyword">unicode</span></span><br><span class="line"><span class="keyword">Brainfuck/Ook</span></span><br><span class="line"><span class="keyword">二维码</span></span><br></pre></td></tr></table></figure></p>
+        <p><strong>怀疑人生–wirtup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/9M2hHLn.png" alt=""><br>得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint<br><img src="https://i.imgur.com/mldDoms.png" alt=""><br>直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包<br><img src="https://i.imgur.com/pkbrD3G.png" alt=""><br>解压，里面存在一个txt文本，发现一串加密得密文<br><img src="https://i.imgur.com/VOEilaR.png" alt=""><br>Brainfuck/Ook!编码，拿去Ook解密<br><img src="https://i.imgur.com/x4Rh5yY.png" alt=""><br>来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容<br><img src="https://i.imgur.com/gue2JOc.png" alt=""><br>折腾了挺久也好像没有其他信息了，字典破解，尝试下，还真有！<br><img src="https://i.imgur.com/XdBTGKe.png" alt=""><br>解压得到一串base64，进行base64解密，得到一串unicode，进行解密<br><img src="https://i.imgur.com/Nnz7wrq.png" alt=""><br><img src="https://i.imgur.com/tvUNpw9.png" alt=""><br>解密后进行拼接，提交发现失败，尝试多次，很纳闷，感觉不对劲，中间那Ook解密后感觉还是一个密文，查了一下是一个base58？？？<br>进行解密<br><img src="https://i.imgur.com/c0xrBxW.png" alt=""><br>得到明文，进行ctf1+ctf2+ctf3进行拼接，提交成功。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">此题出现了几种编码：</span><br><span class="line">base64:</span><br><span class="line">Base64是网络上最常见的用于传输<span class="number">8</span>Bit字节码的编码方式之一，Base64就是一种基于<span class="number">64</span>个可打印字符来表示二进制数据的方法。</span><br><span class="line"></span><br><span class="line">base58:</span><br><span class="line">Base58是用于Bitcoin中使用的一种独特的编码方式，主要用于产生Bitcoin的钱包地址,相比Base64，Base58不使用数字<span class="string">"0"</span>，字母大写<span class="string">"O"</span>，字母大写<span class="string">"I"</span>，和字母小写<span class="string">"l"</span>，以及<span class="string">"+"</span>和<span class="string">"/"</span>符号.</span><br><span class="line"></span><br><span class="line">Unicode:</span><br><span class="line">Unicode又称（统一码、万国码、单一码）世界上存在着多种编码方式，同一个二进制数字可以被解释成不同的符号。因此，要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。</span><br><span class="line">可以想象，如果有一种编码，将世界上所有的符号都纳入其中。每一个符号都给予一个独一无二的编码，那么乱码问题就会消失。这就是 Unicode，就像它的名字都表示的，这是一种所有符号的编码。</span><br><span class="line"></span><br><span class="line">Brainfuck/Ook:</span><br><span class="line">Brainfuck是一种极小化的计算机语言，它是由Urban Müller在<span class="number">1993</span>年创建的。由于fuck在英语中是脏话，这种语言有时被称为brainf*ck或brainf**k，甚至被简称为BF。</span><br><span class="line">OOK！是一种为红毛猩猩设计的编程语言。OOK！与众所周知的深奥语言BrainF ***基本上是同构的 ，但语法元素更少。详情可跳转至http:<span class="comment">//www.dangermouse.net/esoteric/ook.html</span></span><br><span class="line"></span><br><span class="line">二维码:</span><br><span class="line">二维码又称二维条码，常见的二维码为QR Code，QR全称Quick Response，是一个近几年来移动设备上超流行的一种编码方式，它比传统的Bar Code条形码能存更多的信息，也能表示更多的数据类型。</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
