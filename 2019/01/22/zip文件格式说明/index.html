@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://i.imgur.com/TMuCIS4.png">
 <meta property="og:image" content="https://i.imgur.com/12KawpH.png">
 <meta property="og:image" content="https://i.imgur.com/irjRCQH.png">
-<meta property="og:updated_time" content="2019-01-22T09:16:26.530Z">
+<meta property="og:updated_time" content="2019-01-22T09:26:28.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zip文件格式说明">
 <meta name="twitter:description" content="zip文件格式">
@@ -336,7 +336,7 @@
       
 
       
-        <p><strong>zip文件格式</strong><br><a id="more"></a><br>zip文件由三部分组成：压缩的文件内容源数据、压缩的目录源数据、目录结束标识的结构<br>①压缩文件内容的源数据：<br>记录着压缩的所有文件的内容信息，其数据组织结构是对于每个文件都由File header 、File data 、 Data descriptor 三部分组成。<br>File header（文件头）：用于标识该文件的开始，结构说明如下：<br><img src="https://i.imgur.com/JkW9uD7.png" alt=""><br>File data(文件数据)：相应压缩文件的源数据。<br>Data descriptor（数据描述符）：<br>用于标识该文件压缩结束，该结构只有在相应的local file header中通用标记字段的第３bit设为１时才会出现，紧接在压缩文件源数据后。这个数据描述符只用在不能对输出的 ZIP 文件进行检索时使用。例如：在一个不能检索的驱动器（如：磁带机上）上的 ZIP 文件中。如果是磁盘上的ZIP文件一般没有这个数据描述符。<br><img src="https://i.imgur.com/TMuCIS4.png" alt=""><br>Central directory 核心目录<br>记录了压缩文件的目录信息，在这个数据区中每一条记录对应再压缩源文件数据区中的一条数据。<br>核心目录结构：<br><img src="https://i.imgur.com/12KawpH.png" alt=""><br>End of central directory record(EOCD) 目录结束标识<br>目录结束标识存于整个归档包的结尾，用于标记压缩目录数据的结束。每个压缩文件必须有且只有一个EOCD记录。<br><img src="https://i.imgur.com/irjRCQH.png" alt=""></p>
+        <p><strong>zip文件格式</strong><br><a id="more"></a><br>zip文件由三部分组成：压缩的文件内容源数据、压缩的目录源数据、目录结束标识的结构<br>①压缩文件内容的源数据：<br>记录着压缩的所有文件的内容信息，其数据组织结构是对于每个文件都由File header 、File data 、 Data descriptor 三部分组成。<br>File header（文件头）：用于标识该文件的开始，结构说明如下：<br><img src="https://i.imgur.com/JkW9uD7.png" alt=""><br>File data(文件数据)：相应压缩文件的源数据。<br>Data descriptor（数据描述符）：<br>用于标识该文件压缩结束，该结构只有在相应的local file header中通用标记字段的第３bit设为１时才会出现，紧接在压缩文件源数据后。这个数据描述符只用在不能对输出的 ZIP 文件进行检索时使用。例如：在一个不能检索的驱动器（如：磁带机上）上的 ZIP 文件中。如果是磁盘上的ZIP文件一般没有这个数据描述符。<br><img src="https://i.imgur.com/TMuCIS4.png" alt=""><br>②Central directory 核心目录<br>记录了压缩文件的目录信息，在这个数据区中每一条记录对应再压缩源文件数据区中的一条数据。<br>核心目录结构：<br><img src="https://i.imgur.com/12KawpH.png" alt=""><br>③End of central directory record(EOCD) 目录结束标识<br>目录结束标识存于整个归档包的结尾，用于标记压缩目录数据的结束。每个压缩文件必须有且只有一个EOCD记录。<br><img src="https://i.imgur.com/irjRCQH.png" alt=""></p>
 <p><strong>官方文档：<a href="https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.2.0.txt" target="_blank" rel="noopener">https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.2.0.txt</a></strong></p>
 
       
