@@ -81,24 +81,24 @@
 
 
 
-<meta name="description" content="域名解析-writeup&amp;lt;！– more –&amp;gt;打开题目：首先打开链接，访问显示404根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flagWindows平台修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录然后访问flag.baidu.com就可以看到flag了。Linux平台（如kali）直">
+<meta name="description" content="域名解析-writeup">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bugku-域名解析">
 <meta property="og:url" content="https://axiaowei.cn/2019/01/24/201916/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="域名解析-writeup&amp;lt;！– more –&amp;gt;打开题目：首先打开链接，访问显示404根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flagWindows平台修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录然后访问flag.baidu.com就可以看到flag了。Linux平台（如kali）直">
+<meta property="og:description" content="域名解析-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/mrewFE1.png">
+<meta property="og:image" content="https://i.imgur.com/0BPmCC9.png">
 <meta property="og:image" content="https://i.imgur.com/UizP89O.png">
 <meta property="og:image" content="https://i.imgur.com/DSgkXRn.png">
 <meta property="og:image" content="https://i.imgur.com/jpsBuVP.png">
 <meta property="og:image" content="https://i.imgur.com/BA8QcJ4.png">
-<meta property="og:updated_time" content="2019-01-24T15:10:23.839Z">
+<meta property="og:updated_time" content="2019-01-25T00:16:27.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-域名解析">
-<meta name="twitter:description" content="域名解析-writeup&amp;lt;！– more –&amp;gt;打开题目：首先打开链接，访问显示404根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flagWindows平台修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录然后访问flag.baidu.com就可以看到flag了。Linux平台（如kali）直">
-<meta name="twitter:image" content="https://i.imgur.com/mrewFE1.png">
+<meta name="twitter:description" content="域名解析-writeup">
+<meta name="twitter:image" content="https://i.imgur.com/0BPmCC9.png">
 
 
 
@@ -302,7 +302,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  259字
+                  258字
                 </span>
               
 
@@ -339,7 +339,7 @@
       
 
       
-        <p>域名解析-writeup<br>&lt;！– more –&gt;<br>打开题目：<br><img src="https://i.imgur.com/mrewFE1.png" alt=""><br>首先打开链接，访问显示404<br>根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flag<br><strong>Windows平台</strong><br>修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录<br><img src="https://i.imgur.com/UizP89O.png" alt=""><br>然后访问flag.baidu.com就可以看到flag了。<br><img src="https://i.imgur.com/DSgkXRn.png" alt=""><br><strong>Linux平台（如kali）</strong><br>直接编辑etc/hosts文件添加一条解析记录<br><img src="https://i.imgur.com/jpsBuVP.png" alt=""><br>一样，直接访问flag.baidu.com就可以到flag了<br><img src="https://i.imgur.com/BA8QcJ4.png" alt=""></p>
+        <p><strong>域名解析-writeup</strong><br><a id="more"></a><br>打开题目：<br><img src="https://i.imgur.com/0BPmCC9.png" alt=""><br>首先打开链接，访问显示404<br>根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flag<br><strong>Windows平台</strong><br>修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录<br><img src="https://i.imgur.com/UizP89O.png" alt=""><br>然后访问flag.baidu.com就可以看到flag了。<br><img src="https://i.imgur.com/DSgkXRn.png" alt=""><br><strong>Linux平台（如kali）</strong><br>直接编辑etc/hosts文件添加一条解析记录<br><img src="https://i.imgur.com/jpsBuVP.png" alt=""><br>一样，直接访问flag.baidu.com就可以到flag了<br><img src="https://i.imgur.com/BA8QcJ4.png" alt=""></p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">host</span></span><br><span class="line"><span class="symbol">Hosts</span>是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的<span class="built_in">IP</span>地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的<span class="built_in">IP</span>地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS域名解析服务器进行<span class="built_in">IP</span>地址的解析。</span><br></pre></td></tr></table></figure>
       
     </div>
