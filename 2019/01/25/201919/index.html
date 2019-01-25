@@ -81,22 +81,23 @@
 
 
 
-<meta name="description" content="web基础$_GET-writeup">
+<meta name="description" content="变量1-writeup">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bugku-web基础$_GET">
-<meta property="og:url" content="https://axiaowei.cn/2019/01/19/201901/index.html">
+<meta property="og:title" content="Bugku-变量1">
+<meta property="og:url" content="https://axiaowei.cn/2019/01/25/201919/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="web基础$_GET-writeup">
+<meta property="og:description" content="变量1-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/YCTC6zg.png">
-<meta property="og:image" content="https://i.imgur.com/HNprRLc.png">
-<meta property="og:image" content="https://i.imgur.com/YhHqhl5.png">
-<meta property="og:updated_time" content="2019-01-21T01:12:34.621Z">
+<meta property="og:image" content="https://i.imgur.com/SomsHNn.png">
+<meta property="og:image" content="https://i.imgur.com/ktbZJ6B.png">
+<meta property="og:image" content="https://i.imgur.com/BAlK8N9.png">
+<meta property="og:image" content="https://i.imgur.com/qkmPQ3U.png">
+<meta property="og:updated_time" content="2019-01-25T05:11:04.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bugku-web基础$_GET">
-<meta name="twitter:description" content="web基础$_GET-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/YCTC6zg.png">
+<meta name="twitter:title" content="Bugku-变量1">
+<meta name="twitter:description" content="变量1-writeup">
+<meta name="twitter:image" content="https://i.imgur.com/SomsHNn.png">
 
 
 
@@ -126,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://axiaowei.cn/2019/01/19/201901/">
+  <link rel="canonical" href="https://axiaowei.cn/2019/01/25/201919/">
 
 
 
 
 
-  <title>Bugku-web基础$_GET | 小维的博客</title>
+  <title>Bugku-变量1 | 小维的博客</title>
   
 
 
@@ -239,7 +240,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/01/19/201901/">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/01/25/201919/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小维同学">
@@ -256,7 +257,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bugku-web基础$_GET</h1>
+          <h1 class="post-title" itemprop="name headline">Bugku-变量1</h1>
         
 
         <div class="post-meta">
@@ -268,8 +269,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-19T18:15:27+08:00">
-                2019-01-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-25T12:57:12+08:00">
+                2019-01-25
               </time>
             
 
@@ -300,7 +301,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  150字
+                  675字
                 </span>
               
 
@@ -316,7 +317,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -337,9 +338,10 @@
       
 
       
-        <p><strong>web基础$_GET-writeup</strong><br><a id="more"></a><br><img src="https://i.imgur.com/YCTC6zg.png" alt=""><br>点击访问链接，分析给出的代码<br><img src="https://i.imgur.com/HNprRLc.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$what=$_GET[<span class="string">'what'</span>];  <span class="comment">//Get方式获取参数</span></span><br><span class="line"><span class="keyword">echo</span> $what;  </span><br><span class="line"><span class="keyword">if</span>($what==<span class="string">'flag'</span>) <span class="comment">//这里有个if判断当what的值等于flag时就输出flag</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;****&#125;'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>分析完代码，我们直接在URL中，后面直接加上?what=flag，Get请求<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Get</span>请求：从指定的资源请求数据。</span><br><span class="line">GET提交，请求的数据会附在<span class="keyword">URL</span>之后（就是把数据放置在HTTP协议头中），以?分割<span class="keyword">URL</span>和传输数据，多个参数用&amp;连接。</span><br><span class="line"><span class="keyword">URL</span>中的?号：分隔实际的<span class="keyword">URL</span>和参数</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/YhHqhl5.png" alt=""></p>
+        <p><strong>变量1-writeup</strong><br><a id="more"></a><br><img src="https://i.imgur.com/SomsHNn.png" alt=""><br>点击访问链接<br><img src="https://i.imgur.com/ktbZJ6B.png" alt=""><br>得到一串php代码提示<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">error_reporting(<span class="number">0</span>);  <span class="comment">//关闭错误报告（报错不显示）</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"flag1.php"</span>;  <span class="comment">//引用flag1.php文件代码</span></span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);  <span class="comment">//语法高亮</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'args'</span>]))&#123;  <span class="comment">//检查变量是否声明</span></span><br><span class="line">    $args = $_GET[<span class="string">'args'</span>];  <span class="comment">//赋值给变量$args</span></span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">"/^\w+$/"</span>,$args))&#123;  </span><br><span class="line"><span class="comment">//!preg_match 不匹配, ^匹配字符串的开始，\w匹配字母或数字或下划线或汉字等价于'[^A-Za-z0-9_]',$匹配字符串的结束 这里达到过滤作用。</span></span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"args error!"</span>);   <span class="comment">//输出args error!并退出当前脚本</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">"var_dump($$args);"</span>);</span><br><span class="line"><span class="comment">//eval()将字符串作为php代码执行,var_dump()函数 打印变量的相关信息,显示关于一个或多个表达式的结构信息，包括表达式的类型与值。数组将递归展开值，通过缩进显示其结构。$$args可变变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">可变变量（Variable variables）</span><br><span class="line">可变变量是一种独特的变量，他允许动态改变一个变量的名称。其工作原理是该变量的名称由另外一个变量的值来确定，实现过程就是在变量的前面再多加一个美元符号“$”。</span><br><span class="line">下面举一个例子，实例代码如下：</span><br><span class="line">&lt;?php</span><br><span class="line">$args = <span class="string">"xiaowei"</span>;  <span class="regexp">//</span>声明变量$args</span><br><span class="line">$xiaowei = <span class="string">"www.axiaowei.cn"</span>;  <span class="regexp">//</span>声明变量$xiaowei</span><br><span class="line">echo $args;	 <span class="regexp">//</span>输出变量$args</span><br><span class="line">echo <span class="string">"\n"</span>;	 <span class="regexp">//</span>换行</span><br><span class="line">echo $$args; <span class="regexp">//</span>通过可变变量输出$xiaowei的值</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/BAlK8N9.png" alt=""><br>再看提示的第一句话flag in the variable! （#flag在变量中）<br>上述的可变变量简单来说$args的值是另一个变量的变量名。那么$$args就代表另一个变量。所以我们就给args赋值一个变量名<br>我们测试php的中的超全局变量，将其变量名传入<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">超全局变量 — 超全局变量是在全部作用域中始终可用的内置变量</span><br><span class="line">超全局变量:</span><br><span class="line"><span class="variable">$GLOBALS</span>：[一个包含了全部变量的全局组合数组]</span><br><span class="line"><span class="variable">$_SERVER</span>:[是预定义服务器变量的一种,所有<span class="variable">$_SERVER</span>开头的都是预定义服务变量]</span><br><span class="line"><span class="variable">$_GET</span>：[用于获取url地址栏的参数数据]</span><br><span class="line"><span class="variable">$_POST</span>： [用于接收<span class="keyword">post</span>提交的数据]</span><br><span class="line"><span class="variable">$_FILES</span>：[用于文件就收的处理img 最常见]</span><br><span class="line"><span class="variable">$_COOKIE</span>： [用于获取与setCookie()中的name 值]</span><br><span class="line"><span class="variable">$_SESSION</span>： [用于存储session的值或获取session中的值]</span><br><span class="line"><span class="variable">$_REQUEST</span>：[具有get,<span class="keyword">post</span>的功能，但比较慢]</span><br><span class="line"><span class="variable">$_ENV</span>：[ 是一个包含服务器端环境变量的数组。它是PHP中一个超级全局变量，我们可以在PHP 程序的任何地方直接访问它]</span><br></pre></td></tr></table></figure></p>
+<p>直接构造payload：?args=BLOBLAS<br><img src="https://i.imgur.com/qkmPQ3U.png" alt=""></p>
 
       
     </div>
@@ -364,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/19/201903/" rel="next" title="Bugku-color">
-                <i class="fa fa-chevron-left"></i> Bugku-color
+              <a href="/2019/01/25/201918/" rel="next" title="Bugku-本地包含">
+                <i class="fa fa-chevron-left"></i> Bugku-本地包含
               </a>
             
           </div>
@@ -373,10 +375,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/19/201905/" rel="prev" title="Bugku-web基础$_POST">
-                Bugku-web基础$_POST <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
