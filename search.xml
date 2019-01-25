@@ -79,6 +79,13 @@
     <title><![CDATA[Bugku-web基础$_GET]]></title>
     <url>%2F2019%2F01%2F19%2F201901%2F</url>
     <content type="text"><![CDATA[web基础$_GET-writeup点击访问链接，分析给出的代码1234$what=$_GET['what']; //Get方式获取参数echo $what; if($what=='flag') //这里有个if判断当what的值等于flag时就输出flagecho 'flag&#123;****&#125;'; 分析完代码，我们直接在URL中，后面直接加上?what=flag，Get请求123Get请求：从指定的资源请求数据。GET提交，请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，多个参数用&amp;连接。URL中的?号：分隔实际的URL和参数]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>writeup</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Bugku-color]]></title>
