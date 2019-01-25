@@ -1,261 +1,589 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[Bugku-变量1]]></title>
-    <url>%2F2019%2F01%2F25%2F201919%2F</url>
-    <content type="text"><![CDATA[变量1-writeup点击访问链接得到一串php代码提示1234567891011121314&lt;?php error_reporting(0); //关闭错误报告（报错不显示）include "flag1.php"; //引用flag1.php文件代码highlight_file(__file__); //语法高亮if(isset($_GET['args']))&#123; //检查变量是否声明 $args = $_GET['args']; //赋值给变量$args if(!preg_match("/^\w+$/",$args))&#123; //!preg_match 不匹配, ^匹配字符串的开始，\w匹配字母或数字或下划线或汉字等价于'[^A-Za-z0-9_]',$匹配字符串的结束 这里达到过滤作用。 die("args error!"); //输出args error!并退出当前脚本 &#125; eval("var_dump($$args);");//eval()将字符串作为php代码执行,var_dump()函数 打印变量的相关信息,显示关于一个或多个表达式的结构信息，包括表达式的类型与值。数组将递归展开值，通过缩进显示其结构。$$args可变变量&#125;?&gt; 12345678910可变变量（Variable variables）可变变量是一种独特的变量，他允许动态改变一个变量的名称。其工作原理是该变量的名称由另外一个变量的值来确定，实现过程就是在变量的前面再多加一个美元符号“$”。下面举一个例子，实例代码如下：&lt;?php$args = "xiaowei"; //声明变量$args$xiaowei = "www.axiaowei.cn"; //声明变量$xiaoweiecho $args; //输出变量$argsecho "\n"; //换行echo $$args; //通过可变变量输出$xiaowei的值?&gt; 再看提示的第一句话flag in the variable! （#flag在变量中）上述的可变变量简单来说$args的值是另一个变量的变量名。那么$$args就代表另一个变量。所以我们就给args赋值一个变量名我们测试php的中的超全局变量，将其变量名传入1234567891011超全局变量 — 超全局变量是在全部作用域中始终可用的内置变量超全局变量:$GLOBALS：[一个包含了全部变量的全局组合数组]$_SERVER:[是预定义服务器变量的一种,所有$_SERVER开头的都是预定义服务变量]$_GET：[用于获取url地址栏的参数数据]$_POST： [用于接收post提交的数据]$_FILES：[用于文件就收的处理img 最常见]$_COOKIE： [用于获取与setCookie()中的name 值]$_SESSION： [用于存储session的值或获取session中的值]$_REQUEST：[具有get,post的功能，但比较慢]$_ENV：[ 是一个包含服务器端环境变量的数组。它是PHP中一个超级全局变量，我们可以在PHP 程序的任何地方直接访问它] 直接构造payload：?args=BLOBLAS]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Bugku-变量1</title>
+      <link href="/2019/01/25/201919/"/>
+      <url>/2019/01/25/201919/</url>
+      
+        <content type="html"><![CDATA[<p><strong>变量1-writeup</strong><br><a id="more"></a><br><img src="https://i.imgur.com/SomsHNn.png" alt=""><br>点击访问链接<br><img src="https://i.imgur.com/ktbZJ6B.png" alt=""><br>得到一串php代码提示<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">error_reporting(<span class="number">0</span>);  <span class="comment">//关闭错误报告（报错不显示）</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"flag1.php"</span>;  <span class="comment">//引用flag1.php文件代码</span></span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);  <span class="comment">//语法高亮</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'args'</span>]))&#123;  <span class="comment">//检查变量是否声明</span></span><br><span class="line">    $args = $_GET[<span class="string">'args'</span>];  <span class="comment">//赋值给变量$args</span></span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">"/^\w+$/"</span>,$args))&#123;  </span><br><span class="line"><span class="comment">//!preg_match 不匹配, ^匹配字符串的开始，\w匹配字母或数字或下划线或汉字等价于'[^A-Za-z0-9_]',$匹配字符串的结束 这里达到过滤作用。</span></span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"args error!"</span>);   <span class="comment">//输出args error!并退出当前脚本</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">"var_dump($$args);"</span>);</span><br><span class="line"><span class="comment">//eval()将字符串作为php代码执行,var_dump()函数 打印变量的相关信息,显示关于一个或多个表达式的结构信息，包括表达式的类型与值。数组将递归展开值，通过缩进显示其结构。$$args可变变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">可变变量（Variable variables）</span><br><span class="line">可变变量是一种独特的变量，他允许动态改变一个变量的名称。其工作原理是该变量的名称由另外一个变量的值来确定，实现过程就是在变量的前面再多加一个美元符号“$”。</span><br><span class="line">下面举一个例子，实例代码如下：</span><br><span class="line">&lt;?php</span><br><span class="line">$args = <span class="string">"xiaowei"</span>;  <span class="regexp">//</span>声明变量$args</span><br><span class="line">$xiaowei = <span class="string">"www.axiaowei.cn"</span>;  <span class="regexp">//</span>声明变量$xiaowei</span><br><span class="line">echo $args; <span class="regexp">//</span>输出变量$args</span><br><span class="line">echo <span class="string">"\n"</span>; <span class="regexp">//</span>换行</span><br><span class="line">echo $$args; <span class="regexp">//</span>通过可变变量输出$xiaowei的值</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p><img src="https://i.imgur.com/BAlK8N9.png" alt=""><br>再看提示的第一句话flag in the variable! （#flag在变量中）<br>上述的可变变量简单来说$args的值是另一个变量的变量名。那么$$args就代表另一个变量。所以我们就给args赋值一个变量名<br>我们测试php的中的超全局变量，将其变量名传入<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">超全局变量 — 超全局变量是在全部作用域中始终可用的内置变量</span><br><span class="line">超全局变量:</span><br><span class="line"><span class="variable">$GLOBALS</span>：[一个包含了全部变量的全局组合数组]</span><br><span class="line"><span class="variable">$_SERVER</span>:[是预定义服务器变量的一种,所有<span class="variable">$_SERVER</span>开头的都是预定义服务变量]</span><br><span class="line"><span class="variable">$_GET</span>：[用于获取url地址栏的参数数据]</span><br><span class="line"><span class="variable">$_POST</span>： [用于接收<span class="keyword">post</span>提交的数据]</span><br><span class="line"><span class="variable">$_FILES</span>：[用于文件就收的处理img 最常见]</span><br><span class="line"><span class="variable">$_COOKIE</span>： [用于获取与setCookie()中的name 值]</span><br><span class="line"><span class="variable">$_SESSION</span>： [用于存储session的值或获取session中的值]</span><br><span class="line"><span class="variable">$_REQUEST</span>：[具有get,<span class="keyword">post</span>的功能，但比较慢]</span><br><span class="line"><span class="variable">$_ENV</span>：[ 是一个包含服务器端环境变量的数组。它是PHP中一个超级全局变量，我们可以在PHP 程序的任何地方直接访问它]</span><br></pre></td></tr></table></figure></p><p>直接构造payload：?args=BLOBLAS<br><img src="https://i.imgur.com/qkmPQ3U.png" alt=""></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>变量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-本地包含]]></title>
-    <url>%2F2019%2F01%2F25%2F201918%2F</url>
-    <content type="text"><![CDATA[本地包含-writeup访问链接，显示123，查看源代码，没有任何提示，尝试了几个常见的本地包含的姿势，输入什么都是123,也不报错，并没有什么用试着用御剑扫描一下，出来了个flag.php（没有的可以自己往字典里加）访问flag出来了（很迷？？？）个人感觉这个环境应该是已经玩坏了-_-!]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> 变量 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-本地包含</title>
+      <link href="/2019/01/25/201918/"/>
+      <url>/2019/01/25/201918/</url>
+      
+        <content type="html"><![CDATA[<p><strong>本地包含-writeup</strong><br><a id="more"></a><br><img src="https://i.imgur.com/6yKVP4G.png" alt=""><br>访问链接，显示123，查看源代码，没有任何提示，尝试了几个常见的本地包含的姿势，输入什么都是123,也不报错，并没有什么用<br><img src="https://i.imgur.com/4ZFpu3K.png" alt=""><br>试着用御剑扫描一下，出来了个flag.php（没有的可以自己往字典里加）<br><img src="https://i.imgur.com/NsqXAPt.png" alt=""><br>访问flag出来了（很迷？？？）<br><img src="https://i.imgur.com/z1YduAI.png" alt=""><br>个人感觉这个环境应该是已经玩坏了-_-!</p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-你必须让他停下]]></title>
-    <url>%2F2019%2F01%2F24%2F201917%2F</url>
-    <content type="text"><![CDATA[你必须让他停下-writeup打开题目点击访问链接，无限刷新，查看源代码发现js中，如下：12345function myrefresh()&#123; //声明一个函数window.location.reload(); //重新加载当前文档。&#125;setTimeout('myrefresh()',500); //在指定得毫秒数（500）调用函数1000毫秒 = 1秒 你也可以跟我一样，那么准，当显示10.jpg（大概有15张jpg）得页面得时候按pc上的ESC，让页面停止，按F12查看flag想其flag显示在页面上可以把标签中得style=”display:none”中去掉就可以了（并没有什么用，能得到flag就可以了）12display:none将元素的显示设为无，即在网页中不占任何的位置。 我讲一下其他几种方式吧，毕竟上面得操作有点看手速[掩面]view-source 可以利用view-source:查看源代码，然后在当前页面一直刷新（F5），直到flag出现。 抓包工具(这里我用得是burp suite)抓取到页面，发送到Repeater，一直点击go，很快就会出现得]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-你必须让他停下</title>
+      <link href="/2019/01/24/201917/"/>
+      <url>/2019/01/24/201917/</url>
+      
+        <content type="html"><![CDATA[<p><strong>你必须让他停下-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/mWS098U.png" alt=""><br>点击访问链接，无限刷新，查看源代码<br><img src="https://i.imgur.com/VAUzE5R.png" alt=""><br>发现js中，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myrefresh</span>(<span class="params"></span>)</span>&#123;   <span class="comment">//声明一个函数</span></span><br><span class="line"><span class="built_in">window</span>.location.reload();  <span class="comment">//重新加载当前文档。</span></span><br><span class="line">&#125;</span><br><span class="line">setTimeout(<span class="string">'myrefresh()'</span>,<span class="number">500</span>);  <span class="comment">//在指定得毫秒数（500）调用函数</span></span><br><span class="line"><span class="number">1000</span>毫秒 = <span class="number">1</span>秒</span><br></pre></td></tr></table></figure></p><p>你也可以跟我一样，那么准，当显示10.jpg（大概有15张jpg）得页面得时候按pc上的ESC，让页面停止，按F12查看flag<br><img src="https://i.imgur.com/gm5qjkG.png" alt=""><br>想其flag显示在页面上可以把标签中得style=”display:none”中去掉就可以了（并没有什么用，能得到flag就可以了）<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">display</span>:none</span><br><span class="line">将元素的显示设为无，即在网页中不占任何的位置。</span><br></pre></td></tr></table></figure></p><p>我讲一下其他几种方式吧，毕竟上面得操作有点看手速[掩面]<br><strong>view-source </strong><br>可以利用view-source:查看源代码，然后在当前页面一直刷新（F5），直到flag出现。<br><img src="https://i.imgur.com/lgVKOpf.png" alt=""></p><p><strong>抓包工具</strong>(这里我用得是burp suite)<br>抓取到页面，发送到Repeater，一直点击go，很快就会出现得<br><img src="https://i.imgur.com/k9rlz0l.png" alt=""></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-域名解析]]></title>
-    <url>%2F2019%2F01%2F24%2F201916%2F</url>
-    <content type="text"><![CDATA[域名解析-writeup打开题目：首先打开链接，访问显示404根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flagWindows平台修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录（如果出现修改权限不足的问题，可以利用替换）然后访问flag.baidu.com就可以看到flag了。Linux平台（如kali）直接编辑etc/hosts文件添加一条解析记录一样，直接访问flag.baidu.com就可以到flag了 12hostHosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-域名解析</title>
+      <link href="/2019/01/24/201916/"/>
+      <url>/2019/01/24/201916/</url>
+      
+        <content type="html"><![CDATA[<p><strong>域名解析-writeup</strong><br><a id="more"></a><br>打开题目：<br><img src="https://i.imgur.com/0BPmCC9.png" alt=""><br>首先打开链接，访问显示404<br>根据题目要求把flag.baidu.com解析到123.206.87.240应该就可以拿到flag<br><strong>Windows平台</strong><br>修改C:\Windows\System32\drivers\etc下得hosts文件添加一条解析记录（如果出现修改权限不足的问题，可以利用替换）<br><img src="https://i.imgur.com/UizP89O.png" alt=""><br>然后访问flag.baidu.com就可以看到flag了。<br><img src="https://i.imgur.com/DSgkXRn.png" alt=""><br><strong>Linux平台（如kali）</strong><br>直接编辑etc/hosts文件添加一条解析记录<br><img src="https://i.imgur.com/jpsBuVP.png" alt=""><br>一样，直接访问flag.baidu.com就可以到flag了<br><img src="https://i.imgur.com/BA8QcJ4.png" alt=""></p><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">host</span></span><br><span class="line"><span class="symbol">Hosts</span>是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的<span class="built_in">IP</span>地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的<span class="built_in">IP</span>地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS域名解析服务器进行<span class="built_in">IP</span>地址的解析。</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-一个普通的压缩包(xp0intCTF)]]></title>
-    <url>%2F2019%2F01%2F23%2F201911%2F</url>
-    <content type="text"><![CDATA[一个普通的压缩包(xp0intCTF)-writeup打开题目下载得到一个rar压缩包附件，解压打开发现还有一个flag.rar，文件属性，详细信息各种查看确定没有隐藏信息，进行再次解压出现提示png文件损坏先打开里面的文本看一下，文本内容提示flag is not here，现在把flag.rar放在十六进制工具里看下，发现里面有一张secret.png文件，但是之前提示损坏了，刚开始用winrar自带的修复功能修复不成功，只能自己用010Editor进行手动修复了。检查rar头，没有问题，然后再看加密部分，检查各个文件的文件头12文件头（FILE_HEAD）HEAD_TYPE 1 个字节 头类型：0x74 更多可以点击RAR文件格式研究我们回到我们的题目中来，检查发现png那的文件头类型A8 3C 7A，把7A修改为74，保存，查看是否修复成功。得到secret.png，查看一张纯白的图片，用010Editor查看是一个gif的文件1GIF文件头标识 (6 bytes) 47 49 46 38 39(37) 61—— GIF89(7)a 修改为gif用stegsolve查看得到gif的两帧每一帧有半张二维码(这里也可以用Photoshop进行分离图层)123456StegSolveAnalyse下面几个功能键作简单介绍：File Format:文件格式，这个主要是查看图片的具体信息Data Extract:数据抽取，图片中隐藏数据的抽取Frame Browser:帧浏览器，主要是对GIF之类的动图进行分解，动图变成一张张图片，便于查看Image Combiner:拼图，图片拼接 用Photoshop将这两块进行拼接成完整的二维码，利用QR扫描（手机扫也一样的）得到flag二维码的生成细节和原理有兴趣的可以去了解下。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-一个普通的压缩包(xp0intCTF)</title>
+      <link href="/2019/01/23/201911/"/>
+      <url>/2019/01/23/201911/</url>
+      
+        <content type="html"><![CDATA[<p><strong>一个普通的压缩包(xp0intCTF)-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/br7ClKo.png" alt=""><br>下载得到一个rar压缩包附件，解压打开发现还有一个flag.rar，文件属性，详细信息各种查看确定没有隐藏信息，进行再次解压出现提示png文件损坏<br><img src="https://i.imgur.com/8Zx5SY2.png" alt=""><br>先打开里面的文本看一下，文本内容提示flag is not here，现在把flag.rar放在十六进制工具里看下，发现里面有一张secret.png文件，但是之前提示损坏了，刚开始用winrar自带的修复功能修复不成功，只能自己用010Editor进行手动修复了。<br><img src="https://i.imgur.com/2bebiCl.png" alt=""><br>检查rar头，没有问题，然后再看加密部分，检查各个文件的文件头<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文件头（FILE_HEAD）</span><br><span class="line">HEAD_TYPE <span class="number">1</span> 个字节 头类型：<span class="number">0x74</span></span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/W1GVeUu.png" alt=""><br>更多可以点击<a href="https://wenku.baidu.com/view/b7889b64783e0912a2162aa4.html" title="RAR文件格式的研究" target="_blank" rel="noopener">RAR文件格式研究</a><br>我们回到我们的题目中来，检查发现png那的文件头类型A8 3C 7A，把7A修改为74，保存，查看是否修复成功。<br><img src="https://i.imgur.com/3XL7cfN.png" alt=""><br><img src="https://i.imgur.com/Tcnan9t.png" alt=""><br>得到secret.png，查看一张纯白的图片，用010Editor查看是一个gif的文件<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF文件头标识 (<span class="number">6</span> bytes) <span class="number">47</span> <span class="number">49</span> <span class="number">46</span> <span class="number">38</span> <span class="number">39</span>(<span class="number">37</span>) <span class="number">61</span>—— GIF89(<span class="number">7</span>)a</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/76Pza6K.png" alt=""><br>修改为gif用stegsolve查看得到gif的两帧每一帧有半张二维码(这里也可以用Photoshop进行分离图层)<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StegSolve</span><br><span class="line">Analyse下面几个功能键作简单介绍：</span><br><span class="line"><span class="keyword">File</span> <span class="keyword">Format</span>:文件格式，这个主要是查看图片的具体信息</span><br><span class="line">Data <span class="keyword">Extract</span>:数据抽取，图片中隐藏数据的抽取</span><br><span class="line"><span class="keyword">Frame</span> Browser:帧浏览器，主要是对GIF之类的动图进行分解，动图变成一张张图片，便于查看</span><br><span class="line"><span class="keyword">Image</span> Combiner:拼图，图片拼接</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/sv0kS4u.png" alt=""><br>用Photoshop将这两块进行拼接成完整的二维码，利用QR扫描（手机扫也一样的）得到flag<br><img src="https://i.imgur.com/fZGIgia.png" alt=""><br><strong><a href="https://coolshell.cn/articles/10590.html#jtss-tsina" title="二维码的生成细节和原理" target="_blank" rel="noopener">二维码的生成细节和原理</a></strong>有兴趣的可以去了解下。</p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[zip文件格式说明]]></title>
-    <url>%2F2019%2F01%2F22%2F201914%2F</url>
-    <content type="text"><![CDATA[zip文件格式zip文件由三部分组成：压缩的文件内容源数据、压缩的目录源数据、目录结束标识的结构①压缩文件内容的源数据：记录着压缩的所有文件的内容信息，其数据组织结构是对于每个文件都由File header 、File data 、 Data descriptor 三部分组成。File header（文件头）：用于标识该文件的开始，结构说明如下：File data(文件数据)：相应压缩文件的源数据。Data descriptor（数据描述符）：用于标识该文件压缩结束，该结构只有在相应的local file header中通用标记字段的第３bit设为１时才会出现，紧接在压缩文件源数据后。这个数据描述符只用在不能对输出的 ZIP 文件进行检索时使用。例如：在一个不能检索的驱动器（如：磁带机上）上的 ZIP 文件中。如果是磁盘上的ZIP文件一般没有这个数据描述符。②Central directory 核心目录记录了压缩文件的目录信息，在这个数据区中每一条记录对应再压缩源文件数据区中的一条数据。核心目录结构：③End of central directory record(EOCD) 目录结束标识目录结束标识存于整个归档包的结尾，用于标记压缩目录数据的结束。每个压缩文件必须有且只有一个EOCD记录。 官方文档：https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.2.0.txt]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zip文件格式说明</title>
+      <link href="/2019/01/22/201914/"/>
+      <url>/2019/01/22/201914/</url>
+      
+        <content type="html"><![CDATA[<p><strong>zip文件格式</strong><br><a id="more"></a><br>zip文件由三部分组成：压缩的文件内容源数据、压缩的目录源数据、目录结束标识的结构<br>①压缩文件内容的源数据：<br>记录着压缩的所有文件的内容信息，其数据组织结构是对于每个文件都由File header 、File data 、 Data descriptor 三部分组成。<br>File header（文件头）：用于标识该文件的开始，结构说明如下：<br><img src="https://i.imgur.com/JkW9uD7.png" alt=""><br>File data(文件数据)：相应压缩文件的源数据。<br>Data descriptor（数据描述符）：<br>用于标识该文件压缩结束，该结构只有在相应的local file header中通用标记字段的第３bit设为１时才会出现，紧接在压缩文件源数据后。这个数据描述符只用在不能对输出的 ZIP 文件进行检索时使用。例如：在一个不能检索的驱动器（如：磁带机上）上的 ZIP 文件中。如果是磁盘上的ZIP文件一般没有这个数据描述符。<br><img src="https://i.imgur.com/TMuCIS4.png" alt=""><br>②Central directory 核心目录<br>记录了压缩文件的目录信息，在这个数据区中每一条记录对应再压缩源文件数据区中的一条数据。<br>核心目录结构：<br><img src="https://i.imgur.com/12KawpH.png" alt=""><br>③End of central directory record(EOCD) 目录结束标识<br>目录结束标识存于整个归档包的结尾，用于标记压缩目录数据的结束。每个压缩文件必须有且只有一个EOCD记录。<br><img src="https://i.imgur.com/irjRCQH.png" alt=""></p><p><strong>官方文档：<a href="https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.2.0.txt" target="_blank" rel="noopener">https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.2.0.txt</a></strong></p>]]></content>
+      
+      
       <categories>
-        <category>笔记</category>
+          
+          <category> 笔记 </category>
+          
       </categories>
-      <tags>
-        <tag>ZIP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[zip压缩包--加密破解篇]]></title>
-    <url>%2F2019%2F01%2F22%2F201915%2F</url>
-    <content type="text"><![CDATA[伪加密、爆破、明文攻击、CRC32碰撞zip文件格式：zip文件由三部分组成：压缩的文件内容源数据、压缩的目录元数据、目录结束标识结构详情点击：zip格式说明zip伪加密若是没有加密的zip文件，两处标记都是00 00如果是加密的zip文件，两处都标记的是09 00（注意不同的压缩软件有差异，有些好像是01 00）若将未加密的zip文件中的压缩源文件目录区的全局方式位标记改为01 00 （或者09 00），就会被压缩软件认为已加密，这就是所谓的伪加密了破解伪加密的zip，只要把压缩文件目录区的全局方式标记改为00 00 （除windows外的系统（如kali）可直接打开伪加密压缩包）爆破爆破：逐个尝试选定集合中的可以组成的所有密码，直到遇到正确的密码。分为暴力破解、掩码破解、字典破解这几种1、暴力破解：选择密码范围，长度等，由软件组合生成密码进行破解2、掩码破解：知道密码中的一部分，只需要按照规则构造其余部分进行破解3、字典破解：通常是多数用户常用的一些密码集合，导入字典文件用字典中的密码进行破解（取决你的字典）这里可以使用Windows下的一款神器AZPR，也可以自己动手用python写个爆破的脚本。明文攻击明文攻击（Known plaintext attack）：是一种攻击模式，指攻击者已知明文、密文及算法，求密钥的过程。明文攻击是一种较为高效的攻击手段，如：当你不知道一个zip压缩包文件的密码，但是你有zip中的一个已知文件（文件大小要大于12Byte）时，因为同一个zip压缩包里的所有压缩文件使用同一个加密密钥来加密的，所以可以用已知文件来找加密密钥，利用密钥来解锁其他加密文件。简单来说就是，zip明文攻击就是利用已知文件找到加密密钥，利用密钥来解释其他加密文件，因为zip压缩包里的所有文件都是使用同一个加密密钥来加密的。这里举个例子：现在我压缩了带密码的四个文件，已知明文攻击测试.zip中的明文攻击.docx进行对已知文件进行压缩，对比crc值是否跟加密文件中的crc值一致利用AZPR进行明文攻击成功获取到密文注意：当明文的大小比较小时，或者密文过长，攻击速度会比较慢；即使有时没有恢复密码，也可以使用明文攻击，最后点保存还是能得到压缩包里内容的，如果出现错误可以多试几款压缩软件。CRC32碰撞CRC32：CRC本身是“冗余校验码”的意思，CRC32则标识会产生一个32bit（8位十六进制）的校验值。 CRC校验实用程序库，在数据存储和数据通讯领域，为了保证数据的正确，就不得不采用检错的手段。在诸多检错手段中，CRC是最著名的一种。CRC的全称是循环冗余校验。 在产生CRC32时，源数据块的每一位都参与了运算，因此即使数据块中只有一位发生改变也会得到不同的CRC32值，利用这个原理我们可以直接爆破出加密文件中的内容。 每个文件都有唯一的CRC32值，即便数据中一个bit发生变化，也会导致CRC32值不同。若是知道一段数据的长度和CRC32值，便可穷举数据，与其CRC32对照，以此达到暴力猜解的目的。但限于CPU的能力，通常只适用于较小文本文件。 案例：可以参考我写的Bugku-好多压缩包那篇文章。bugku中的例子脚本如下：12345678910111213141516171819202122232425262728293031323334353637383940414243# coding:utf-8import binasciiimport stringimport zipfileimport base64dicts = string.printable # 可打印字符的字符串。ascii码33-126号def collision_crc(crc): global out_file for a in dicts: for b in dicts: for c in dicts: for d in dicts: strings = a + b + c + d strings = strings.encode('utf-8') if crc == (binascii.crc32(strings)): out_file.write(strings.decode('utf-8')) # print(strings) return # 以上定义一个方法，组合随机字符与CRC进行碰撞，判断如果相等及写入文件def obtain_zip(): for i in range(68): file = 'out' + str(i) + '.zip' zip_file = zipfile.ZipFile(file, 'r') # 读取创建zip_file对象 get_crc = zip_file.getinfo('data.txt') # 压缩文件夹里的data.txt文件，获取文档内指定的文件信息 crc = get_crc.CRC # 以上定义一个方法，获取68个zip的CRC的值 collision_crc(crc) # 再调用collision方法传参out_file = open('out.txt', 'w')obtain_zip()out_file.close()out_file2 = open('out.txt', 'r')with open('flag.rar', 'wb') as rar: rar.write(base64.b64decode(out_file2.read())) # 二进制将转换后的base64位写入文件]]></content>
+      
+      
+        <tags>
+            
+            <tag> ZIP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zip压缩包--加密破解篇</title>
+      <link href="/2019/01/22/201915/"/>
+      <url>/2019/01/22/201915/</url>
+      
+        <content type="html"><![CDATA[<p><strong>伪加密、爆破、明文攻击、CRC32碰撞</strong><br><a id="more"></a><br>zip文件格式：<br>zip文件由三部分组成：压缩的文件内容源数据、压缩的目录元数据、目录结束标识结构<br>详情点击：<strong><a href="https://axiaowei.cn/2019/01/22/201914/">zip格式说明</a></strong><br><strong>zip伪加密</strong><br><img src="https://i.imgur.com/DUQIJrv.png" alt=""><br>若是没有加密的zip文件，两处标记都是00 00<br><img src="https://i.imgur.com/Urjs01J.png" alt=""><br>如果是加密的zip文件，两处都标记的是09 00（注意不同的压缩软件有差异，有些好像是01 00）<br><img src="https://i.imgur.com/JhoLKmq.png" alt=""><br>若将未加密的zip文件中的压缩源文件目录区的全局方式位标记改为01 00 （或者09 00），就会被压缩软件认为已加密，这就是所谓的伪加密了<br><img src="https://i.imgur.com/muxxpa4.png" alt=""><br>破解伪加密的zip，只要把压缩文件目录区的全局方式标记改为00 00 （除windows外的系统（如kali）可直接打开伪加密压缩包）<br><img src="https://i.imgur.com/WKdBab6.png" alt=""><br><strong>爆破</strong><br>爆破：逐个尝试选定集合中的可以组成的所有密码，直到遇到正确的密码。<br>分为暴力破解、掩码破解、字典破解这几种<br>1、暴力破解：选择密码范围，长度等，由软件组合生成密码进行破解<br>2、掩码破解：知道密码中的一部分，只需要按照规则构造其余部分进行破解<br>3、字典破解：通常是多数用户常用的一些密码集合，导入字典文件用字典中的密码进行破解（取决你的字典）<br>这里可以使用Windows下的一款神器AZPR，也可以自己动手用python写个爆破的脚本。<br><img src="https://i.imgur.com/hsBx7FR.png" alt=""><br><strong>明文攻击</strong><br>明文攻击（Known plaintext attack）：是一种攻击模式，指攻击者已知明文、密文及算法，求密钥的过程。<br>明文攻击是一种较为高效的攻击手段，如：当你不知道一个zip压缩包文件的密码，但是你有zip中的一个已知文件（文件大小要大于12Byte）时，因为同一个zip压缩包里的所有压缩文件使用同一个加密密钥来加密的，所以可以用已知文件来找加密密钥，利用密钥来解锁其他加密文件。<br>简单来说就是，zip明文攻击就是利用已知文件找到加密密钥，利用密钥来解释其他加密文件，因为zip压缩包里的所有文件都是使用同一个加密密钥来加密的。<br>这里举个例子：<br>现在我压缩了带密码的四个文件，已知明文攻击测试.zip中的明文攻击.docx<br><img src="https://i.imgur.com/dgGxMrz.png" alt=""><br>进行对已知文件进行压缩，对比crc值是否跟加密文件中的crc值一致<br><img src="https://i.imgur.com/miCXuEs.png" alt=""><br>利用AZPR进行明文攻击<br><img src="https://i.imgur.com/yqIAUBb.png" alt=""><br>成功获取到密文<br><img src="https://i.imgur.com/V0Cgr3d.png" alt=""><br>注意：当明文的大小比较小时，或者密文过长，攻击速度会比较慢；即使有时没有恢复密码，也可以使用明文攻击，最后点保存还是能得到压缩包里内容的，如果出现错误可以多试几款压缩软件。<br><img src="https://i.imgur.com/CNehTcJ.png" alt=""><br><img src="https://i.imgur.com/jRqciH3.png" alt=""><br><strong>CRC32碰撞</strong><br>CRC32：CRC本身是“冗余校验码”的意思，CRC32则标识会产生一个32bit（8位十六进制）的校验值。  </p><p>CRC校验实用程序库，在数据存储和数据通讯领域，为了保证数据的正确，就不得不采用检错的手段。在诸多检错手段中，CRC是最著名的一种。CRC的全称是循环冗余校验。</p><p>在产生CRC32时，源数据块的每一位都参与了运算，因此即使数据块中只有一位发生改变也会得到不同的CRC32值，利用这个原理我们可以直接爆破出加密文件中的内容。</p><p>每个文件都有唯一的CRC32值，即便数据中一个bit发生变化，也会导致CRC32值不同。若是知道一段数据的长度和CRC32值，便可穷举数据，与其CRC32对照，以此达到暴力猜解的目的。但限于CPU的能力，通常只适用于较小文本文件。</p><p>案例：可以参考我写的<strong><a href="https://axiaowei.cn/2019/01/21/201906/">Bugku-好多压缩包</a></strong>那篇文章。<br>bugku中的例子脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">dicts = string.printable  <span class="comment"># 可打印字符的字符串。ascii码33-126号</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collision_crc</span><span class="params">(crc)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> out_file</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> dicts:</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> dicts:</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> dicts:</span><br><span class="line">                <span class="keyword">for</span> d <span class="keyword">in</span> dicts:</span><br><span class="line">                    strings = a + b + c + d</span><br><span class="line">                    strings = strings.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(strings)):</span><br><span class="line">                        out_file.write(strings.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">                        <span class="comment"># print(strings)</span></span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line">                        <span class="comment"># 以上定义一个方法，组合随机字符与CRC进行碰撞，判断如果相等及写入文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">obtain_zip</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">68</span>):</span><br><span class="line">        file = <span class="string">'out'</span> + str(i) + <span class="string">'.zip'</span></span><br><span class="line">        zip_file = zipfile.ZipFile(file, <span class="string">'r'</span>)  <span class="comment"># 读取创建zip_file对象</span></span><br><span class="line">        get_crc = zip_file.getinfo(<span class="string">'data.txt'</span>)  <span class="comment"># 压缩文件夹里的data.txt文件，获取文档内指定的文件信息</span></span><br><span class="line">        crc = get_crc.CRC</span><br><span class="line">        <span class="comment">#  以上定义一个方法，获取68个zip的CRC的值</span></span><br><span class="line">        collision_crc(crc)  <span class="comment"># 再调用collision方法传参</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">out_file = open(<span class="string">'out.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line">obtain_zip()</span><br><span class="line">out_file.close()</span><br><span class="line"></span><br><span class="line">out_file2 = open(<span class="string">'out.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'flag.rar'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> rar:</span><br><span class="line">    rar.write(base64.b64decode(out_file2.read()))   <span class="comment"># 二进制将转换后的base64位写入文件</span></span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>笔记</category>
+          
+          <category> 笔记 </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-        <tag>加密</tag>
-        <tag>ZIP</tag>
-        <tag>爆破</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-好多压缩包]]></title>
-    <url>%2F2019%2F01%2F21%2F201906%2F</url>
-    <content type="text"><![CDATA[好多压缩包-writeup打开题目得到一个压缩包附件，进行解压，查看到里面有68个压缩包打开68个文件发现里面每个压缩包里都有一个四个字节大小的txt文档（加密），首先尝试下是不是伪加密，发现不是尝试下爆破无果。。。然后想了下，这么多压缩包，不可能让我们爆破吧，尝试下crc32碰撞CRC32碰撞可以参考我写的文章zip压缩包–加密篇**分析里面得文件得四个字节，想着应该是英文，中文字符得话跟爆破没区别…猜测里面为四个字符（英文），获取zip文件得crc32值，进行crc碰撞碰撞出来发现是一串base64，拿去解密(有些网站解码不了，解码了也是有问题的，多尝试几个)，放入winhex，发现导入进去的时候老是有问题，我不知道怎么处理，莫名其妙的多了很多空格，搜索了下感觉他们很顺利的就放进去了尝试多次发现无果。然后无奈就自己写python实现直接base64解密后直接写入文件里python脚本：12345678910111213141516171819202122232425262728293031323334353637383940414243# coding:utf-8import binasciiimport stringimport zipfileimport base64dicts = string.printable # 可打印字符的字符串。ascii码33-126号def collision_crc(crc): global out_file for a in dicts: for b in dicts: for c in dicts: for d in dicts: strings = a + b + c + d strings = strings.encode('utf-8') if crc == (binascii.crc32(strings)): out_file.write(strings.decode('utf-8')) # print(strings) return # 以上定义一个方法，组合随机字符与CRC进行碰撞，判断如果相等及写入文件def obtain_zip(): for i in range(68): file = 'out' + str(i) + '.zip' zip_file = zipfile.ZipFile(file, 'r') # 读取创建zip_file对象 get_crc = zip_file.getinfo('data.txt') # 压缩文件夹里的data.txt文件，获取文档内指定的文件信息 crc = get_crc.CRC # 以上定义一个方法，获取68个zip的CRC的值 collision_crc(crc) # 再调用collision方法传参 out_file = open('out.txt', 'w')obtain_zip()out_file.close()out_file2 = open('out.txt', 'r')with open('flag.rar', 'wb') as rar: rar.write(base64.b64decode(out_file2.read())) # 二进制将转换后的base64位写入文件 运行完成后将写出的文件，打开发现打开失败，导入16进制编辑器，观察数据，发现存在rar的文件尾C4 3D 7B 00 40 07 00，但缺少文件头，于是补上rar的文件头52 61 72 21 1A 07 00，发现文件修复成功，解压发现是一个flag在压缩包注释上。二进制上也可以看到CMT，CMT即为comment（注释） 这里说明下我之前base64导入进去的出现的问题，因为心里一直纳闷，所以去多次尝试发现需要利用notepad++32位的进行base64解密，就可以得到正确的值，保存为.rar文件，然后进行导入十六进制编辑工具里是可以实现的。（之前用的时notepad++64位的会出现解密不出来的情况，几个在线工具解密出来的值都是错误的或者跟上面导进去不知道为什么多了很多空格这些）这里举几个对比：]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+            <tag> 加密 </tag>
+            
+            <tag> ZIP </tag>
+            
+            <tag> 爆破 </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-好多压缩包</title>
+      <link href="/2019/01/21/201906/"/>
+      <url>/2019/01/21/201906/</url>
+      
+        <content type="html"><![CDATA[<p><strong>好多压缩包-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/BMnMK4r.png" alt=""><br>得到一个压缩包附件，进行解压，查看到里面有68个压缩包<br><img src="https://i.imgur.com/pOGMgAo.png" alt=""><br>打开68个文件发现里面每个压缩包里都有一个四个字节大小的txt文档（加密），首先尝试下是不是<strong>伪加密</strong>，发现不是尝试下爆破无果。。。然后想了下，这么多压缩包，不可能让我们爆破吧，尝试下<strong>crc32碰撞</strong><br><strong>CRC32碰撞可以参考我写的文章</strong><a href="https://axiaowei.cn/2019/01/22/201915/">zip压缩包–加密篇</a><em>**</em><br><img src="https://i.imgur.com/f3fGhls.png" alt=""><br><img src="https://i.imgur.com/0ZEOQn9.png" alt=""><br><img src="https://i.imgur.com/VcQONYA.png" alt=""><br><img src="https://i.imgur.com/UbbtW2p.png" alt=""><br><img src="https://i.imgur.com/WXppXRP.png" alt=""><br><img src="https://i.imgur.com/JY8689h.png" alt=""><br>分析里面得文件得四个字节，想着应该是英文，中文字符得话跟爆破没区别…<br>猜测里面为四个字符（英文），获取zip文件得crc32值，进行crc碰撞<br>碰撞出来发现是一串base64，拿去解密(有些网站解码不了，解码了也是有问题的，多尝试几个)，放入winhex，发现导入进去的时候老是有问题，我不知道怎么处理，莫名其妙的多了很多空格，搜索了下感觉他们很顺利的就放进去了<br><img src="https://i.imgur.com/gxr9XvA.png" alt=""><br>尝试多次发现无果。然后无奈就自己写python实现直接base64解密后直接写入文件里<br>python脚本：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line">import binascii</span><br><span class="line">import <span class="keyword">string</span></span><br><span class="line">import zipfile</span><br><span class="line">import base64</span><br><span class="line"></span><br><span class="line">dicts = <span class="keyword">string</span>.printable  <span class="comment"># 可打印字符的字符串。ascii码33-126号</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def collision_crc(crc):</span><br><span class="line">    <span class="built_in">global</span> out_file</span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">a</span> <span class="keyword">in</span> dicts:</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> dicts:</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> dicts:</span><br><span class="line">                <span class="keyword">for</span> d <span class="keyword">in</span> dicts:</span><br><span class="line">                    strings = <span class="keyword">a</span> + b + c + d</span><br><span class="line">                    strings = strings.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(strings)):</span><br><span class="line">                        out_file.<span class="built_in">write</span>(strings.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">                        <span class="comment"># print(strings)</span></span><br><span class="line">                        <span class="literal">return</span></span><br><span class="line">                        <span class="comment"># 以上定义一个方法，组合随机字符与CRC进行碰撞，判断如果相等及写入文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def obtain_zip():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">68</span>):</span><br><span class="line">        <span class="built_in">file</span> = <span class="string">'out'</span> + str(i) + <span class="string">'.zip'</span></span><br><span class="line">        zip_file = zipfile.ZipFile(<span class="built_in">file</span>, <span class="string">'r'</span>)  <span class="comment"># 读取创建zip_file对象</span></span><br><span class="line">        get_crc = zip_file.getinfo(<span class="string">'data.txt'</span>)  <span class="comment"># 压缩文件夹里的data.txt文件，获取文档内指定的文件信息</span></span><br><span class="line">        crc = get_crc.CRC</span><br><span class="line">        <span class="comment">#  以上定义一个方法，获取68个zip的CRC的值</span></span><br><span class="line">        collision_crc(crc)  <span class="comment"># 再调用collision方法传参</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">out_file = <span class="built_in">open</span>(<span class="string">'out.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line">obtain_zip()</span><br><span class="line">out_file.<span class="built_in">close</span>()</span><br><span class="line"></span><br><span class="line">out_file2 = <span class="built_in">open</span>(<span class="string">'out.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'flag.rar'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> rar:</span><br><span class="line">    rar.<span class="built_in">write</span>(base64.b64decode(out_file2.<span class="built_in">read</span>()))   <span class="comment"># 二进制将转换后的base64位写入文件</span></span><br></pre></td></tr></table></figure></p><p>运行完成后将写出的文件，打开发现打开失败，导入16进制编辑器，观察数据，发现存在rar的文件尾C4 3D 7B 00 40 07 00，但缺少文件头，于是补上rar的文件头52 61 72 21 1A 07 00，发现文件修复成功，解压发现是一个flag在压缩包注释上。二进制上也可以看到CMT，CMT即为comment（注释）<br><img src="https://i.imgur.com/lsgfCVx.png" alt=""><br><img src="https://i.imgur.com/MmRlgY5.png" alt=""></p><p><strong>这里说明下我之前base64导入进去的出现的问题，因为心里一直纳闷，所以去<br>多次尝试发现需要利用notepad++32位的进行base64解密，就可以得到正确的值，保存为.rar文件，然后进行导入十六进制编辑工具里是可以实现的。（之前用的时notepad++64位的会出现解密不出来的情况，几个在线工具解密出来的值都是错误的或者跟上面导进去不知道为什么多了很多空格这些）这里举几个对比：</strong><br><img src="https://i.imgur.com/aQqOqrR.png" alt=""><br><img src="https://i.imgur.com/EJcQ818.png" alt=""><br><img src="https://i.imgur.com/wZMZEuC.png" alt=""><br><img src="https://i.imgur.com/tzy48zT.png" alt=""></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-怀疑人生]]></title>
-    <url>%2F2019%2F01%2F20%2F201907%2F</url>
-    <content type="text"><![CDATA[怀疑人生–wirteup打开题目得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包解压，里面存在一个txt文本，发现一串加密得密文Brainfuck/Ook!编码，拿去Ook解密来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容折腾了挺久也好像没有其他信息了，字典破解，尝试下，还真有！解压得到一串base64，进行base64解密，得到一串unicode，进行解密解密后进行拼接，提交发现失败，尝试多次，很纳闷，感觉不对劲，中间那Ook解密后感觉还是一个密文，查了一下是一个base58？？？进行解密得到明文，进行ctf1+ctf2+ctf3进行拼接，提交成功。1234567891011121314151617此题出现了几种编码：base64:Base64是网络上最常见的用于传输8Bit字节码的编码方式之一，Base64就是一种基于64个可打印字符来表示二进制数据的方法。base58:Base58是用于Bitcoin中使用的一种独特的编码方式，主要用于产生Bitcoin的钱包地址,相比Base64，Base58不使用数字"0"，字母大写"O"，字母大写"I"，和字母小写"l"，以及"+"和"/"符号.Unicode:Unicode又称（统一码、万国码、单一码）世界上存在着多种编码方式，同一个二进制数字可以被解释成不同的符号。因此，要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。可以想象，如果有一种编码，将世界上所有的符号都纳入其中。每一个符号都给予一个独一无二的编码，那么乱码问题就会消失。这就是 Unicode，就像它的名字都表示的，这是一种所有符号的编码。Brainfuck/Ook:Brainfuck是一种极小化的计算机语言，它是由Urban Müller在1993年创建的。由于fuck在英语中是脏话，这种语言有时被称为brainf*ck或brainf**k，甚至被简称为BF。OOK！是一种为红毛猩猩设计的编程语言。OOK！与众所周知的深奥语言BrainF ***基本上是同构的 ，但语法元素更少。详情可跳转至http://www.dangermouse.net/esoteric/ook.html二维码:二维码又称二维条码，常见的二维码为QR Code，QR全称Quick Response，是一个近几年来移动设备上超流行的一种编码方式，它比传统的Bar Code条形码能存更多的信息，也能表示更多的数据类型。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-怀疑人生</title>
+      <link href="/2019/01/20/201907/"/>
+      <url>/2019/01/20/201907/</url>
+      
+        <content type="html"><![CDATA[<p><strong>怀疑人生–wirteup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/9M2hHLn.png" alt=""><br>得到一个附件，发现是zip的文件头，直接在后缀上加上一个.zip。解压，发现三个文件。第一个需要解压密码，先看下其他文件有没有其他hint<br><img src="https://i.imgur.com/mldDoms.png" alt=""><br>直接丢进kali，分析一波，分离ctf2.jpg得到一个压缩包<br><img src="https://i.imgur.com/pkbrD3G.png" alt=""><br>解压，里面存在一个txt文本，发现一串加密得密文<br><img src="https://i.imgur.com/VOEilaR.png" alt=""><br>Brainfuck/Ook!编码，拿去Ook解密<br><img src="https://i.imgur.com/x4Rh5yY.png" alt=""><br>来看这个奇怪得二维码，直接那QR扫以下看下有什么信息，得到内容<br><img src="https://i.imgur.com/gue2JOc.png" alt=""><br>折腾了挺久也好像没有其他信息了，字典破解，尝试下，还真有！<br><img src="https://i.imgur.com/XdBTGKe.png" alt=""><br>解压得到一串base64，进行base64解密，得到一串unicode，进行解密<br><img src="https://i.imgur.com/Nnz7wrq.png" alt=""><br><img src="https://i.imgur.com/tvUNpw9.png" alt=""><br>解密后进行拼接，提交发现失败，尝试多次，很纳闷，感觉不对劲，中间那Ook解密后感觉还是一个密文，查了一下是一个base58？？？<br>进行解密<br><img src="https://i.imgur.com/c0xrBxW.png" alt=""><br>得到明文，进行ctf1+ctf2+ctf3进行拼接，提交成功。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">此题出现了几种编码：</span><br><span class="line">base64:</span><br><span class="line">Base64是网络上最常见的用于传输<span class="number">8</span>Bit字节码的编码方式之一，Base64就是一种基于<span class="number">64</span>个可打印字符来表示二进制数据的方法。</span><br><span class="line"></span><br><span class="line">base58:</span><br><span class="line">Base58是用于Bitcoin中使用的一种独特的编码方式，主要用于产生Bitcoin的钱包地址,相比Base64，Base58不使用数字<span class="string">"0"</span>，字母大写<span class="string">"O"</span>，字母大写<span class="string">"I"</span>，和字母小写<span class="string">"l"</span>，以及<span class="string">"+"</span>和<span class="string">"/"</span>符号.</span><br><span class="line"></span><br><span class="line">Unicode:</span><br><span class="line">Unicode又称（统一码、万国码、单一码）世界上存在着多种编码方式，同一个二进制数字可以被解释成不同的符号。因此，要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。</span><br><span class="line">可以想象，如果有一种编码，将世界上所有的符号都纳入其中。每一个符号都给予一个独一无二的编码，那么乱码问题就会消失。这就是 Unicode，就像它的名字都表示的，这是一种所有符号的编码。</span><br><span class="line"></span><br><span class="line">Brainfuck/Ook:</span><br><span class="line">Brainfuck是一种极小化的计算机语言，它是由Urban Müller在<span class="number">1993</span>年创建的。由于fuck在英语中是脏话，这种语言有时被称为brainf*ck或brainf**k，甚至被简称为BF。</span><br><span class="line">OOK！是一种为红毛猩猩设计的编程语言。OOK！与众所周知的深奥语言BrainF ***基本上是同构的 ，但语法元素更少。详情可跳转至http:<span class="comment">//www.dangermouse.net/esoteric/ook.html</span></span><br><span class="line"></span><br><span class="line">二维码:</span><br><span class="line">二维码又称二维条码，常见的二维码为QR Code，QR全称Quick Response，是一个近几年来移动设备上超流行的一种编码方式，它比传统的Bar Code条形码能存更多的信息，也能表示更多的数据类型。</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[SQL注入攻击]]></title>
-    <url>%2F2019%2F01%2F20%2F201913%2F</url>
-    <content type="text"><![CDATA[待更新…..]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SQL注入攻击</title>
+      <link href="/2019/01/20/201913/"/>
+      <url>/2019/01/20/201913/</url>
+      
+        <content type="html"><![CDATA[<p>待更新…..</p>]]></content>
+      
+      
       <categories>
-        <category>SQL注入</category>
+          
+          <category> SQL注入 </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[CBC字节翻转攻击原理]]></title>
-    <url>%2F2019%2F01%2F20%2F201912%2F</url>
-    <content type="text"><![CDATA[CBC字节翻转攻击原理CBC模式：Cipher Black Chaining mode (密码分组链接模式)CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。 任何字符与本身xor都是为0，任何字符与0xor都为本身，如A xor A=0，A xor 0=A 加密过程1、将明文分为若干组（16个字节为一组），最后一组不足则用特殊字符填充2、生成一个初始向量iv和key密钥3、用iv与第一组明文异或（iv只影响第一组生成的密文）生成密文4、然后再用前n组密文与后n+1组明文异或生成第n+1组密文，以次重复5、最后将生成的密文拼接起来，就成了最终密文加密公式：Ciphertext-0 = Encrypt(Plaintext XOR IV)—只用于第一个组块Ciphertext-N= Encrypt(Plaintext XOR Ciphertext-N-1)—用于第二及剩下的组块 解密过程：1、将密文分组2、用iv与第一组密文xor，解密得到第一组明文3、用第n组密文与第n+1组密文xor，解密得到第n+1组明文，以此类推4、将各组的明文拼接在一起就是最终要得到的明文了 注意一下：解密的时候前一组密文只影响后一组明文的结果，而不会影响其他组明文的结果，由图也可看得出，这个也是进行攻击的重要之处。 有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：CBC字节翻转攻击原理图http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png123456XOR异或运算异或，英文为exclusive OR，缩写成xor异或的数学符号为“⊕”异或略称为XOR、EOR、EX-OR程序中有三种演算子：XOR、xor、⊕。两个输入相同时为0，不同则为1]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CBC字节翻转攻击原理</title>
+      <link href="/2019/01/20/201912/"/>
+      <url>/2019/01/20/201912/</url>
+      
+        <content type="html"><![CDATA[<p><strong>CBC字节翻转攻击原理</strong><br><a id="more"></a><br>CBC模式：Cipher Black Chaining mode (密码分组链接模式)<br>CBC模式进行加解密是都需要一个随机初始向量iv，在第一轮进行加解密是都需要与iv进行xor的。</p><p>任何字符与本身xor都是为0，任何字符与0xor都为本身，如A xor A=0，A xor 0=A</p><p>加密过程<br>1、将明文分为若干组（16个字节为一组），最后一组不足则用特殊字符填充<br>2、生成一个初始向量iv和key密钥<br>3、用iv与第一组明文异或（iv只影响第一组生成的密文）生成密文<br>4、然后再用前n组密文与后n+1组明文异或生成第n+1组密文，以次重复<br>5、最后将生成的密文拼接起来，就成了最终密文<br>加密公式：<br>Ciphertext-0 = Encrypt(Plaintext XOR IV)—只用于第一个组块<br>Ciphertext-N= Encrypt(Plaintext XOR Ciphertext-N-1)—用于第二及剩下的组块</p><p>解密过程：<br>1、将密文分组<br>2、用iv与第一组密文xor，解密得到第一组明文<br>3、用第n组密文与第n+1组密文xor，解密得到第n+1组明文，以此类推<br>4、将各组的明文拼接在一起就是最终要得到的明文了</p><p>注意一下：解密的时候前一组密文只影响后一组明文的结果，而不会影响其他组明文的结果，由图也可看得出，这个也是进行攻击的重要之处。</p><p>有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：<br>CBC字节翻转攻击原理图<br><img src="https://i.imgur.com/73EAF3c.png" alt=""><br><a href="http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png" target="_blank" rel="noopener">http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png</a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">XOR</span>异或运算</span><br><span class="line">异或，英文为exclusive <span class="keyword">OR</span>，缩写成<span class="keyword">xor</span></span><br><span class="line">异或的数学符号为“⊕”</span><br><span class="line">异或略称为<span class="keyword">XOR</span>、EOR、EX-<span class="keyword">OR</span></span><br><span class="line">程序中有三种演算子：<span class="keyword">XOR</span>、<span class="keyword">xor</span>、⊕。</span><br><span class="line">两个输入相同时为<span class="number">0</span>，不同则为<span class="number">1</span></span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>笔记</category>
+          
+          <category> 笔记 </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>CBC</tag>
-        <tag>加密</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-论剑]]></title>
-    <url>%2F2019%2F01%2F20%2F201909%2F</url>
-    <content type="text"><![CDATA[论剑-writeup因为很少人做出来，导致网上很少这个wp（找不到），所以我在这里记录下解题思路打开题目访问链接，把图片下载下来另存为先把它丢进kali上binwalk扫描以下，发现有隐藏文件，foremost直接分离出来，得到两张图片把图片都拿去二进制编辑工具查看下，在原图上搜索下FFD9（jpg的结束标识），发现有两个，以及一段二进制文件，很可疑这段二进制拿去转ASCII码，得到mynameiskey!!!hhh 折腾了下，暂时先放着。什么详细信息、备注都毫无hint，想着修改图片高度看下，发现新大陆，但是隐藏了一部分-_-!把分离出来的图片都修改高度，发现跟原图一样，无果天坑，这里想打si作者的环节，在分离出来的两张图片，以及这段这段二进制狂下功夫，xor、盲水印、色道分析..折腾了一段时间并没有什么用查看二进制那段信息发现，看到BC AF 27 1C好熟悉，好像特征码给改过，尝试修改,修复文件头12345678910111213141516171819常见的文件头：7z文件头标识：37 7A BC AF 27 1CJPEG/JPG文件头标识: ff, d8 (SOI) (JPEG 文件标识) 文件结束标识: ff, d9 (EOI) PNG文件头标识：89 50 4E 47 0D 0A 1A 0AGIF文件头标识：47 49 46 38 39(37) 61--- GIF89(7)aBMP文件头标识：42 4D--- BMHTML (html)文件头标识：68746D6C3E ZIP Archive (zip)文件头标识：504B0304 --- PKRAR Archive (rar)文件头标识：52617221 等等.. 丢回kali用binwalk分析，发现多了一个压缩包，分离，注意使用foremost分离不出来，利用dd分离出来123456使用dd命令分离文件，如:dd if=hehe.jpg of=hehe1.zip bs=1 skip=54163if=file（源文件）of=file（输出文件）bs=bytes（一次性转换bytes个字节，及转换缓冲区大小）skip=blocks（输入文件开头跳过blocks个块再开始复制--通俗点讲就是从哪开始） 进行解压，需要密码，用二进制转的ASCII码进行解密，得到一张图片，修改高度，得到另一部分的flag，进行拼接最终得到一个的密文这个不是md5，是一个base16密文，进行base16解密，得到flag]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> CBC </tag>
+            
+            <tag> 加密 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-论剑</title>
+      <link href="/2019/01/20/201909/"/>
+      <url>/2019/01/20/201909/</url>
+      
+        <content type="html"><![CDATA[<p><strong>论剑-writeup</strong><br><a id="more"></a><br>因为很少人做出来，导致网上很少这个wp（找不到），所以我在这里记录下解题思路<br>打开题目<br><img src="https://i.imgur.com/wUkpHF2.png" alt=""><br>访问链接，把图片下载下来另存为<br><img src="https://i.imgur.com/hAZJUNF.png" alt=""><br>先把它丢进kali上binwalk扫描以下，发现有隐藏文件，foremost直接分离出来，得到两张图片<br><img src="https://i.imgur.com/ZlSZ2Ey.png" alt=""><br><img src="https://i.imgur.com/ytq3OPY.png" alt=""><br>把图片都拿去二进制编辑工具查看下，在原图上搜索下FFD9（jpg的结束标识），发现有两个，以及一段二进制文件，很可疑<br>这段二进制拿去转ASCII码，得到mynameiskey!!!hhh 折腾了下，暂时先放着。<br><img src="https://i.imgur.com/VCyuygq.png" alt=""><br><img src="https://i.imgur.com/tnq27iM.png" alt=""><br>什么详细信息、备注都毫无hint，想着修改图片高度看下，发现新大陆，但是隐藏了一部分-_-!<br><img src="https://i.imgur.com/vrkuJkV.png" alt=""><br><img src="https://i.imgur.com/20gi1YA.png" alt=""><br>把分离出来的图片都修改高度，发现跟原图一样，无果<br><img src="https://i.imgur.com/zOjQJsI.png" alt=""><br>天坑，这里想打si作者的环节，在分离出来的两张图片，以及这段这段二进制狂下功夫，xor、盲水印、色道分析..折腾了一段时间并没有什么用<br>查看二进制那段信息发现，看到BC AF 27 1C好熟悉，好像特征码给改过，尝试修改,修复文件头<br><img src="https://i.imgur.com/fmBjjLT.png" alt=""><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">常见的文件头：</span></span><br><span class="line"><span class="number">7</span><span class="string">z</span></span><br><span class="line"><span class="string">文件头标识：37</span> <span class="number">7</span><span class="string">A</span> <span class="string">BC</span> <span class="string">AF</span> <span class="number">27</span> <span class="number">1</span><span class="string">C</span></span><br><span class="line"><span class="string">JPEG/JPG</span></span><br><span class="line"><span class="string">文件头标识:</span> <span class="string">ff,</span> <span class="string">d8</span> <span class="string">(SOI)</span> <span class="string">(JPEG</span> <span class="string">文件标识)</span> </span><br><span class="line"><span class="string">文件结束标识:</span> <span class="string">ff,</span> <span class="string">d9</span> <span class="string">(EOI)</span> </span><br><span class="line"><span class="string">PNG</span></span><br><span class="line"><span class="string">文件头标识：89</span> <span class="number">50</span> <span class="number">4</span><span class="string">E</span> <span class="number">47</span> <span class="number">0</span><span class="string">D</span> <span class="number">0</span><span class="string">A</span> <span class="number">1</span><span class="string">A</span> <span class="number">0</span><span class="string">A</span></span><br><span class="line"><span class="string">GIF</span></span><br><span class="line"><span class="string">文件头标识：47</span> <span class="number">49</span> <span class="number">46</span> <span class="number">38</span> <span class="number">39</span><span class="string">(37)</span> <span class="number">61</span><span class="meta">---</span> <span class="string">GIF89(7)a</span></span><br><span class="line"><span class="string">BMP</span></span><br><span class="line"><span class="string">文件头标识：42</span> <span class="number">4</span><span class="string">D---</span> <span class="string">BM</span></span><br><span class="line"><span class="string">HTML</span> <span class="string">(html)</span></span><br><span class="line"><span class="string">文件头标识：68746D6C3E</span> </span><br><span class="line"><span class="string">ZIP</span> <span class="string">Archive</span> <span class="string">(zip)</span></span><br><span class="line"><span class="string">文件头标识：504B0304</span> <span class="meta">---</span> <span class="string">PK</span></span><br><span class="line"><span class="string">RAR</span> <span class="string">Archive</span> <span class="string">(rar)</span></span><br><span class="line"><span class="string">文件头标识：52617221</span> </span><br><span class="line"><span class="string">等等..</span></span><br></pre></td></tr></table></figure></p><p>丢回kali用binwalk分析，发现多了一个压缩包，分离，注意使用foremost分离不出来，利用dd分离出来<br><img src="https://i.imgur.com/eXemh2B.png" alt=""><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用dd命令分离文件，如:</span><br><span class="line">dd <span class="attribute">if</span>=hehe.jpg <span class="attribute">of</span>=hehe1.zip <span class="attribute">bs</span>=1 <span class="attribute">skip</span>=54163</span><br><span class="line"><span class="attribute">if</span>=file（源文件）</span><br><span class="line"><span class="attribute">of</span>=file（输出文件）</span><br><span class="line"><span class="attribute">bs</span>=bytes（一次性转换bytes个字节，及转换缓冲区大小）</span><br><span class="line"><span class="attribute">skip</span>=blocks（输入文件开头跳过blocks个块再开始复制--通俗点讲就是从哪开始）</span><br></pre></td></tr></table></figure></p><p>进行解压，需要密码，用二进制转的ASCII码进行解密，得到一张图片，修改高度，得到另一部分的flag，进行拼接<br>最终得到一个的密文<br><img src="https://i.imgur.com/HzU3DOF.png" alt=""><br>这个不是md5，是一个base16密文，进行base16解密，得到flag<br><img src="https://i.imgur.com/WHFRu5i.png" alt=""></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-web3]]></title>
-    <url>%2F2019%2F01%2F20%2F201904%2F</url>
-    <content type="text"><![CDATA[web3-writeup打开题目点击访问链接，无限弹窗好了，我点烦了，粗暴点直接按（Ctrl+u）直接强制查看源码，也可以自己直接使用view-source:URL，查看源码。得到一段Unicode编码，Burp Suite直接解码，也可以在线的工具，百度一下很多的。123Unicode编码：Unicode码扩展自ASCII字元集。Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-web3</title>
+      <link href="/2019/01/20/201904/"/>
+      <url>/2019/01/20/201904/</url>
+      
+        <content type="html"><![CDATA[<p><strong>web3-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/85GTyLi.png" alt=""><br>点击访问链接，无限弹窗<br><img src="https://i.imgur.com/f1ZR0D3.png" alt=""><br>好了，我点烦了，粗暴点直接按（Ctrl+u）直接强制查看源码，也可以自己直接使用view-source:URL，查看源码。<br><img src="https://i.imgur.com/XJLUUyc.png" alt=""><br>得到一段Unicode编码，Burp Suite直接解码，也可以在线的工具，百度一下很多的。<br><img src="https://i.imgur.com/Rf5n1rb.png" alt=""><br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Unicode</span>编码：</span><br><span class="line"><span class="built_in">Unicode</span>码扩展自ASCII字元集。</span><br><span class="line"><span class="built_in">Unicode</span>（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。<span class="built_in">Unicode</span> 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-矛盾]]></title>
-    <url>%2F2019%2F01%2F20%2F201910%2F</url>
-    <content type="text"><![CDATA[矛盾-writeup打开题目访问链接，得到一串代码，又是一道代码审计的题12345678//代码分析$num=$_GET['num']; //Get方式获取参数if(!is_numeric($num)) //is_numeric()函数是否为数字或者数字字符串-&gt;&gt;加个！取反,通俗点讲这里不能为数字&#123;echo $num; //如果不是数字就输出if($num==1) //矛盾吧，上面又不要数字，这里又要是1echo 'flag&#123;**********&#125;'; //如果值为1则输出flag&#125; 根据提示，可以用科学计数法表示1，构造URL：?num=1e0.1 既不是纯数字，其值又等于1 其实还有很多种姿势获取到flag，授人以鱼不如授人以渔。以下讲解几个特征。12345678910php是一个弱类型语言==表示的是等于 ，比较两个变量的值，不比较数据类型。只要数值等于就成立了===表示的是全等，比较的是两个变量的值和类型== 判断时，当数字与字符串比较时，系统先将字符串转化为数字，再与数字进行比较。is_numeric（）函数用于检测变量是否为数字或数字字符串。is_numeric函数对于空字符%00，无论是%00放在前后都可以判断为非数值，怎么构造有思路了吗？PHP浅谈==和===：https://blog.csdn.net/auuuuuuuu/article/details/79621635科学计数法：https://baike.baidu.com/item/科学记数法/1612882?fr=aladdin]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-矛盾</title>
+      <link href="/2019/01/20/201910/"/>
+      <url>/2019/01/20/201910/</url>
+      
+        <content type="html"><![CDATA[<p><strong>矛盾-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/69R3VJ0.png" alt=""><br>访问链接，得到一串代码，又是一道代码审计的题<br><img src="https://i.imgur.com/n9UI7Bx.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码分析</span></span><br><span class="line">$num=$_GET[<span class="string">'num'</span>];  <span class="comment">//Get方式获取参数</span></span><br><span class="line"><span class="keyword">if</span>(!is_numeric($num)) <span class="comment">//is_numeric()函数是否为数字或者数字字符串-&gt;&gt;加个！取反,通俗点讲这里不能为数字</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">echo</span> $num; <span class="comment">//如果不是数字就输出</span></span><br><span class="line"><span class="keyword">if</span>($num==<span class="number">1</span>) <span class="comment">//矛盾吧，上面又不要数字，这里又要是1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;**********&#125;'</span>; <span class="comment">//如果值为1则输出flag</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>根据提示，可以用科学计数法表示1，构造URL：?num=1<em>e</em>0.1 既不是纯数字，其值又等于1<br><img src="https://i.imgur.com/AqiUkJ5.png" alt=""></p><p>其实还有很多种姿势获取到flag，授人以鱼不如授人以渔。以下讲解几个特征。<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">php是一个弱类型语言</span><br><span class="line">==表示的是等于 ，比较两个变量的值，不比较数据类型。只要数值等于就成立了</span><br><span class="line">===表示的是全等，比较的是两个变量的值和类型</span><br><span class="line"><span class="section">== 判断时，当数字与字符串比较时，系统先将字符串转化为数字，再与数字进行比较。</span></span><br><span class="line"></span><br><span class="line">is<span class="emphasis">_numeric（）函数用于检测变量是否为数字或数字字符串。</span></span><br><span class="line"><span class="emphasis">is_</span>numeric函数对于空字符%00，无论是%00放在前后都可以判断为非数值，怎么构造有思路了吗？</span><br><span class="line"></span><br><span class="line">PHP浅谈==和===：https://blog.csdn.net/auuuuuuuu/article/details/79621635</span><br><span class="line">科学计数法：https://baike.baidu.com/item/科学记数法/1612882?fr=aladdin</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-web基础$_POST]]></title>
-    <url>%2F2019%2F01%2F19%2F201905%2F</url>
-    <content type="text"><![CDATA[web基础$_POST-writeup打开题目，这是一道简单的post题还是老规矩，点击访问链接，提示给出一串代码，分析代码，一道简单的代码审计。1234$what=$_POST['what']; //post提交数据赋值给变量echo $what;if($what=='flag') //判断post提交的数据是否等于flag，如果true输出flagecho 'flag&#123;****&#125;'; 我们只要post提交的变量what=falg就可以了，这里用一款熟悉的插件工具HackBak点击Execute提交，flag就出来了。1POST提交：向指定的资源提交要被处理的数据。 浅析get与post的区别：定义了与服务器交互的不同方法，最基本的方法有4种，分别是GET，POST，PUT，DELETE（查、改、增、删）四个操作。对资源的增，删，改，查操作，其实都可以通过GET/POST完成，不需要用到PUT和DELETE。 GET请求一般不应产生副作用。就是说，它仅仅是获取资源信息，就像数据库查询一样，不会修改，增加数据，不会影响资源的状态。GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连。 POST把提交的数据则放置在是HTTP包的包体中。POST的安全性要比GET的安全性高。 get是从服务器上获取数据，post是向服务器传送数据。get 和 post只是一种传递数据的方式，get也可以把数据传到服务器，他们的本质都是发送请求和接收结果。只是组织格式和数据量上面有差别，GET和POST只是发送机制不同，并不是一个取一个发！]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-web基础$_POST</title>
+      <link href="/2019/01/19/201905/"/>
+      <url>/2019/01/19/201905/</url>
+      
+        <content type="html"><![CDATA[<p><strong>web基础$_POST-writeup</strong><br><a id="more"></a><br>打开题目，这是一道简单的post题<br><img src="https://i.imgur.com/SwAIASF.png" alt=""><br>还是老规矩，点击访问链接，提示给出一串代码，分析代码，一道简单的代码审计。<br><img src="https://i.imgur.com/bzvGQPB.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$what=$_POST[<span class="string">'what'</span>]; <span class="comment">//post提交数据赋值给变量</span></span><br><span class="line"><span class="keyword">echo</span> $what;</span><br><span class="line"><span class="keyword">if</span>($what==<span class="string">'flag'</span>) <span class="comment">//判断post提交的数据是否等于flag，如果true输出flag</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;****&#125;'</span>;</span><br></pre></td></tr></table></figure></p><p>我们只要post提交的变量what=falg就可以了，这里用一款熟悉的插件工具HackBak<br><img src="https://i.imgur.com/NaQfO8k.png" alt=""><br>点击Execute提交，flag就出来了。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span>提交：向指定的资源提交要被处理的数据。</span><br></pre></td></tr></table></figure></p><p><strong>浅析get与post的区别：</strong><br>定义了与服务器交互的不同方法，最基本的方法有4种，分别是GET，POST，PUT，DELETE（查、改、增、删）四个操作。<br>对资源的增，删，改，查操作，其实都可以通过GET/POST完成，不需要用到PUT和DELETE。  </p><p>GET请求一般不应产生副作用。就是说，它仅仅是获取资源信息，就像数据库查询一样，不会修改，增加数据，不会影响资源的状态。<br>GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连。  </p><p>POST把提交的数据则放置在是HTTP包的包体中。<br>POST的安全性要比GET的安全性高。  </p><p>get是从服务器上获取数据，post是向服务器传送数据。<br>get 和 post只是一种传递数据的方式，get也可以把数据传到服务器，他们的本质都是发送请求和接收结果。只是组织格式和数据量上面有差别，GET和POST只是发送机制不同，并不是一个取一个发！</p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-web基础$_GET]]></title>
-    <url>%2F2019%2F01%2F19%2F201901%2F</url>
-    <content type="text"><![CDATA[web基础$_GET-writeup点击访问链接，分析给出的代码1234$what=$_GET['what']; //Get方式获取参数echo $what; if($what=='flag') //这里有个if判断当what的值等于flag时就输出flagecho 'flag&#123;****&#125;'; 分析完代码，我们直接在URL中，后面直接加上?what=flag，Get请求123Get请求：从指定的资源请求数据。GET提交，请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，多个参数用&amp;连接。URL中的?号：分隔实际的URL和参数]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-web基础$_GET</title>
+      <link href="/2019/01/19/201901/"/>
+      <url>/2019/01/19/201901/</url>
+      
+        <content type="html"><![CDATA[<p><strong>web基础$_GET-writeup</strong><br><a id="more"></a><br><img src="https://i.imgur.com/YCTC6zg.png" alt=""><br>点击访问链接，分析给出的代码<br><img src="https://i.imgur.com/HNprRLc.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$what=$_GET[<span class="string">'what'</span>];  <span class="comment">//Get方式获取参数</span></span><br><span class="line"><span class="keyword">echo</span> $what;  </span><br><span class="line"><span class="keyword">if</span>($what==<span class="string">'flag'</span>) <span class="comment">//这里有个if判断当what的值等于flag时就输出flag</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;****&#125;'</span>;</span><br></pre></td></tr></table></figure></p><p>分析完代码，我们直接在URL中，后面直接加上?what=flag，Get请求<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Get</span>请求：从指定的资源请求数据。</span><br><span class="line">GET提交，请求的数据会附在<span class="keyword">URL</span>之后（就是把数据放置在HTTP协议头中），以?分割<span class="keyword">URL</span>和传输数据，多个参数用&amp;连接。</span><br><span class="line"><span class="keyword">URL</span>中的?号：分隔实际的<span class="keyword">URL</span>和参数</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/YhHqhl5.png" alt=""></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-color]]></title>
-    <url>%2F2019%2F01%2F19%2F201903%2F</url>
-    <content type="text"><![CDATA[color-writeup打开题目点击链接，得到一个压缩包附件，解压打开，7张png格式的图片，哇!你有见过彩虹吗？利用Stegsolve查看每张图片的最低位，发现有变化，组合起来Make Me Tall根据提示的意思，应该需要改变图片的高度发现图片下方有黑白格子，按照黑格子-&gt;1,白格子-&gt;0，转成二进制123456711111111010111101111111110111111101111110000110010101011000101001010010000001101110100110111010101111001101101101011011000111001101101111101 经过几次尝试后发现，这里每一列(巨坑)，七个数字组成一个字符，进行二进制转化ascii码得到flagpython3脚本：12345678910111213141516# coding:utf-8# Bug_ku color# 七张图片下方的黑白格子转换的二进制color1 = '11111111010111101111'color2 = '11111011111110111111'color3 = '00001100101010110001'color4 = '01001010010000001101'color5 = '11010011011101010111'color6 = '10011011011010110110'color7 = '00111001101101111101'# 循环根据下标组合成每一列的二进制for i in range(0, 20): color = color1[i]+color2[i]+color3[i]+color4[i]+color5[i]+color6[i]+color7[i] print(chr(int(color, 2)), end='') # 打印转换后的ASCII码 PNG文件头知识：1234567（固定）八个字节：89 50 4E 47 0D 0A 1A 0A 代表着PNG文件头（固定）四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，描述IHDR头部的大小（固定）四个字节49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示（IDCH）（可变）紧接着13位数据块（IHDR) -前四个字节代表该图片的宽（Width） -后四个字节代表该图片的高（Height） -后五个字节依次为：Bit depth、ColorType、Compression method、Filter method、Interlace method]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-color</title>
+      <link href="/2019/01/19/201903/"/>
+      <url>/2019/01/19/201903/</url>
+      
+        <content type="html"><![CDATA[<p><strong>color-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/b9YlTEH.png" alt=""><br>点击链接，得到一个压缩包附件，解压打开，7张png格式的图片，哇!你有见过彩虹吗？<br><img src="https://i.imgur.com/y6VNpdE.png" alt=""><br>利用Stegsolve查看每张图片的最低位，发现有变化，组合起来Make Me Tall<br><img src="https://i.imgur.com/1lcUKy1.png" alt=""><br>根据提示的意思，应该需要改变图片的高度<br><img src="https://i.imgur.com/iXRtLk1.png" alt=""><br>发现图片下方有黑白格子，按照黑格子-&gt;1,白格子-&gt;0，转成二进制<br><img src="https://i.imgur.com/K1RqPfk.png" alt=""><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11111111010111101111</span></span><br><span class="line"><span class="number">11111011111110111111</span></span><br><span class="line"><span class="number">00001100101010110001</span></span><br><span class="line"><span class="number">01001010010000001101</span></span><br><span class="line"><span class="number">11010011011101010111</span></span><br><span class="line"><span class="number">10011011011010110110</span></span><br><span class="line"><span class="number">00111001101101111101</span></span><br></pre></td></tr></table></figure></p><p>经过几次尝试后发现，这里每一列(巨坑)，七个数字组成一个字符，进行二进制转化ascii码得到flag<br><img src="https://i.imgur.com/V161674.png" alt=""><br>python3脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="comment"># Bug_ku color</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 七张图片下方的黑白格子转换的二进制</span></span><br><span class="line">color1 = <span class="string">'11111111010111101111'</span></span><br><span class="line">color2 = <span class="string">'11111011111110111111'</span></span><br><span class="line">color3 = <span class="string">'00001100101010110001'</span></span><br><span class="line">color4 = <span class="string">'01001010010000001101'</span></span><br><span class="line">color5 = <span class="string">'11010011011101010111'</span></span><br><span class="line">color6 = <span class="string">'10011011011010110110'</span></span><br><span class="line">color7 = <span class="string">'00111001101101111101'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环根据下标组合成每一列的二进制</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">20</span>):</span><br><span class="line">    color = color1[i]+color2[i]+color3[i]+color4[i]+color5[i]+color6[i]+color7[i]</span><br><span class="line">    print(chr(int(color, <span class="number">2</span>)), end=<span class="string">''</span>)    <span class="comment"># 打印转换后的ASCII码</span></span><br></pre></td></tr></table></figure></p><p>PNG文件头知识：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">（固定）八个字节：<span class="number">89</span> <span class="number">50</span> <span class="number">4</span>E <span class="number">47</span> <span class="number">0</span>D <span class="number">0</span>A <span class="number">1</span>A <span class="number">0</span>A 代表着PNG文件头</span><br><span class="line">（固定）四个字节<span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">0</span>D（即为十进制的<span class="number">13</span>）代表数据块的长度为<span class="number">13</span>，描述IHDR头部的大小</span><br><span class="line">（固定）四个字节<span class="number">49</span> <span class="number">48</span> <span class="number">44</span> <span class="number">52</span>（即为ASCII码的IHDR）是文件头数据块的标示（IDCH）</span><br><span class="line">（可变）紧接着<span class="number">13</span>位数据块（IHDR)</span><br><span class="line">-前四个字节代表该图片的宽（Width）</span><br><span class="line">-后四个字节代表该图片的高（Height）</span><br><span class="line">-后五个字节依次为：Bit depth、ColorType、Compression method、Filter method、Interlace method</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/CoyvL3y.png" alt=""></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-        <tag>MISC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-计算器]]></title>
-    <url>%2F2019%2F01%2F19%2F201908%2F</url>
-    <content type="text"><![CDATA[计算器-writeup查看题目，访问题目给出的链接查看是一个随机数字运算的验证码，输入结果值发现最大只能输入一位长度的值点击提交看看有什么结果，并没有什么用！浏览器上按F12,审核元素，查看源代码，发现maxlength=”1”,把maxlength=”1”修改为maxlength=”2”把结果值填上，点击验证得到flag 我发现一个骚姿势就是，只要你够耐心的话一直点击刷新，会有意向不到的结果1234567HTML input maxlength属性定义和用法 maxlength 属性规定 &lt;input&gt; 元素中允许的最大字符数。 语法 &lt;input maxlength="number"&gt; 属性值 number 在&lt;input&gt;元素中允许的最大字符串]]></content>
+      
+      
+        <tags>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+            <tag> MISC </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-计算器</title>
+      <link href="/2019/01/19/201908/"/>
+      <url>/2019/01/19/201908/</url>
+      
+        <content type="html"><![CDATA[<p><strong>计算器-writeup</strong><br><a id="more"></a><br>查看题目，访问题目给出的链接<br><img src="https://i.imgur.com/Fmnj0L7.png" alt=""><br>查看是一个随机数字运算的验证码，输入结果值发现最大只能输入一位长度的值<br><img src="https://i.imgur.com/4l5aRb0.png" alt=""><br>点击提交看看有什么结果，并没有什么用！<br><img src="https://i.imgur.com/ZGuOXFK.png" alt=""><br>浏览器上按F12,审核元素，查看源代码，发现maxlength=”1”,把maxlength=”1”修改为maxlength=”2”<br><img src="https://i.imgur.com/w0SvpIj.png" alt=""><br>把结果值填上，点击验证得到flag  </p><p>我发现一个骚姿势就是，只要你够耐心的话一直点击刷新，会有意向不到的结果<br><img src="https://i.imgur.com/YGgU8hC.png" alt=""><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTML <span class="built_in">input</span> maxlength属性</span><br><span class="line">定义和用法  </span><br><span class="line">maxlength 属性规定 <span class="symbol">&lt;input&gt;</span> 元素中允许的最大字符数。  </span><br><span class="line">语法  </span><br><span class="line">&lt;<span class="built_in">input</span> maxlength=<span class="string">"number"</span>&gt;  </span><br><span class="line">属性值  </span><br><span class="line"><span class="keyword">number</span> 在<span class="symbol">&lt;input&gt;</span>元素中允许的最大字符串</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Bugku-web2]]></title>
-    <url>%2F2019%2F01%2F19%2F201902%2F</url>
-    <content type="text"><![CDATA[web2-writeup可能会写的有点啰嗦，但是我不想跟我一样入门的小白看到教程一脸？？？这是一道20分值的简单题，听说聪明的人都能找到答案直接访问链接这是一个满屏滑稽的页面在浏览器当前页面上直接按F12审查元素，查看源代码，查看到flag也可以利用view-source:sURL查看源代码，查看到flag12345F12:开发人员工具，是开发人员调试利器~ view-source:是一种协议，早在基本上每个浏览器都支持这个协议。后来Microsoft考虑安全性，对于windows pack2以及更高的版本后IE就不再支持此协议。但是这个方法在FireFox和Chrome浏览器还可以使用。 使用方法： view-source:sURL 回车即可看到当前网页的源代码。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bugku-web2</title>
+      <link href="/2019/01/19/201902/"/>
+      <url>/2019/01/19/201902/</url>
+      
+        <content type="html"><![CDATA[<p><strong>web2-writeup</strong><br><a id="more"></a><br>可能会写的有点啰嗦，但是我不想跟我一样入门的小白看到教程一脸？？？<br>这是一道20分值的简单题，听说聪明的人都能找到答案<br><img src="https://i.imgur.com/R9JAuti.png" alt=""><br>直接访问链接<br>这是一个满屏滑稽的页面<br><img src="https://i.imgur.com/2DdoQ0w.png" alt=""><br>在浏览器当前页面上直接按F12审查元素，查看源代码，查看到flag<br><img src="https://i.imgur.com/WQ6LKA7.png" alt=""><br>也可以利用view-source:sURL<br>查看源代码，查看到flag<br><img src="https://i.imgur.com/thgyLxN.png" alt=""><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">F12:开发人员工具，是开发人员调试利器~  </span><br><span class="line"><span class="keyword">view</span>-<span class="keyword">source</span>:是一种协议，早在基本上每个浏览器都支持这个协议。后来Microsoft考虑安全性，对于windows pack2以及更高的版本后IE就不再支持此协议。但是这个方法在FireFox和Chrome浏览器还可以使用。  </span><br><span class="line">使用方法： </span><br><span class="line"><span class="keyword">view</span>-<span class="keyword">source</span>:sURL  </span><br><span class="line">回车即可看到当前网页的源代码。</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>Bugku</category>
+          
+          <category> Bugku </category>
+          
       </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Writeup</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[勿忘初心]]></title>
-    <url>%2F2019%2F01%2F18%2F2019%2F</url>
-    <content type="text"><![CDATA[努力努力再努力Hello,Blog!]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Writeup </tag>
+            
+            <tag> CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>勿忘初心</title>
+      <link href="/2019/01/18/2019/"/>
+      <url>/2019/01/18/2019/</url>
+      
+        <content type="html"><![CDATA[<p>努力努力再努力<br><a id="more"></a><br>Hello,Blog!</p>]]></content>
+      
+      
       <categories>
-        <category>勿忘初心</category>
+          
+          <category> 勿忘初心 </category>
+          
       </categories>
-      <tags>
-        <tag>努力努力再努力</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> 努力努力再努力 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
