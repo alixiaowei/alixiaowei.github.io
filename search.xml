@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Bugku-头等舱]]></title>
-    <url>%2F2019%2F01%2F28%2F201923%2F</url>
-    <content type="text"><![CDATA[打开题目点击访问链接，查看源代码发现什么都没有利用burp suite抓包看下，根据题目提示头等舱，查看Response中的Headers信息，得到flag]]></content>
+    <title><![CDATA[Bugku-WEB4]]></title>
+    <url>%2F2019%2F01%2F28%2F201925%2F</url>
+    <content type="text"><![CDATA[WEB4-writeup打开题目访问链接，提示看看源代码？查看源代码得到一串经过url编码的代码进行escape解码后123var p1 = 'function checkSubmit()&#123;var a=document.getElementById("password");if("undefined"!=typeof a)&#123;if("67d709b2b';var p2 = 'aa648cf6e87a7114f1"==a.value)return!0;alert("Error");a.focus();return!1&#125;&#125;document.getElementById("levelQuest").onsubmit=checkSubmit;';eval(unescape(p1) + unescape('54aa2' + p2)); 主要看这一句eval(unescape(p1) + unescape(‘54aa2’ + p2))1234eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。语法eval（string）string-必需。要计算的字符串，其中含有要计算的JavaScript表达式或要执行的语句 p1+p2连接整理后的代码1234567891011function checkSubmit()&#123; var a=document.getElementById("password"); //匹配ID名为password的元素，并赋值给a if("undefined"!=typeof a)&#123; //判断a的类型是否undefined if("67d709b2b54aa2aa648cf6e87a7114f1"==a.value) //判断a的元素的value值是否为67d709b2b54aa2aa648cf6e87a7114f1（67d709b2b+54aa2+aa648cf6e87a7114f1） return!0; alert("Error"); //弹框“Error”” a.focus(); //获取焦点时，向元素添加特殊的样式（改变背景颜色） return!1 //! 表示取反运算，js 为弱类型语言，所有非0的int值都为 Bool 值的 True ，所以 !1就是取 True的反，即False。 &#125;&#125;document.getElementById("levelQuest").onsubmit=checkSubmit; //获取id为levelQuest文档元素，点击submit时执行checkSubmit函数，onsubmit再点击submit时发生，若返回真提交表单 12345678910111213141516171819var 声明（创建）JavaScript变量escape() 函数定义和用法escape() 函数可对字符串进行编码，这样就可以在所有的计算机上读取该字符串。语法escape(string)string-必需。需要转义或编码的字符串unescape() 函数定义和用法unescape() 函数可对通过 escape() 编码的字符串进行解码。unescape(string)string-必需。要解码或反转义的字符串typeof操作符返回一个字符串，表示未经计算的操作数的类型详情点击：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof#%E5%8F%82%E6%95%B0 分析完代码后，表单的id值为levelQuest，通过审查元素将输入框的id值更改为password，输入框输入67d709b2b54aa2aa648cf6e87a7114f1点击submit]]></content>
       <categories>
         <category>Bugku</category>
       </categories>
       <tags>
         <tag>Web</tag>
+        <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>writeup</tag>
+        <tag>escape</tag>
+        <tag>unescape</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Bugku-网站被黑]]></title>
+    <url>%2F2019%2F01%2F28%2F201924%2F</url>
+    <content type="text"><![CDATA[网站被黑-writeup打开题目访问链接，大大黑页（好酷炫这东西可以玩一整天，2333）查看源代码，尝试了一些方法，没有找到一点思路打开御剑扫描工具，扫描一下看有没有敏感信息、源码泄露之类的得到一个链接，感觉像是一个后门地址正是一个shell后门，尝试几个常见的密码，无果直接用burp suite进行密码爆破进行抓包右键发送到intruder添加需要的变量，list选择自带的一个Passwords，点击Start attack开始这里length不一样的就是密码了因为我们通常输入正确的密码和错误的密码返回的请求长度是有区别的输入密码，得到flag]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Writeup</tag>
+        <tag>CTF</tag>
+        <tag>shell后门</tag>
+        <tag>弱口令爆破</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Bugku-头等舱]]></title>
+    <url>%2F2019%2F01%2F28%2F201923%2F</url>
+    <content type="text"><![CDATA[头等舱-writeup打开题目点击访问链接，查看源代码发现什么都没有利用burp suite抓包看下，根据题目提示头等舱，查看Response中的Headers信息，得到flag]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Writeup</tag>
+        <tag>CTF</tag>
         <tag>Headers</tag>
       </tags>
   </entry>
@@ -23,8 +54,8 @@
       </categories>
       <tags>
         <tag>Web</tag>
+        <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>writeup</tag>
         <tag>JSFuck</tag>
       </tags>
   </entry>
@@ -36,8 +67,8 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>ASCII</tag>
         <tag>Python</tag>
+        <tag>ASCII</tag>
         <tag>加密</tag>
         <tag>Morse</tag>
         <tag>Tool</tag>
@@ -53,8 +84,8 @@
       <tags>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>ASCII</tag>
         <tag>Python</tag>
+        <tag>ASCII</tag>
         <tag>加密</tag>
         <tag>Morse</tag>
         <tag>Tool</tag>
@@ -149,8 +180,8 @@
         <tag>CTF</tag>
         <tag>MISC</tag>
         <tag>Python</tag>
-        <tag>ZIP</tag>
         <tag>加密</tag>
+        <tag>ZIP</tag>
         <tag>爆破</tag>
       </tags>
   </entry>
