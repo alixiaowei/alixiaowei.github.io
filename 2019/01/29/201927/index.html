@@ -74,7 +74,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Web,Writeup,CTF,爆破,">
 
 
 
@@ -85,18 +85,30 @@
 
 
 
-<meta name="description" content="努力努力再努力">
-<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
+<meta name="description" content="输入密码查看flag-writeup打开题目访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder在Intruder中Positions中选择Clear清除，将12345选中选择Add添加在Payloads设置好相应参数，数字类型、10000-99999，步长为1在Opt">
+<meta name="keywords" content="Web,Writeup,CTF,爆破">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小维的博客">
+<meta property="og:title" content="Bugku-输入密码查看flag">
 <meta property="og:url" content="https://axiaowei.cn/2019/01/29/201927/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="努力努力再努力">
+<meta property="og:description" content="输入密码查看flag-writeup打开题目访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder在Intruder中Positions中选择Clear清除，将12345选中选择Add添加在Payloads设置好相应参数，数字类型、10000-99999，步长为1在Opt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-29T08:11:05.785Z">
+<meta property="og:image" content="https://i.imgur.com/beJT8Hz.png">
+<meta property="og:image" content="https://i.imgur.com/LqTS8VN.png">
+<meta property="og:image" content="https://i.imgur.com/uIcZhUQ.png">
+<meta property="og:image" content="https://i.imgur.com/61231Iw.png">
+<meta property="og:image" content="https://i.imgur.com/TPfsuc9.png">
+<meta property="og:image" content="https://i.imgur.com/oWkS5ec.png">
+<meta property="og:image" content="https://i.imgur.com/h4r4Gpo.png">
+<meta property="og:image" content="https://i.imgur.com/Q6qN3jz.png">
+<meta property="og:image" content="https://i.imgur.com/OOrQX8Q.png">
+<meta property="og:image" content="https://i.imgur.com/CT4WPKJ.png">
+<meta property="og:image" content="https://i.imgur.com/yymODP2.png">
+<meta property="og:updated_time" content="2019-01-29T08:56:54.812Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小维的博客">
-<meta name="twitter:description" content="努力努力再努力">
+<meta name="twitter:title" content="Bugku-输入密码查看flag">
+<meta name="twitter:description" content="输入密码查看flag-writeup打开题目访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder在Intruder中Positions中选择Clear清除，将12345选中选择Add添加在Payloads设置好相应参数，数字类型、10000-99999，步长为1在Opt">
+<meta name="twitter:image" content="https://i.imgur.com/beJT8Hz.png">
 
 
 
@@ -132,7 +144,7 @@
 
 
 
-  <title> | 小维的博客</title>
+  <title>Bugku-输入密码查看flag | 小维的博客</title>
   
 
 
@@ -318,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Bugku-输入密码查看flag</h1>
         
 
         <div class="post-meta">
@@ -341,6 +353,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Bugku/" itemprop="url" rel="index">
+                    <span itemprop="name">Bugku</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -362,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0字
+                  163字
                 </span>
               
 
@@ -399,7 +433,8 @@
       
 
       
-        
+        <p><strong>输入密码查看flag-writeup</strong><br>打开题目<br><img src="https://i.imgur.com/beJT8Hz.png" alt=""><br>访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）<br><img src="https://i.imgur.com/LqTS8VN.png" alt=""><br><img src="https://i.imgur.com/uIcZhUQ.png" alt=""><br><img src="https://i.imgur.com/61231Iw.png" alt=""><br>设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder<br><img src="https://i.imgur.com/TPfsuc9.png" alt=""><br><img src="https://i.imgur.com/oWkS5ec.png" alt=""><br>在Intruder中Positions中选择Clear清除，将12345选中选择Add添加<br><img src="https://i.imgur.com/h4r4Gpo.png" alt=""><br>在Payloads设置好相应参数，数字类型、10000-99999，步长为1<br><img src="https://i.imgur.com/Q6qN3jz.png" alt=""><br>在Options选项中设置线程（看电脑性能）<br><img src="https://i.imgur.com/OOrQX8Q.png" alt=""><br>点击Start attack开始，过一会就出来了（正确密码与错误密码Length长度是有区别的）<br><img src="https://i.imgur.com/CT4WPKJ.png" alt=""><br>将密码输入浏览器中，点击查看，得到flag<br><img src="https://i.imgur.com/yymODP2.png" alt=""></p>
+
       
     </div>
     
@@ -421,6 +456,18 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i>Web</a>
+          
+            <a href="/tags/Writeup/" rel="tag"><i class="fa fa-tag"></i>Writeup</a>
+          
+            <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i>CTF</a>
+          
+            <a href="/tags/爆破/" rel="tag"><i class="fa fa-tag"></i>爆破</a>
+          
+        </div>
       
 
       

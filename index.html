@@ -320,7 +320,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/29/201927/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/01/29/201927/" itemprop="url">Bugku-输入密码查看flag</a></h1>
         
 
         <div class="post-meta">
@@ -343,6 +343,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Bugku/" itemprop="url" rel="index">
+                    <span itemprop="name">Bugku</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0字
+                  163字
                 </span>
               
 
@@ -403,7 +425,8 @@
       
         
           
-            
+            <p><strong>输入密码查看flag-writeup</strong><br>打开题目<br><img src="https://i.imgur.com/beJT8Hz.png" alt=""><br>访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）<br><img src="https://i.imgur.com/LqTS8VN.png" alt=""><br><img src="https://i.imgur.com/uIcZhUQ.png" alt=""><br><img src="https://i.imgur.com/61231Iw.png" alt=""><br>设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder<br><img src="https://i.imgur.com/TPfsuc9.png" alt=""><br><img src="https://i.imgur.com/oWkS5ec.png" alt=""><br>在Intruder中Positions中选择Clear清除，将12345选中选择Add添加<br><img src="https://i.imgur.com/h4r4Gpo.png" alt=""><br>在Payloads设置好相应参数，数字类型、10000-99999，步长为1<br><img src="https://i.imgur.com/Q6qN3jz.png" alt=""><br>在Options选项中设置线程（看电脑性能）<br><img src="https://i.imgur.com/OOrQX8Q.png" alt=""><br>点击Start attack开始，过一会就出来了（正确密码与错误密码Length长度是有区别的）<br><img src="https://i.imgur.com/CT4WPKJ.png" alt=""><br>将密码输入浏览器中，点击查看，得到flag<br><img src="https://i.imgur.com/yymODP2.png" alt=""></p>
+
           
         
       
