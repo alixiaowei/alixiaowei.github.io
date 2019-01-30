@@ -425,7 +425,7 @@
       
 
       
-        <p><strong>flag在index里-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/v9RDqP0.png" alt=""><br>访问链接，页面显示click me? no 点击进去显示test5<br><img src="https://i.imgur.com/wOyONjI.png" alt=""><br><img src="https://i.imgur.com/9B2qxpA.png" alt=""><br>这里我们看到url中含有file关键字<br>题目提示我们flag在index中，通过分析，这里发送了file为key，show.php为value的get请求<br>ctf常见的套路-php文件包含漏洞<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$file=$_GET[<span class="string">'file'</span>];</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">include</span>($file); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+        <p><strong>flag在index里-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/v9RDqP0.png" alt=""><br>访问链接，页面显示click me? no 点击进去显示test5<br><img src="https://i.imgur.com/wOyONjI.png" alt=""><br><img src="https://i.imgur.com/9B2qxpA.png" alt=""><br>这里我们看到url中含有file关键字<br>题目提示我们flag在index中，通过分析，这里发送了file为key，show.php为value的get请求<br>ctf常见的套路-php文件包含漏洞<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">	$file=$_GET[<span class="string">'file'</span>];</span></span><br><span class="line"><span class="php">	...</span></span><br><span class="line"><span class="php">	<span class="keyword">include</span>($file); </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php:<span class="regexp">//</span>-访问各个输入<span class="regexp">/输出流（I/</span>O streams）</span><br><span class="line">PHP 提供了一些杂项输入<span class="regexp">/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php://<span class="built_in">filter</span></span><br><span class="line">php://<span class="built_in">filter</span> 是一种元封装器， 设计用于数据流打开时的筛选过滤应用。 这对于一体式（all-<span class="keyword">in</span>-<span class="literal">one</span>）的文件函数非常有用，类似 readfile()、 <span class="built_in">file</span>() 和 file_get_contents()， 在数据流内容读取之前没有机会应用其他过滤器。</span><br></pre></td></tr></table></figure>
 <table>
@@ -616,7 +616,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

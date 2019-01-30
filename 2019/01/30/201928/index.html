@@ -74,7 +74,7 @@
 
 
 
-  <meta name="keywords" content="Web,Writeup,CTF,">
+  <meta name="keywords" content="Web,Writeup,CTF,JavaScript,">
 
 
 
@@ -85,24 +85,24 @@
 
 
 
-<meta name="description" content="你必须让他停下-writeup">
-<meta name="keywords" content="Web,Writeup,CTF">
+<meta name="description" content="点击一百万次-writeup">
+<meta name="keywords" content="Web,Writeup,CTF,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bugku-你必须让他停下">
-<meta property="og:url" content="https://axiaowei.cn/2019/01/24/201917/index.html">
+<meta property="og:title" content="Bugku-点击一百万次">
+<meta property="og:url" content="https://axiaowei.cn/2019/01/30/201928/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="你必须让他停下-writeup">
+<meta property="og:description" content="点击一百万次-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/mWS098U.png">
-<meta property="og:image" content="https://i.imgur.com/VAUzE5R.png">
-<meta property="og:image" content="https://i.imgur.com/gm5qjkG.png">
-<meta property="og:image" content="https://i.imgur.com/lgVKOpf.png">
-<meta property="og:image" content="https://i.imgur.com/k9rlz0l.png">
-<meta property="og:updated_time" content="2019-01-25T12:14:25.529Z">
+<meta property="og:image" content="https://i.imgur.com/Oirj6b3.png">
+<meta property="og:image" content="https://i.imgur.com/wArV99t.png">
+<meta property="og:image" content="https://i.imgur.com/nWTjrEK.png">
+<meta property="og:image" content="https://i.imgur.com/8FeoVUo.png">
+<meta property="og:image" content="https://i.imgur.com/IzFoAsz.png">
+<meta property="og:updated_time" content="2019-01-30T12:05:59.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bugku-你必须让他停下">
-<meta name="twitter:description" content="你必须让他停下-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/mWS098U.png">
+<meta name="twitter:title" content="Bugku-点击一百万次">
+<meta name="twitter:description" content="点击一百万次-writeup">
+<meta name="twitter:image" content="https://i.imgur.com/Oirj6b3.png">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://axiaowei.cn/2019/01/24/201917/">
+  <link rel="canonical" href="https://axiaowei.cn/2019/01/30/201928/">
 
 
 
 
 
-  <title>Bugku-你必须让他停下 | 小维的博客</title>
+  <title>Bugku-点击一百万次 | 小维的博客</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/01/24/201917/">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/01/30/201928/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小维同学">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bugku-你必须让他停下</h1>
+          <h1 class="post-title" itemprop="name headline">Bugku-点击一百万次</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-24T22:57:16+08:00">
-                2019-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-30T19:03:42+08:00">
+                2019-01-30
               </time>
             
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  269字
+                  166字
                 </span>
               
 
@@ -427,10 +427,8 @@
       
 
       
-        <p><strong>你必须让他停下-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/mWS098U.png" alt=""><br>点击访问链接，无限刷新，查看源代码<br><img src="https://i.imgur.com/VAUzE5R.png" alt=""><br>发现js中，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myrefresh</span>(<span class="params"></span>)</span>&#123;   <span class="comment">//声明一个函数</span></span><br><span class="line"><span class="built_in">window</span>.location.reload();  <span class="comment">//重新加载当前文档。</span></span><br><span class="line">&#125;</span><br><span class="line">setTimeout(<span class="string">'myrefresh()'</span>,<span class="number">500</span>);  <span class="comment">//在指定得毫秒数（500）调用函数</span></span><br><span class="line"><span class="number">1000</span>毫秒 = <span class="number">1</span>秒</span><br></pre></td></tr></table></figure></p>
-<p>你也可以跟我一样，那么准，当显示10.jpg（大概有15张jpg）得页面得时候按pc上的ESC，让页面停止，按F12查看flag<br><img src="https://i.imgur.com/gm5qjkG.png" alt=""><br>想其flag显示在页面上可以把标签中得style=”display:none”中去掉就可以了（并没有什么用，能得到flag就可以了）<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">display</span>:none</span><br><span class="line">将元素的显示设为无，即在网页中不占任何的位置。</span><br></pre></td></tr></table></figure></p>
-<p>我讲一下其他几种方式吧，毕竟上面得操作有点看手速[掩面]<br><strong>view-source </strong><br>可以利用view-source:查看源代码，然后在当前页面一直刷新（F5），直到flag出现。<br><img src="https://i.imgur.com/lgVKOpf.png" alt=""></p>
-<p><strong>抓包工具</strong>(这里我用得是burp suite)<br>抓取到页面，发送到Repeater，一直点击go，很快就会出现得<br><img src="https://i.imgur.com/k9rlz0l.png" alt=""></p>
+        <p>点击一百万次-writeup<br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/Oirj6b3.png" alt=""><br>访问链接，看来是要你点击一百万次，点了几下，好了我放弃了<br><img src="https://i.imgur.com/wArV99t.png" alt=""><br>查看审查元素<br><img src="https://i.imgur.com/nWTjrEK.png" alt=""><br>JavaScript<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clicks=<span class="number">0</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">"#cookie"</span>)</span><br><span class="line">    .mousedown(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="keyword">this</span>).width(<span class="string">'350px'</span>).height(<span class="string">'350px'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .mouseup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="keyword">this</span>).width(<span class="string">'375px'</span>).height(<span class="string">'375px'</span>);</span><br><span class="line">      clicks++;</span><br><span class="line">      $(<span class="string">"#clickcount"</span>).text(clicks);</span><br><span class="line">      <span class="keyword">if</span>(clicks &gt;= <span class="number">1000000</span>)&#123;</span><br><span class="line">      	<span class="keyword">var</span> form = $(<span class="string">'&lt;form action="" method="post"&gt;'</span> +</span><br><span class="line">		<span class="string">'&lt;input type="text" name="clicks" value="'</span> + clicks + <span class="string">'" hidden/&gt;'</span> +</span><br><span class="line">		<span class="string">'&lt;/form&gt;'</span>);</span><br><span class="line">		$(<span class="string">'body'</span>).append(form);</span><br><span class="line">		form.submit();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>打开浏览器Console提交clicks=999999，再点击一次页面<br><img src="https://i.imgur.com/8FeoVUo.png" alt=""><br>也可以利用hackbar直接post提交clicks=1000000<br><img src="https://i.imgur.com/IzFoAsz.png" alt=""><br>还有很多种方式，大家可以一一尝试下，只要将clicks值达到满足判断条件即可。</p>
 
       
     </div>
@@ -462,6 +460,8 @@
           
             <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i>CTF</a>
           
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i>JavaScript</a>
+          
         </div>
       
 
@@ -473,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/24/201916/" rel="next" title="Bugku-域名解析">
-                <i class="fa fa-chevron-left"></i> Bugku-域名解析
+              <a href="/2019/01/29/201927/" rel="next" title="Bugku-输入密码查看flag">
+                <i class="fa fa-chevron-left"></i> Bugku-输入密码查看flag
               </a>
             
           </div>
@@ -482,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/25/201918/" rel="prev" title="Bugku-本地包含">
-                Bugku-本地包含 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
