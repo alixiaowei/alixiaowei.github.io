@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://i.imgur.com/nWTjrEK.png">
 <meta property="og:image" content="https://i.imgur.com/8FeoVUo.png">
 <meta property="og:image" content="https://i.imgur.com/IzFoAsz.png">
-<meta property="og:updated_time" content="2019-01-30T12:05:59.777Z">
+<meta property="og:updated_time" content="2019-01-31T09:04:12.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-点击一百万次">
 <meta name="twitter:description" content="点击一百万次-writeup">
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  166字
+                  344字
                 </span>
               
 
@@ -427,7 +427,7 @@
       
 
       
-        <p>点击一百万次-writeup<br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/Oirj6b3.png" alt=""><br>访问链接，看来是要你点击一百万次，点了几下，好了我放弃了<br><img src="https://i.imgur.com/wArV99t.png" alt=""><br>查看审查元素<br><img src="https://i.imgur.com/nWTjrEK.png" alt=""><br>JavaScript<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clicks=<span class="number">0</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">"#cookie"</span>)</span><br><span class="line">    .mousedown(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="keyword">this</span>).width(<span class="string">'350px'</span>).height(<span class="string">'350px'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .mouseup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="keyword">this</span>).width(<span class="string">'375px'</span>).height(<span class="string">'375px'</span>);</span><br><span class="line">      clicks++;</span><br><span class="line">      $(<span class="string">"#clickcount"</span>).text(clicks);</span><br><span class="line">      <span class="keyword">if</span>(clicks &gt;= <span class="number">1000000</span>)&#123;</span><br><span class="line">      	<span class="keyword">var</span> form = $(<span class="string">'&lt;form action="" method="post"&gt;'</span> +</span><br><span class="line">		<span class="string">'&lt;input type="text" name="clicks" value="'</span> + clicks + <span class="string">'" hidden/&gt;'</span> +</span><br><span class="line">		<span class="string">'&lt;/form&gt;'</span>);</span><br><span class="line">		$(<span class="string">'body'</span>).append(form);</span><br><span class="line">		form.submit();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+        <p>点击一百万次-writeup<br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/Oirj6b3.png" alt=""><br>访问链接，看来是要你点击一百万次，点了几下，好了我放弃了<br><img src="https://i.imgur.com/wArV99t.png" alt=""><br>查看审查元素<br><img src="https://i.imgur.com/nWTjrEK.png" alt=""><br>发现一串JavaScript<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clicks=<span class="number">0</span> <span class="comment">//声明一个clicks定位为0</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;	<span class="comment">//$(document).ready(function() &#123; ... &#125;);的缩写，防止文档在完全加载（就绪）之前运行 jQuery 代码。如果在文档没有完全加载之前就运行函数，操作可能失败。其作用和 $(document).ready()一樣 ，用意在DOM載入後執行ready()方法。</span></span><br><span class="line">  $(<span class="string">"#cookie"</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">//鼠标按下事件</span></span><br><span class="line">      $(<span class="keyword">this</span>).width(<span class="string">'350px'</span>).height(<span class="string">'350px'</span>); <span class="comment">//$(this)代码代表$('#cookie)，鼠标按下之后id为cookie的元素改变宽度和高度</span></span><br><span class="line">    &#125;).mouseup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//鼠标松开事件</span></span><br><span class="line">      $(<span class="keyword">this</span>).width(<span class="string">'375px'</span>).height(<span class="string">'375px'</span>);  <span class="comment">//鼠标松开之后id为cookie的元素改变宽度和高度</span></span><br><span class="line">      clicks++; <span class="comment">//clicks增加</span></span><br><span class="line">      $(<span class="string">"#clickcount"</span>).text(clicks); <span class="comment">//clicks++完给id为clickcount元素改变值</span></span><br><span class="line">      <span class="keyword">if</span>(clicks &gt;= <span class="number">1000000</span>)&#123;  <span class="comment">//当clicks大于或等于1000000，声明一个form，并在body追加form</span></span><br><span class="line">      	<span class="keyword">var</span> form = $(<span class="string">'&lt;form action="" method="post"&gt;'</span> +</span><br><span class="line">		<span class="string">'&lt;input type="text" name="clicks" value="'</span> + clicks + <span class="string">'" hidden/&gt;'</span> +<span class="string">'&lt;/form&gt;'</span>); <span class="comment">//定义html代码</span></span><br><span class="line">		$(<span class="string">'body'</span>).append(form);  <span class="comment">//在body插入html代码</span></span><br><span class="line">		form.submit();  <span class="comment">//执行form表单提交</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>打开浏览器Console提交clicks=999999，再点击一次页面<br><img src="https://i.imgur.com/8FeoVUo.png" alt=""><br>也可以利用hackbar直接post提交clicks=1000000<br><img src="https://i.imgur.com/IzFoAsz.png" alt=""><br>还有很多种方式，大家可以一一尝试下，只要将clicks值达到满足判断条件即可。</p>
 
       
@@ -482,6 +482,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/31/201929/" rel="prev" title="Bugku-备份是个好习惯">
+                Bugku-备份是个好习惯 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -580,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +595,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -602,7 +606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

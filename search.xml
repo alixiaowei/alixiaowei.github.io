@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PHP语法]]></title>
+    <url>%2F2019%2F01%2F31%2F201930%2F</url>
+    <content type="text"><![CDATA[php语法strstr() 函数搜索字符串在另一字符串中的第一次出现。语法strstr(string,search,before_search) 参数 描述 string 必需。规定被搜索的字符串。 search 必需。规定所搜索的字符串。如果此参数是数字，则搜索匹配此数字对应的 ASCII 值的字符。 before_search 可选。默认值为 “false” 的布尔值。如果设置为 “true”，它将返回 search 参数第一次出现之前的字符串部分。 实例:123&lt;?phpecho strstr("axiaowei.cn?key1=1",'?');?&gt; substr() 函数返回字符串的一部分。语法substr(string,start,length) 参数 描述 string 必需。规定要返回其中一部分的字符串。 start 必需。规定在字符串的何处开始。正数-在字符串的指定位置开始负数-在从字符串结尾开始的指定位置开始。0-在字符串中的第一个字符处开始 length 可选。规定被返回字符串的长度。默认是直到字符串的结尾。正数-从 start 参数所在的位置返回的长度负数 - 从字符串末端返回的长度 实例123&lt;?phpecho substr("www.axiaowei.cn",4);?&gt; str_replace() 函数以其他字符替换字符串中的一些字符（区分大小写）。语法str_replace(find,replace,string,count) 参数 描述 find 必需。规定要查找的值 replace 必需。规定替换find中的值的值 string 必需。规定被搜索的字符串 count 可选。对替换数进行计数的变量 实例123&lt;?phpecho str_replace("world","xiaowei blog","Hello world!");?&gt; parse_str() 函数把查询字符串解析到变量中。语法parse_str(string,array) 参数 描述 string 必需。规定解析的字符串 array 可选。规定存储变量的数组名称。该参数指示变量将被存储到数组中 实例123456&lt;?phpparse_str("key1=xiaowei&amp;key2=2019");echo $key1;echo "\n";echo $key2;?&gt; $_SERVER[“REQUEST_URI”]函数1234567$_SERVER["REQUEST_URI"]函数预定义服务器变量的一种，所有$_SERVER开头的都叫做预定义服务器变量 REQUEST_URI的作用是取得当前URI，也就是除域名外后面的完整的地址路径例如：当前页面是http://www.axiaowei.cn/plus/search.php?kwtype=0&amp;keyword=php&amp;searchtype=titlekeywordecho $_SERVER["REQUEST_URI"];结果就为：plus/search.php?kwtype=0&amp;keyword=php&amp;searchtype=titlekeyword]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Bugku-备份是个好习惯]]></title>
+    <url>%2F2019%2F01%2F31%2F201929%2F</url>
+    <content type="text"><![CDATA[备份是个好习惯-writeup打开题目访问链接，给出一串md5值，尝试去md5解密一下，空密码根据题目提示，直接上御剑扫描(或者可以尝试常见的几个源码泄露)附常见的源码泄露、备份文件List123456789101112131415161718192021222324252627282930313233343536373839404142434445.git.git/HEAD.git/index.git/config.git/descriptionREADME.MDREADME.mdREADME.gitignore.svn.svn/wc.db.svn/entries.hg.ds_storeWEB-INF/web.xmlWEB-INF/src/WEB-INF/classesWEB-INF/libWEB-INF/database.propertieCVS/RootCVS/Entries.bzr/??~.?.swp.?.swo.?.swn.?.swm.?.swl_viminfo.viminfo?~?~1~?~2~?~3~?.save?.save1?.save2?.save3?.bak_Edietplus?.bak?.backphpinfo.phptest.php.bash_history File123456789101112131415161718index.phplogin.phpregister.phptest.phpphpinfo.phpt.phpwww.zipwww.rarwww.zipwww.7zwww.tar.gzwww.tarweb.zipweb.rarweb.zipweb.7zweb.tar.gzweb.tar 下载得到一个源码1234567891011121314151617181920&lt;?php/** * Created by PhpStorm. * User: Norse * Date: 2017/8/6 * Time: 20:22*/include_once "flag.php"; //脚本执行期间包含并运行指定文件(只包含一次)ini_set("display_errors", 0); //不显示错误报告$str = strstr($_SERVER['REQUEST_URI'], '?'); //搜索当前url值中？(包含？)后边的字符串赋值给变量str$str = substr($str,1); //str中的第二个字符开始(含)，返回后面的字符串赋值给变量str$str = str_replace('key','',$str); //在str中查找key，并将其替换为空parse_str($str); //将str解析到变量中echo md5($key1); //将md5($key1)写入输出echo md5($key2); //将md5($key2)写入输出if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123; echo $flag."取得flag";&#125; //判断MD5加密后的key1值等于MD5加密后的key2值且key1的值不等于key2的值，成立输出flag?&gt; 可参考PHP语法现在我们对代码审计完后方法一构造payload：http://123.206.87.240:8002/web16/?kkeyey1[]=123&amp;kkeyey2[]=4561234md5()中需要传入的是一个string类型的参数，当我们传递一个数组时，它是不会报错的，函数无法求出数组的MD5值，这样导致任意两个数组的MD5值都相等，从而绕过输入数值的判断。md5算法比较数组会返回NULL，也就是等值。这里注意的是:$str = str_replace('key','',$str); 将key替换为空所以这里需要利用到重写(kkeyey)绕过 方法二构造payload：http://123.206.87.240:8002/web16/?kkeyey1=QNKCDZO&amp;kkeyey2=s878926199a12345678910==是比较运算，它不会去检查条件式的表达式的类型===是恒等，它会检查查表达式的值与类型是否相等。PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0（遇到0e\d+这种字符串，就会将这种字符串解析为科学计数法），所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。攻击者可以利用这一漏洞，通过输入一个经过哈希后以”0E”开头的字符串，即会被PHP解释为0，如果数据库中存在这种哈希值以”0E”开头的密码的话，他就可以以这个用户的身份登录进去，尽管并没有真正的密码。]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Writeup</tag>
+        <tag>CTF</tag>
+        <tag>MD5</tag>
+        <tag>bak</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Bugku-点击一百万次]]></title>
     <url>%2F2019%2F01%2F30%2F201928%2F</url>
-    <content type="text"><![CDATA[点击一百万次-writeup打开题目访问链接，看来是要你点击一百万次，点了几下，好了我放弃了查看审查元素JavaScript12345678910111213141516171819var clicks=0$(function() &#123; $("#cookie") .mousedown(function() &#123; $(this).width('350px').height('350px'); &#125;) .mouseup(function() &#123; $(this).width('375px').height('375px'); clicks++; $("#clickcount").text(clicks); if(clicks &gt;= 1000000)&#123; var form = $('&lt;form action="" method="post"&gt;' + '&lt;input type="text" name="clicks" value="' + clicks + '" hidden/&gt;' + '&lt;/form&gt;'); $('body').append(form); form.submit(); &#125; &#125;);&#125;); 打开浏览器Console提交clicks=999999，再点击一次页面也可以利用hackbar直接post提交clicks=1000000还有很多种方式，大家可以一一尝试下，只要将clicks值达到满足判断条件即可。]]></content>
+    <content type="text"><![CDATA[点击一百万次-writeup打开题目访问链接，看来是要你点击一百万次，点了几下，好了我放弃了查看审查元素发现一串JavaScript12345678910111213141516var clicks=0 //声明一个clicks定位为0$(function() &#123; //$(document).ready(function() &#123; ... &#125;);的缩写，防止文档在完全加载（就绪）之前运行 jQuery 代码。如果在文档没有完全加载之前就运行函数，操作可能失败。其作用和 $(document).ready()一樣 ，用意在DOM載入後執行ready()方法。 $("#cookie").mousedown(function() &#123; //鼠标按下事件 $(this).width('350px').height('350px'); //$(this)代码代表$('#cookie)，鼠标按下之后id为cookie的元素改变宽度和高度 &#125;).mouseup(function() &#123; //鼠标松开事件 $(this).width('375px').height('375px'); //鼠标松开之后id为cookie的元素改变宽度和高度 clicks++; //clicks增加 $("#clickcount").text(clicks); //clicks++完给id为clickcount元素改变值 if(clicks &gt;= 1000000)&#123; //当clicks大于或等于1000000，声明一个form，并在body追加form var form = $('&lt;form action="" method="post"&gt;' + '&lt;input type="text" name="clicks" value="' + clicks + '" hidden/&gt;' +'&lt;/form&gt;'); //定义html代码 $('body').append(form); //在body插入html代码 form.submit(); //执行form表单提交 &#125; &#125;);&#125;); 打开浏览器Console提交clicks=999999，再点击一次页面也可以利用hackbar直接post提交clicks=1000000还有很多种方式，大家可以一一尝试下，只要将clicks值达到满足判断条件即可。]]></content>
       <categories>
         <category>Bugku</category>
       </categories>
@@ -55,9 +82,9 @@
         <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>JavaScript</tag>
         <tag>escape</tag>
         <tag>unescape</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -112,8 +139,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>加密</tag>
         <tag>ASCII</tag>
+        <tag>加密</tag>
         <tag>Morse</tag>
         <tag>Tool</tag>
       </tags>
@@ -129,8 +156,8 @@
         <tag>Writeup</tag>
         <tag>CTF</tag>
         <tag>Python</tag>
-        <tag>加密</tag>
         <tag>ASCII</tag>
+        <tag>加密</tag>
         <tag>Morse</tag>
         <tag>Tool</tag>
       </tags>
@@ -224,8 +251,8 @@
         <tag>CTF</tag>
         <tag>MISC</tag>
         <tag>Python</tag>
-        <tag>ZIP</tag>
         <tag>加密</tag>
+        <tag>ZIP</tag>
         <tag>爆破</tag>
       </tags>
   </entry>
@@ -281,8 +308,8 @@
       </categories>
       <tags>
         <tag>Web</tag>
-        <tag>加密</tag>
         <tag>CBC</tag>
+        <tag>加密</tag>
       </tags>
   </entry>
   <entry>
