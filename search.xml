@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Bugku-秋名山老司机]]></title>
+    <url>%2F2019%2F02%2F02%2F201933%2F</url>
+    <content type="text"><![CDATA[秋名山老司机-writeup打开题目，秋名山老司机来飙车吗？访问链接，发现是一道计算题，算了下，2s?这道题明显要求计算响应内容中的表达式并POST请求正确的信息返回结果，还是快速反弹POST请求这里会纳闷传值传给谁，这里刷新几下发现提示Give me value post about直接写python1234567891011121314# coding: utf-8# 导入模块import requestsimport reurl = 'http://123.206.87.240:8002/qiumingshan/'convert = requests.Session() #创建session对象，session对象可以使我们跨请求保持某些参数，也可以在同一个session实例发出的所有请求之间保持cookieshtml = convert.get(url).text # get请求reg = re.compile(r'(?&lt;=&lt;div&gt;).*(?=\=)').findall(html) #匹配表达式如['2024653276+1430867578+1152697161*392577551-1429779315*779503901+1352271449+1584130862+557093247+1523782933+1160059856']payload = &#123;'value': eval(reg[0])&#125; #eval计算式子(匹配出来的是列表)并构造post请求的data部分flag = convert.post(url, data=payload) #post带参数提交flag.encoding = 'utf-8' #'utf-8'格式print(flag.text) 这个因为是2s的原因，要结合环境（程序自身的的运行时间、网速等因素）也有可能python的计算与服务端的计算有误差，导致出现了要一定的概率才会出现flag，（触及到我的知识盲区-_-!）多尝试几次。可以加个while True 循环，亦或者加个多线程并发。]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Writeup</tag>
+        <tag>CTF</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[正则表达式之零宽断言]]></title>
     <url>%2F2019%2F02%2F01%2F201932%2F</url>
     <content type="text"><![CDATA[正则表达式之零宽断言零宽断言:用于查找特定内容之前或之后的内容，但并不包括特定内容本身。断言用来声明一个应该为真的事实。正则表达式中只有当断言为真时才会继续进行匹配。简单来说就是匹配一个位置，这个位置满足某个正则，但不纳入结果的，所以叫“零宽断言”，而且这个位置的前面或后面需要满足某种正则。 分类 代码/语法 说明 零宽度正预测先行断言 (?=exp) 匹配exp前面的位置 零宽度正回顾后发断言 (?&lt;=exp) 匹配exp后面的位置 零宽度负预测先行断言 (?!exp) 匹配后面跟的不是exp的位置 零宽度负回顾后发断言 (?&lt;!exp) 匹配前面不是exp的位置 下面结合例子来理解下什么是零宽断言。零宽断言123正则表达式:(?&lt;=&lt;div&gt;).*(?=&lt;/div&gt;) 匹配字符串:&lt;div&gt;www.axiaowei.cn&lt;/div&gt; 匹配结果:www.axiaowei.cn 123正则表达式：(?&lt;=&lt;div&gt;).*匹配字符串:&lt;div&gt;www.axiaowei.cn&lt;/div&gt; 匹配结果:www.axiaowei.cn&lt;/div&gt; 123正则表达式：(?=www).*(?&lt;=cn)匹配字符串：&lt;div&gt;www.axiaowei.cn&lt;/div&gt; 匹配结果:www.axiaowei.cn 负向零宽断言123正则表达式：\d&#123;3&#125;(?!\d) -&gt;匹配三位数字的后面不能是数字匹配字符串：235456123匹配结果：123 123正则表达式：(?&lt;![a-z])\d&#123;7&#125; -&gt;匹配前面不是小写字母的七位数字匹配字符串：1111111d2222222d3333333S4444444匹配结果：1111111, 4444444 这里举一个常见的简单计算题，我们利用零宽断言进行匹配。三秒中算出式子（每次刷新式子也会变化），想必能算出来输入提交也超过三秒了吧，直接写python123456789101112131415161718# coding: utf-8import reimport requestsurl = 'http://123.206.31.85:10002/'convert = requests.session()html = convert.get(url).textreg = re.compile(r'.+(?=&lt;/p&gt;)').findall(html) # 零宽断言匹配link = ''for i in reg: link += idata = eval(link)post = convert.post(url, &#123;'result': data&#125;)print('三秒之内计算出以下式子：\n', link, '=', data)print(post.text) 参考资料：http://deerchao.net/tutorials/regex/regex.htm]]></content>
@@ -25,7 +39,8 @@
         <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>SQL注入，Mysql</tag>
+        <tag>SQL注入</tag>
+        <tag>Mysql</tag>
         <tag>sqlmap</tag>
       </tags>
   </entry>
@@ -280,8 +295,8 @@
         <tag>CTF</tag>
         <tag>MISC</tag>
         <tag>Python</tag>
-        <tag>加密</tag>
         <tag>ZIP</tag>
+        <tag>加密</tag>
         <tag>爆破</tag>
       </tags>
   </entry>
