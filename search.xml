@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Bugku-秋名山老司机]]></title>
     <url>%2F2019%2F02%2F02%2F201933%2F</url>
-    <content type="text"><![CDATA[秋名山老司机-writeup打开题目，秋名山老司机来飙车吗？访问链接，发现是一道计算题，算了下，2s?这道题明显要求计算响应内容中的表达式并POST请求正确的信息返回结果，还是快速反弹POST请求这里会纳闷传值传给谁，这里刷新几下发现提示Give me value post about直接写python1234567891011121314# coding: utf-8# 导入模块import requestsimport reurl = 'http://123.206.87.240:8002/qiumingshan/'convert = requests.Session() #创建session对象，session对象可以使我们跨请求保持某些参数，也可以在同一个session实例发出的所有请求之间保持cookieshtml = convert.get(url).text # get请求reg = re.compile(r'(?&lt;=&lt;div&gt;).*(?=\=)').findall(html) #匹配表达式如['2024653276+1430867578+1152697161*392577551-1429779315*779503901+1352271449+1584130862+557093247+1523782933+1160059856']payload = &#123;'value': eval(reg[0])&#125; #eval计算式子(匹配出来的是列表)并构造post请求的data部分flag = convert.post(url, data=payload) #post带参数提交flag.encoding = 'utf-8' #'utf-8'格式print(flag.text) 这个因为是2s的原因，要结合环境（程序自身的的运行时间、网速等因素）也有可能python的计算与服务端的计算有误差，导致出现了要一定的概率才会出现flag，（触及到我的知识盲区-_-!）多尝试几次。可以加个while True 循环，亦或者加个多线程并发。]]></content>
+    <content type="text"><![CDATA[秋名山老司机-writeup打开题目，秋名山老司机来飙车吗？访问链接，发现是一道计算题，算了下，2s?这道题明显要求计算响应内容中的表达式并POST请求正确的信息返回结果，还是快速反弹POST请求这里会纳闷传值传给谁，刷新了几下发现提示Give me value post about直接写python1234567891011121314# coding: utf-8# 导入模块import requestsimport reurl = 'http://123.206.87.240:8002/qiumingshan/'convert = requests.Session() #创建session对象，session对象可以使我们跨请求保持某些参数，也可以在同一个session实例发出的所有请求之间保持cookieshtml = convert.get(url).text # get请求reg = re.compile(r'(?&lt;=&lt;div&gt;).*(?=\=)').findall(html) #匹配表达式如['2024653276+1430867578+1152697161*392577551-1429779315*779503901+1352271449+1584130862+557093247+1523782933+1160059856']payload = &#123;'value': eval(reg[0])&#125; #eval计算式子(匹配出来的是列表)并构造post请求的data部分flag = convert.post(url, data=payload) #post带参数提交flag.encoding = 'utf-8' #'utf-8'格式print(flag.text) 这个因为是2s的原因，要结合环境（程序自身的的运行时间、网速等因素）也有可能python的计算与服务端的计算有误差，导致出现了要一定的概率才会出现flag，（触及到我的知识盲区-_-!）多尝试几次。可以加个while True 循环，亦或者加个多线程并发。]]></content>
       <categories>
         <category>Bugku</category>
       </categories>
@@ -352,8 +352,8 @@
       </categories>
       <tags>
         <tag>Web</tag>
-        <tag>CBC</tag>
         <tag>加密</tag>
+        <tag>CBC</tag>
       </tags>
   </entry>
   <entry>
