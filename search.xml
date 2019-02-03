@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Bugku-速度要快]]></title>
+    <url>%2F2019%2F02%2F03%2F201934%2F</url>
+    <content type="text"><![CDATA[速度要快-writeup&lt;！–more–&gt;打开题目访问链接，查看审查元素，提示OK ,now you have to post the margin what you find 感觉需要post提交一些什么东西利用burp suite进行抓包看看，在response中headers发现了一串base64进行base64解密解出来感觉还是怪怪的感觉还是base64，进行解密 将解密出来的进行提交，提交失败，想到源代码中的备注post提交看一下提示我都说了让你快点。。。然后几次尝试发现每次headers中的base64在变化,发现PHPSESSID字段应该是要post提交保持同一个会话写python进行post提交123456789101112131415161718# coding: utf-8# 导入模块import requestsimport base64url = 'http://123.206.87.240:8002/web6/' # 链接convert = requests.session() # 创建会话对象（保持cookie）html = convert.get(url) # get请求head = html.headers['flag'] # 获取头部flag信息decode_1 = base64.b64decode(head) # 进行base64解密code = decode_1.decode('utf-8') # bytes转stringseparate = code.split(':') # 将base64解密后的字符串进行以‘：’进行分隔，获取flag后面的值decode_2 = base64.b64decode(separate[1]) # 返回分隔后的字符串列表，将解密后的进行二次base64解密flag = convert.post(url, data=&#123;'margin': decode_2&#125;) # 构造margin参数post提交print(flag.text)]]></content>
+      <categories>
+        <category>Bugku</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Writeup</tag>
+        <tag>CTF</tag>
+        <tag>Python</tag>
+        <tag>base64</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Bugku-秋名山老司机]]></title>
     <url>%2F2019%2F02%2F02%2F201933%2F</url>
-    <content type="text"><![CDATA[秋名山老司机-writeup打开题目，秋名山老司机来飙车吗？访问链接，发现是一道计算题，算了下，2s?这道题明显要求计算响应内容中的表达式并POST请求正确的信息返回结果，还是快速反弹POST请求这里会纳闷传值传给谁，刷新了几下发现提示Give me value post about直接写python1234567891011121314# coding: utf-8# 导入模块import requestsimport reurl = 'http://123.206.87.240:8002/qiumingshan/'convert = requests.Session() #创建session对象，session对象可以使我们跨请求保持某些参数，也可以在同一个session实例发出的所有请求之间保持cookieshtml = convert.get(url).text # get请求reg = re.compile(r'(?&lt;=&lt;div&gt;).*(?=\=)').findall(html) #匹配表达式如['2024653276+1430867578+1152697161*392577551-1429779315*779503901+1352271449+1584130862+557093247+1523782933+1160059856']payload = &#123;'value': eval(reg[0])&#125; #eval计算式子(匹配出来的是列表)并构造post请求的data部分flag = convert.post(url, data=payload) #post带参数提交flag.encoding = 'utf-8' #'utf-8'格式print(flag.text) 这个因为是2s的原因，要结合环境（程序自身的的运行时间、网速等因素）也有可能python的计算与服务端的计算有误差，导致出现了要一定的概率才会出现flag，（触及到我的知识盲区-_-!）多尝试几次。可以加个while True 循环，亦或者加个多线程并发。]]></content>
+    <content type="text"><![CDATA[秋名山老司机-writeup打开题目，秋名山老司机来飙车吗？访问链接，发现是一道计算题，算了下，2s?这道题明显要求计算响应内容中的表达式并POST请求正确的信息返回结果，还是快速反弹POST请求这里会纳闷传值传给谁，刷新了几下发现提示Give me value post about直接写python1234567891011121314# coding: utf-8# 导入模块import requestsimport reurl = 'http://123.206.87.240:8002/qiumingshan/' # 链接convert = requests.Session() # 创建session对象，session对象可以使我们跨请求保持某些参数，也可以在同一个session实例发出的所有请求之间保持cookieshtml = convert.get(url).text # get请求reg = re.compile(r'(?&lt;=&lt;div&gt;).*(?=\=)').findall(html) #匹配表达式如['2024653276+1430867578+1152697161*392577551-1429779315*779503901+1352271449+1584130862+557093247+1523782933+1160059856']payload = &#123;'value': eval(reg[0])&#125; # eval计算式子(匹配出来的是列表)并构造post请求的data部分flag = convert.post(url, data=payload) # post带参数提交flag.encoding = 'utf-8' #'utf-8'格式print(flag.text) 这个因为是2s的原因，要结合环境（程序自身的的运行时间、网速等因素）也有可能python的计算与服务端的计算有误差，导致出现了要一定的概率才会出现flag，（触及到我的知识盲区-_-!）多尝试几次。可以加个while True 循环，亦或者加个多线程并发。]]></content>
       <categories>
         <category>Bugku</category>
       </categories>
@@ -110,9 +125,9 @@
         <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>base64</tag>
         <tag>文件包含</tag>
         <tag>php://</tag>
+        <tag>base64</tag>
       </tags>
   </entry>
   <entry>
@@ -295,9 +310,9 @@
         <tag>CTF</tag>
         <tag>MISC</tag>
         <tag>Python</tag>
-        <tag>ZIP</tag>
         <tag>加密</tag>
         <tag>爆破</tag>
+        <tag>ZIP</tag>
       </tags>
   </entry>
   <entry>
@@ -325,10 +340,10 @@
         <tag>Writeup</tag>
         <tag>CTF</tag>
         <tag>MISC</tag>
+        <tag>base64</tag>
         <tag>Brainfuck</tag>
         <tag>Ook</tag>
         <tag>Unicode</tag>
-        <tag>base64</tag>
         <tag>base58</tag>
       </tags>
   </entry>

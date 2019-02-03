@@ -301,6 +301,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/02/03/201934/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小维同学">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小维的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/03/201934/" itemprop="url">Bugku-速度要快</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-03T21:18:15+08:00">
+                2019-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Bugku/" itemprop="url" rel="index">
+                    <span itemprop="name">Bugku</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  323字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>速度要快-writeup</strong><br>&lt;！–more–&gt;<br>打开题目<br><img src="https://i.imgur.com/jgTPGTS.png" alt=""><br>访问链接，查看审查元素，提示OK ,now you have to post the margin what you find 感觉需要post提交一些什么东西<br><img src="https://i.imgur.com/sStzZKA.png" alt=""><br>利用burp suite进行抓包看看，在response中headers发现了一串base64<br><img src="https://i.imgur.com/fNm2y4K.png" alt=""><br>进行base64解密<br><img src="https://i.imgur.com/SQZKgFN.png" alt=""><br>解出来感觉还是怪怪的感觉还是base64，进行解密<br><img src="https://i.imgur.com/4ptKZTW.png" alt=""></p>
+<p>将解密出来的进行提交，提交失败，想到源代码中的备注post提交看一下<br><img src="https://i.imgur.com/8ZLrMmb.png" alt=""><br><img src="https://i.imgur.com/xaf9M6H.png" alt=""><br>提示我都说了让你快点。。。<br>然后几次尝试发现每次headers中的base64在变化,发现PHPSESSID字段应该是要post提交保持同一个会话<br>写python进行post提交<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入模块</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://123.206.87.240:8002/web6/'</span>  <span class="comment"># 链接</span></span><br><span class="line">convert = requests.session()     <span class="comment"># 创建会话对象（保持cookie）</span></span><br><span class="line">html = convert.get(url)     <span class="comment"># get请求</span></span><br><span class="line">head = html.headers[<span class="string">'flag'</span>]     <span class="comment"># 获取头部flag信息</span></span><br><span class="line"></span><br><span class="line">decode_1 = base64.b64decode(head)   <span class="comment"># 进行base64解密</span></span><br><span class="line">code = decode_1.decode(<span class="string">'utf-8'</span>)  <span class="comment"># bytes转string</span></span><br><span class="line">separate = code.split(<span class="string">':'</span>)      <span class="comment"># 将base64解密后的字符串进行以‘：’进行分隔，获取flag后面的值</span></span><br><span class="line">decode_2 = base64.b64decode(separate[<span class="number">1</span>])  <span class="comment"># 返回分隔后的字符串列表，将解密后的进行二次base64解密</span></span><br><span class="line"></span><br><span class="line">flag = convert.post(url, data=&#123;<span class="string">'margin'</span>: decode_2&#125;)     <span class="comment"># 构造margin参数post提交</span></span><br><span class="line">print(flag.text)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/3hAKM1C.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/02/02/201933/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -386,7 +563,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  362字
+                  364字
                 </span>
               
 
@@ -1899,185 +2076,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/01/28/201924/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小维同学">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小维的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/28/201924/" itemprop="url">Bugku-网站被黑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T19:39:24+08:00">
-                2019-01-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bugku/" itemprop="url" rel="index">
-                    <span itemprop="name">Bugku</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  203字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>网站被黑-writeup</strong><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/28/201924/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-		<div>
-		  
-		</div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2132,7 +2130,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
