@@ -129,7 +129,7 @@
 <meta property="og:image" content="https://i.imgur.com/c289to6.png">
 <meta property="og:image" content="https://i.imgur.com/B5yKuf9.png">
 <meta property="og:image" content="https://i.imgur.com/Mfz5P6I.png">
-<meta property="og:updated_time" content="2019-03-12T01:08:52.472Z">
+<meta property="og:updated_time" content="2019-03-12T01:21:10.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OSSEC安装部署">
 <meta name="twitter:description" content="概述OSSEC是一款开源的多平台的入侵检测系统，可以运行于Windows, Linux, OpenBSD/FreeBSD, 以及 MacOS等操作系统中。包括了日志分析，全面检测，root-kit检测，实时报警以及联动响应等功能。">
@@ -465,7 +465,7 @@ IP:192.168.0.120
 IP:192.168.0.110
 </code></pre><h4 id="客户端2-agent2"><a href="#客户端2-agent2" class="headerlink" title="客户端2(agent2)"></a>客户端2(agent2)</h4><pre><code>OS:Microsoft Windows 10 Education
 IP:192.168.0.102
-</code></pre><h3 id="OSSEC服务端环境部署"><a href="#OSSEC服务端环境部署" class="headerlink" title="OSSEC服务端环境部署"></a>OSSEC服务端环境部署</h3><h4 id="更换软件安装源"><a href="#更换软件安装源" class="headerlink" title="更换软件安装源"></a>更换软件安装源</h4><p>Centos7更换软件安装源：<a href="https://axiaowei.cn/2019/03/12/201937/#more">https://axiaowei.cn/2019/03/12/201937/#more</a></p>
+</code></pre><h3 id="OSSEC服务端环境部署"><a href="#OSSEC服务端环境部署" class="headerlink" title="OSSEC服务端环境部署"></a>OSSEC服务端环境部署</h3><h4 id="更换软件安装源"><a href="#更换软件安装源" class="headerlink" title="更换软件安装源"></a>更换软件安装源</h4><p>Centos7更换软件安装源：<a href="https://axiaowei.cn/2019/03/12/201936/#more">https://axiaowei.cn/2019/03/12/201936/#more</a></p>
 <h4 id="关闭内置安全子系统"><a href="#关闭内置安全子系统" class="headerlink" title="关闭内置安全子系统"></a>关闭内置安全子系统</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 临时关闭，立即生效。（重启失效）</span></span><br><span class="line">setenforce 0</span><br><span class="line"><span class="comment"># 修改配置文件，重启后生效。</span></span><br><span class="line">vi /etc/sysconfig/selinux</span><br><span class="line">将<span class="attribute">SELINUX</span>=enforcing</span><br><span class="line">修改为<span class="attribute">SELINUX</span>=disabled</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/ezq0TzD.png" alt=""></p>
 <h4 id="关闭防火墙-firewall"><a href="#关闭防火墙-firewall" class="headerlink" title="关闭防火墙(firewall)"></a>关闭防火墙(firewall)</h4><p><strong>注意:如果这里需要开启防火墙需要放行相对应的端口</strong><br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 停止firewalld</span></span><br><span class="line">systemctl <span class="keyword">stop</span> firewalld</span><br><span class="line"><span class="meta"># 禁止开机自启</span></span><br><span class="line">systemctl <span class="keyword">disable</span> firewalld</span><br></pre></td></tr></table></figure></p>
