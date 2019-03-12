@@ -74,7 +74,7 @@
 
 
 
-  <meta name="keywords" content="Web,加密,CBC,">
+  <meta name="keywords" content="Web,CBC,加密,">
 
 
 
@@ -86,7 +86,7 @@
 
 
 <meta name="description" content="CBC字节翻转攻击原理">
-<meta name="keywords" content="Web,加密,CBC">
+<meta name="keywords" content="Web,CBC,加密">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CBC字节翻转攻击原理">
 <meta property="og:url" content="https://axiaowei.cn/2019/01/20/201912/index.html">
@@ -430,7 +430,7 @@
 <p>解密过程：<br>1、将密文分组<br>2、用iv与第一组密文xor，解密得到第一组明文<br>3、用第n组密文与第n+1组密文xor，解密得到第n+1组明文，以此类推<br>4、将各组的明文拼接在一起就是最终要得到的明文了</p>
 <p>注意一下：解密的时候前一组密文只影响后一组明文的结果，而不会影响其他组明文的结果，由图也可看得出，这个也是进行攻击的重要之处。</p>
 <p>有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：  </p>
-<h5 id="CBC字节翻转攻击原理图"><a href="#CBC字节翻转攻击原理图" class="headerlink" title="CBC字节翻转攻击原理图"></a>CBC字节翻转攻击原理图</h5><p><img src="https://i.imgur.com/73EAF3c.png" alt=""><br><a href="http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png" target="_blank" rel="noopener">http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png</a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">XOR</span>异或运算</span><br><span class="line">异或，英文为exclusive <span class="keyword">OR</span>，缩写成<span class="keyword">xor</span></span><br><span class="line">异或的数学符号为“⊕”</span><br><span class="line">异或略称为<span class="keyword">XOR</span>、EOR、EX-<span class="keyword">OR</span></span><br><span class="line">程序中有三种演算子：<span class="keyword">XOR</span>、<span class="keyword">xor</span>、⊕。</span><br><span class="line">两个输入相同时为<span class="number">0</span>，不同则为<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="CBC字节翻转攻击原理图"><a href="#CBC字节翻转攻击原理图" class="headerlink" title="CBC字节翻转攻击原理图"></a>CBC字节翻转攻击原理图</h5><p><img src="https://i.imgur.com/73EAF3c.png" alt=""><br><a href="http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png" target="_blank" rel="noopener">http://processon.com/chart_image/5c37fd8de4b0db2e59306630.png</a><br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">XOR</span>异或运算</span><br><span class="line">异或，英文为exclusive <span class="keyword">OR</span>，缩写成<span class="keyword">xor</span></span><br><span class="line">异或的数学符号为“⊕”</span><br><span class="line">异或略称为<span class="keyword">XOR</span>、EOR、EX-<span class="keyword">OR</span></span><br><span class="line">程序中有三种演算子：<span class="keyword">XOR</span>、<span class="keyword">xor</span>、⊕。</span><br><span class="line">两个输入相同时为<span class="number">0</span>，不同则为<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -458,9 +458,9 @@
           
             <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i>Web</a>
           
-            <a href="/tags/加密/" rel="tag"><i class="fa fa-tag"></i>加密</a>
-          
             <a href="/tags/CBC/" rel="tag"><i class="fa fa-tag"></i>CBC</a>
+          
+            <a href="/tags/加密/" rel="tag"><i class="fa fa-tag"></i>加密</a>
           
         </div>
       
@@ -593,7 +593,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -604,7 +604,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -615,7 +615,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
