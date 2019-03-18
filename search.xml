@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python学习笔记]]></title>
+    <url>%2F2019%2F03%2F18%2F201939%2F</url>
+    <content type="text"><![CDATA[一款挺好的在线创作的思维导图、流程图等https://www.processon.com/i/5c09c763e4b0ca4b40cae793 PNG格式http://assets.processon.com/chart_image/5c0a7900e4b0e4a51424157b.pngPDF格式链接： https://pan.baidu.com/s/13Tbkr67sSZltMQ6d6f2YoA提取码： on0o]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>思维导图</tag>
+        <tag>笔记</tag>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ssh基于密钥认证登陆]]></title>
     <url>%2F2019%2F03%2F12%2F201938%2F</url>
     <content type="text"><![CDATA[基于密钥的认证 系统环境OS:centos7 连接工具：xshell IP:192.168.0.120 生成ssh认证的私钥和公钥1ssh-keygen 将公钥制作成key1mv id_rsa.pub authorized_keys 将私钥下载到本地 编辑配置文件允许公钥认证，关闭口令认证 重启ssh服务1service sshd restart 利用密钥进行连接]]></content>
@@ -58,10 +72,10 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
         <tag>Python</tag>
-        <tag>Web</tag>
         <tag>base64</tag>
       </tags>
   </entry>
@@ -73,10 +87,10 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
         <tag>Python</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -101,9 +115,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>SQL注入</tag>
         <tag>Mysql</tag>
         <tag>sqlmap</tag>
@@ -129,9 +143,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>MD5</tag>
         <tag>bak</tag>
       </tags>
@@ -144,9 +158,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>JavaScript</tag>
       </tags>
   </entry>
@@ -158,9 +172,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>爆破</tag>
       </tags>
   </entry>
@@ -172,9 +186,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>base64</tag>
         <tag>文件包含</tag>
         <tag>php://</tag>
@@ -188,9 +202,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>escape</tag>
         <tag>unescape</tag>
         <tag>JavaScript</tag>
@@ -204,9 +218,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>shell后门</tag>
         <tag>弱口令爆破</tag>
       </tags>
@@ -219,9 +233,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>Headers</tag>
       </tags>
   </entry>
@@ -233,9 +247,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>JSFuck</tag>
       </tags>
   </entry>
@@ -279,9 +293,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
         <tag>变量</tag>
       </tags>
   </entry>
@@ -293,9 +307,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -306,9 +320,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -319,9 +333,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -332,9 +346,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
       </tags>
   </entry>
   <entry>
@@ -356,9 +370,9 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
         <tag>Python</tag>
         <tag>加密</tag>
         <tag>爆破</tag>
@@ -373,9 +387,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
         <tag>Python</tag>
       </tags>
   </entry>
@@ -387,9 +401,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
         <tag>Brainfuck</tag>
         <tag>Ook</tag>
         <tag>Unicode</tag>
@@ -429,9 +443,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
         <tag>base16</tag>
         <tag>文件头</tag>
         <tag>ASCII</tag>
@@ -445,9 +459,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -458,9 +472,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
       </tags>
   </entry>
   <entry>
@@ -471,9 +485,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -484,9 +498,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -497,9 +511,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
-        <tag>MISC</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
+        <tag>MISC</tag>
         <tag>Python</tag>
       </tags>
   </entry>
@@ -511,9 +525,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
@@ -524,9 +538,9 @@
         <category>Bugku</category>
       </categories>
       <tags>
+        <tag>Web</tag>
         <tag>Writeup</tag>
         <tag>CTF</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
