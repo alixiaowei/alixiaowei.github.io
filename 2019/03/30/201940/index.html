@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ZsntNucQnwgOG8NJsPVjhDxi8hx9YmTvgqa9eReuux0">
+
+
+
+  <meta name="msvalidate.01" content="A3C088EA1884107284C9F5B94B1C667F">
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="rLNDlRl5mo">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WEB,文件上传,安全,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="实验环境12345目标靶机:OWASP_Broken_Web_Apps_VM_1.2IP:192.168.0.109测试渗透机：kali-linux-2018-4-vm-amd64IP:192.168.0.103 文件上传原理123451、文件上传（File Upload）是大部分web应用都具备的功能，如：用户上传的附件、修改头像、分享图片/视频等2、正常的文件一般是文档、图片、视频等，web应">
+<meta name="keywords" content="WEB,文件上传,安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传漏洞原理">
+<meta property="og:url" content="https://axiaowei.cn/2019/03/30/201940/index.html">
+<meta property="og:site_name" content="小维的博客">
+<meta property="og:description" content="实验环境12345目标靶机:OWASP_Broken_Web_Apps_VM_1.2IP:192.168.0.109测试渗透机：kali-linux-2018-4-vm-amd64IP:192.168.0.103 文件上传原理123451、文件上传（File Upload）是大部分web应用都具备的功能，如：用户上传的附件、修改头像、分享图片/视频等2、正常的文件一般是文档、图片、视频等，web应">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/AkT8RD6.png">
+<meta property="og:image" content="https://i.imgur.com/YSY23GT.png">
+<meta property="og:image" content="https://i.imgur.com/c9jufUe.png">
+<meta property="og:image" content="https://i.imgur.com/C6s2CLR.png">
+<meta property="og:image" content="https://i.imgur.com/zeTu1Ns.png">
+<meta property="og:image" content="https://i.imgur.com/gWjojYx.png">
+<meta property="og:image" content="https://i.imgur.com/7CO3p0t.png">
+<meta property="og:image" content="https://i.imgur.com/MjxmccV.png">
+<meta property="og:image" content="https://i.imgur.com/22dnTga.png">
+<meta property="og:image" content="https://i.imgur.com/EJOjJuQ.png">
+<meta property="og:image" content="https://i.imgur.com/gQiNVXR.png">
+<meta property="og:image" content="https://i.imgur.com/80K6OtU.png">
+<meta property="og:image" content="https://i.imgur.com/hHcaAQG.png">
+<meta property="og:image" content="https://i.imgur.com/6fwFQ5d.png">
+<meta property="og:image" content="https://i.imgur.com/WZZprIK.png">
+<meta property="og:image" content="https://i.imgur.com/eBgwMKB.png">
+<meta property="og:image" content="https://i.imgur.com/eCtPIga.png">
+<meta property="og:image" content="https://i.imgur.com/GRXlNnZ.png">
+<meta property="og:image" content="https://i.imgur.com/CfiuTnB.png">
+<meta property="og:image" content="https://i.imgur.com/0GnLCh5.png">
+<meta property="og:image" content="https://i.imgur.com/qCtH3pQ.png">
+<meta property="og:image" content="https://i.imgur.com/rYwrSWB.png">
+<meta property="og:image" content="https://i.imgur.com/xNsCtis.png">
+<meta property="og:image" content="https://i.imgur.com/A5QiwNM.png">
+<meta property="og:image" content="https://i.imgur.com/Zi2WstW.png">
+<meta property="og:image" content="https://i.imgur.com/RU0JSdg.png">
+<meta property="og:image" content="https://i.imgur.com/c9kEVYD.png">
+<meta property="og:updated_time" content="2019-03-30T07:16:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传漏洞原理">
+<meta name="twitter:description" content="实验环境12345目标靶机:OWASP_Broken_Web_Apps_VM_1.2IP:192.168.0.109测试渗透机：kali-linux-2018-4-vm-amd64IP:192.168.0.103 文件上传原理123451、文件上传（File Upload）是大部分web应用都具备的功能，如：用户上传的附件、修改头像、分享图片/视频等2、正常的文件一般是文档、图片、视频等，web应">
+<meta name="twitter:image" content="https://i.imgur.com/AkT8RD6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":10,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://axiaowei.cn/2019/03/30/201940/">
+
+
+
+
+
+  <title>文件上传漏洞原理 | 小维的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小维的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Python | CTF | Writeup | Note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/03/30/201940/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小维同学">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小维的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件上传漏洞原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T15:25:40+08:00">
+                2019-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/文件上传/" itemprop="url" rel="index">
+                    <span itemprop="name">文件上传</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,283字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目标靶机:OWASP_Broken_Web_Apps_VM_1<span class="meta">.2</span></span><br><span class="line"><span class="symbol">IP:</span><span class="number">192.168</span><span class="meta">.0</span><span class="meta">.109</span></span><br><span class="line"></span><br><span class="line">测试渗透机：kali-linux-<span class="number">2018</span>-<span class="number">4</span>-vm-amd64</span><br><span class="line"><span class="symbol">IP:</span><span class="number">192.168</span><span class="meta">.0</span><span class="meta">.103</span></span><br></pre></td></tr></table></figure>
+<h4 id="文件上传原理"><a href="#文件上传原理" class="headerlink" title="文件上传原理"></a>文件上传原理</h4><p><img src="https://i.imgur.com/AkT8RD6.png" alt=""><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、文件上传（File Upload）是大部分web应用都具备的功能，如：用户上传的附件、修改头像、分享图片/视频等</span><br><span class="line"><span class="number">2</span>、正常的文件一般是文档、图片、视频等，web应用收集之后放入后台存储，需要的时候调用出来返回</span><br><span class="line"><span class="number">3</span>、如果恶意的文件如PHP、ASP等执行文件绕过web应用，并顺利执行，则相当于黑客直接拿到webshell</span><br><span class="line"><span class="number">4</span>、一旦黑客拿到webshell，则可以拿到web应用的数据，删除web文件，本地提权，进一步拿下整个服务器甚至内网</span><br><span class="line"><span class="number">5</span>、SQL注入攻击的对象是数据库服务，文件上传漏洞主要攻击web服务，实际渗透两种相结合，达到对目标的深度控制</span><br></pre></td></tr></table></figure></p>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="实验一（low）"><a href="#实验一（low）" class="headerlink" title="实验一（low）"></a>实验一（low）</h5><p>进入靶机环境<br><img src="https://i.imgur.com/YSY23GT.png" alt=""><br>这里提示选择你要上传的图像，我们上传一张jpg图片文件<br><img src="https://i.imgur.com/c9jufUe.png" alt=""><br>提示上传成功，我们查看一下<br><img src="https://i.imgur.com/C6s2CLR.png" alt=""><br>再次尝试上传一个11.txt的文本文件，看是否限制上传<br><img src="https://i.imgur.com/zeTu1Ns.png" alt=""><br>提示上传成功，我们查看一下<br><img src="https://i.imgur.com/gWjojYx.png" alt=""><br>此时我们上传一个一句话木马的PHP可执行文件，看是否限制上传<br><img src="https://i.imgur.com/7CO3p0t.png" alt=""><br>提示成功上传，我们查看一下<br><img src="https://i.imgur.com/MjxmccV.png" alt=""><br>此时亮出我们的中国菜刀<br><img src="https://i.imgur.com/22dnTga.png" alt=""><br>成功进入<br><img src="https://i.imgur.com/EJOjJuQ.png" alt=""><br>我们来分析下靶机源码<br><img src="https://i.imgur.com/gQiNVXR.png" alt=""><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'Upload'</span>])) &#123;			<span class="comment">//判断是否有post提交过来的变量</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            $target_path = DVWA_WEB_PAGE_TO_ROOT.<span class="string">"hackable/uploads/"</span>;		<span class="comment">//设置上传目录</span></span></span><br><span class="line"><span class="php">            $target_path = $target_path . basename( $_FILES[<span class="string">'uploaded'</span>][<span class="string">'name'</span>]);	<span class="comment">//获取上传文件名</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            <span class="keyword">if</span>(!move_uploaded_file($_FILES[<span class="string">'uploaded'</span>][<span class="string">'tmp_name'</span>], $target_path)) &#123;	<span class="comment">//将上传的文件移动到新位置</span></span></span><br><span class="line"><span class="php">                </span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'Your image was not uploaded.'</span>;</span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                </span></span><br><span class="line"><span class="php">              &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="php">            </span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> $target_path . <span class="string">' succesfully uploaded!'</span>;</span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                </span></span><br><span class="line"><span class="php">            &#125;</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">        &#125;</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">低安全模式下</span><br><span class="line">没有验证文件上传类型，后缀名，可以任意上传文件及文件大小</span><br></pre></td></tr></table></figure>
+<h5 id="实验二（medium）"><a href="#实验二（medium）" class="headerlink" title="实验二（medium）"></a>实验二（medium）</h5><p>进入靶机环境<br>上传一张jpg图片文件，成功上传<br><img src="https://i.imgur.com/80K6OtU.png" alt=""><br>上传一个PHP可执行文件，提示&lt;font color=”#660000&gt;Your image was not uploaded.<br><br><img src="https://i.imgur.com/hHcaAQG.png" alt=""><br>我们来分析下靶机源码<br><img src="https://i.imgur.com/6fwFQ5d.png" alt=""><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'Upload'</span>])) &#123; 		<span class="comment">//判断是否有post提交过来的变量</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            $target_path = DVWA_WEB_PAGE_TO_ROOT.<span class="string">"hackable/uploads/"</span>; 		<span class="comment">//设置上传目录</span></span></span><br><span class="line"><span class="php">            $target_path = $target_path . basename($_FILES[<span class="string">'uploaded'</span>][<span class="string">'name'</span>]); 	<span class="comment">//获取上传文件名</span></span></span><br><span class="line"><span class="php">            $uploaded_name = $_FILES[<span class="string">'uploaded'</span>][<span class="string">'name'</span>]; 	<span class="comment">//客户端文件的原名称</span></span></span><br><span class="line"><span class="php">            $uploaded_type = $_FILES[<span class="string">'uploaded'</span>][<span class="string">'type'</span>]; 	<span class="comment">//文件的MIME类型</span></span></span><br><span class="line"><span class="php">            $uploaded_size = $_FILES[<span class="string">'uploaded'</span>][<span class="string">'size'</span>]; 	<span class="comment">//已上传文件的字节大小</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            <span class="keyword">if</span> (($uploaded_type == <span class="string">"image/jpeg"</span>) &amp;&amp; ($uploaded_size &lt; <span class="number">100000</span>))&#123; 	<span class="comment">//进行了一个MIME类型及文件大小判断</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">                <span class="keyword">if</span>(!move_uploaded_file($_FILES[<span class="string">'uploaded'</span>][<span class="string">'tmp_name'</span>], $target_path)) &#123; 	<span class="comment">//将上传的文件移动到新位置</span></span></span><br><span class="line"><span class="php">                 </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>; </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'Your image was not uploaded.'</span>; </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>; </span></span><br><span class="line"><span class="php">                     </span></span><br><span class="line"><span class="php">                  &#125; <span class="keyword">else</span> &#123; </span></span><br><span class="line"><span class="php">                 </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>; </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> $target_path . <span class="string">' succesfully uploaded!'</span>; </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>; </span></span><br><span class="line"><span class="php">                     </span></span><br><span class="line"><span class="php">                    &#125; </span></span><br><span class="line"><span class="php">            &#125; </span></span><br><span class="line"><span class="php">            <span class="keyword">else</span>&#123; </span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;'</span>; </span></span><br><span class="line"><span class="php">            &#125; </span></span><br><span class="line"><span class="php">        &#125; </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">中安全模式下</span><br><span class="line">对文件上传的MIME类型及大小进行了一个判断</span><br></pre></td></tr></table></figure>
+<p>此时，我们可以用burp suite抓包来做一个对比<br><img src="https://i.imgur.com/WZZprIK.png" alt=""><br><img src="https://i.imgur.com/eBgwMKB.png" alt=""><br>利用burp suite抓包进行修改Content-Type值为imge/jpeg进行上传<br><img src="https://i.imgur.com/eCtPIga.png" alt=""><br><img src="https://i.imgur.com/GRXlNnZ.png" alt=""><br>上菜刀<br><img src="https://i.imgur.com/CfiuTnB.png" alt=""></p>
+<h5 id="实验三（high）"><a href="#实验三（high）" class="headerlink" title="实验三（high）"></a>实验三（high）</h5><p><img src="https://i.imgur.com/0GnLCh5.png" alt=""><br>尝试上述方法，全部失败，不在赘述<br>查看靶机源码<br><img src="https://i.imgur.com/qCtH3pQ.png" alt=""><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"> <span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'Upload'</span>])) &#123;		<span class="comment">//判断是否有post提交过来的变量</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            $target_path = DVWA_WEB_PAGE_TO_ROOT.<span class="string">"hackable/uploads/"</span>;		<span class="comment">//设置上传目录</span></span></span><br><span class="line"><span class="php">            $target_path = $target_path . basename($_FILES[<span class="string">'uploaded'</span>][<span class="string">'name'</span>]);	<span class="comment">//获取上传文件名</span></span></span><br><span class="line"><span class="php">            $uploaded_name = $_FILES[<span class="string">'uploaded'</span>][<span class="string">'name'</span>];		<span class="comment">//客户端文件的原名称</span></span></span><br><span class="line"><span class="php">            $uploaded_ext = substr($uploaded_name, strrpos($uploaded_name, <span class="string">'.'</span>) + <span class="number">1</span>);	<span class="comment">//取文件最后的扩展名</span></span></span><br><span class="line"><span class="php">            $uploaded_size = $_FILES[<span class="string">'uploaded'</span>][<span class="string">'size'</span>];		<span class="comment">//已上传文件的字节大小</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            <span class="keyword">if</span> (($uploaded_ext == <span class="string">"jpg"</span> || $uploaded_ext == <span class="string">"JPG"</span> || $uploaded_ext == <span class="string">"jpeg"</span> || $uploaded_ext == <span class="string">"JPEG"</span>) &amp;&amp; ($uploaded_size &lt; <span class="number">100000</span>))&#123;		<span class="comment">//采取白名单方式验证文件的后缀名以及文件大小</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">                <span class="keyword">if</span>(!move_uploaded_file($_FILES[<span class="string">'uploaded'</span>][<span class="string">'tmp_name'</span>], $target_path)) &#123;	<span class="comment">//将上传的文件移动到新位置</span></span></span><br><span class="line"><span class="php">                    </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'Your image was not uploaded.'</span>;</span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                </span></span><br><span class="line"><span class="php">                  &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="php">                </span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> $target_path . <span class="string">' succesfully uploaded!'</span>;</span></span><br><span class="line"><span class="php">                    <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                    </span></span><br><span class="line"><span class="php">                    &#125;</span></span><br><span class="line"><span class="php">            &#125;</span></span><br><span class="line"><span class="php">            </span></span><br><span class="line"><span class="php">            <span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="php">                </span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'Your image was not uploaded.'</span>;</span></span><br><span class="line"><span class="php">                <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">            &#125;</span></span><br><span class="line"><span class="php">        &#125;</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">高安全模式下</span><br><span class="line">后台检测上传文件后缀名<span class="comment">(采取白名单)</span></span><br></pre></td></tr></table></figure>
+<p>这里我们结合<strong>文件包含漏洞</strong><br>使用dos命令制作一句话图片木马<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">copy shell<span class="selector-class">.jpg</span> /b+ xiaowei<span class="selector-class">.php</span> shell3.jpg</span><br><span class="line">--/<span class="selector-tag">b</span> 以二进制的形式进行复制、合并文件。</span><br><span class="line">--/<span class="selector-tag">a</span> 以ASCII的形式进行复制、合并文件。</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/rYwrSWB.png" alt=""><br>将制作好的一句话图片木马进行上传<br><img src="https://i.imgur.com/xNsCtis.png" alt=""><br>结合文件包含漏洞，直接包含该文件会将该文件以PHP来运行：<br><img src="https://i.imgur.com/A5QiwNM.png" alt=""><br>上菜刀<br>此时，你可能会遇到这样子的问题<br><img src="https://i.imgur.com/Zi2WstW.png" alt=""></p>
+<p>&lt;font color=”#660000&gt;（根据排查初步断定菜刀没有进行一个身份认证，导致返回了一个200状态码的，一个登陆界面源码）<br \=""><br>此时我们利用菜刀的浏览器登陆下我们的靶机环境，让它产生cookie<br><img src="https://i.imgur.com/RU0JSdg.png" alt=""><br>我们再次进行我们的一句话连接<br><img src="https://i.imgur.com/c9kEVYD.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-本文结束<i class="fa fa-paw"></i>感谢您的阅读-</div>
+    
+</div>
+		  
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WEB/" rel="tag"><i class="fa fa-tag"></i>WEB</a>
+          
+            <a href="/tags/文件上传/" rel="tag"><i class="fa fa-tag"></i>文件上传</a>
+          
+            <a href="/tags/安全/" rel="tag"><i class="fa fa-tag"></i>安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/201939/" rel="next" title="Python学习笔记">
+                <i class="fa fa-chevron-left"></i> Python学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="小维同学">
+            
+              <p class="site-author-name" itemprop="name">小维同学</p>
+              <p class="site-description motion-element" itemprop="description">努力努力再努力</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+		  <!-- 网易音乐播放器 -->
+			<div id="music163player">
+				
+			</div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ximcx.cn/" title="西门吹雪's Blog" target="_blank">西门吹雪's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gcker.github.io" title="Allard博客" target="_blank">Allard博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://axiaowei.cn" title="互友链添加微信(ITxiaowei)" target="_blank">互友链添加微信(ITxiaowei)</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#实验环境"><span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件上传原理"><span class="nav-text">文件上传原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验"><span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实验一（low）"><span class="nav-text">实验一（low）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实验二（medium）"><span class="nav-text">实验二（medium）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实验三（high）"><span class="nav-text">实验三（high）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小维同学</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">❤  <a class="theme-link" target="_blank" href="https://axiaowei.cn">LZL</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
