@@ -93,22 +93,22 @@
 <meta property="og:site_name" content="小维的博客">
 <meta property="og:description" content="输入密码查看flag-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/beJT8Hz.png">
-<meta property="og:image" content="https://i.imgur.com/LqTS8VN.png">
-<meta property="og:image" content="https://i.imgur.com/uIcZhUQ.png">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kiitik64j30cj0aewej.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kiiydbj1j30fa05ot8j.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kij3bq6mj30yd0hymxr.jpg">
 <meta property="og:image" content="https://i.imgur.com/61231Iw.png">
-<meta property="og:image" content="https://i.imgur.com/TPfsuc9.png">
-<meta property="og:image" content="https://i.imgur.com/oWkS5ec.png">
-<meta property="og:image" content="https://i.imgur.com/h4r4Gpo.png">
-<meta property="og:image" content="https://i.imgur.com/Q6qN3jz.png">
-<meta property="og:image" content="https://i.imgur.com/OOrQX8Q.png">
-<meta property="og:image" content="https://i.imgur.com/CT4WPKJ.png">
-<meta property="og:image" content="https://i.imgur.com/yymODP2.png">
-<meta property="og:updated_time" content="2019-01-29T09:23:12.890Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kij9aknyj30hm05vt8k.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kijqrsooj30rs0m80uf.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kikfbvg7j30ns0myjsr.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kikwcw4kj30ns0mywfi.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kil8w02lj30rs0m8myj.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kilffxzmj30ns0my75r.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2killi92bj30ev04kt8k.jpg">
+<meta property="og:updated_time" content="2019-04-30T03:48:11.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-输入密码查看flag">
 <meta name="twitter:description" content="输入密码查看flag-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/beJT8Hz.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kiitik64j30cj0aewej.jpg">
 
 
 
@@ -433,7 +433,7 @@
       
 
       
-        <p><strong>输入密码查看flag-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/beJT8Hz.png" alt=""><br>访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）<br><img src="https://i.imgur.com/LqTS8VN.png" alt=""><br><img src="https://i.imgur.com/uIcZhUQ.png" alt=""><br><img src="https://i.imgur.com/61231Iw.png" alt=""><br>设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder<br><img src="https://i.imgur.com/TPfsuc9.png" alt=""><br><img src="https://i.imgur.com/oWkS5ec.png" alt=""><br>在Intruder中Positions中选择Clear清除，将12345选中选择Add添加<br><img src="https://i.imgur.com/h4r4Gpo.png" alt=""><br>在Payloads设置好相应参数，数字类型、10000-99999，步长为1<br><img src="https://i.imgur.com/Q6qN3jz.png" alt=""><br>在Options选项中设置线程（看电脑性能）<br><img src="https://i.imgur.com/OOrQX8Q.png" alt=""><br>点击Start attack开始，过一会就出来了（正确密码与错误密码Length长度是有区别的）<br><img src="https://i.imgur.com/CT4WPKJ.png" alt=""><br>将密码输入浏览器中，点击查看，得到flag<br><img src="https://i.imgur.com/yymODP2.png" alt=""></p>
+        <p><strong>输入密码查看flag-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kiitik64j30cj0aewej.jpg" alt=""><br>访问链接，尝试输入12345，提示密码错误，利用burp suite爆破（题目已经给出提示）<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kiiydbj1j30fa05ot8j.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kij3bq6mj30yd0hymxr.jpg" alt=""><br><img src="https://i.imgur.com/61231Iw.png" alt=""><br>设置代理，在浏览器中随便输入五位数字，打开burp suite抓包，发送到Intruder<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kij9aknyj30hm05vt8k.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kijqrsooj30rs0m80uf.jpg" alt=""><br>在Intruder中Positions中选择Clear清除，将12345选中选择Add添加<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kikfbvg7j30ns0myjsr.jpg" alt=""><br>在Payloads设置好相应参数，数字类型、10000-99999，步长为1<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kikwcw4kj30ns0mywfi.jpg" alt=""><br>在Options选项中设置线程（看电脑性能）<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kil8w02lj30rs0m8myj.jpg" alt=""><br>点击Start attack开始，过一会就出来了（正确密码与错误密码Length长度是有区别的）<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kilffxzmj30ns0my75r.jpg" alt=""><br>将密码输入浏览器中，点击查看，得到flag<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2killi92bj30ev04kt8k.jpg" alt=""></p>
 
       
     </div>

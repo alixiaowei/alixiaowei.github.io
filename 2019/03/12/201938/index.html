@@ -93,17 +93,17 @@
 <meta property="og:site_name" content="小维的博客">
 <meta property="og:description" content="基于密钥的认证">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/c00gcKQ.png">
-<meta property="og:image" content="https://i.imgur.com/LxQtRiw.png">
-<meta property="og:image" content="https://i.imgur.com/WrZrBB2.png">
-<meta property="og:image" content="https://i.imgur.com/XCtlIj0.png">
-<meta property="og:image" content="https://i.imgur.com/zgcoDHj.png">
-<meta property="og:image" content="https://i.imgur.com/bp9WXn0.png">
-<meta property="og:updated_time" content="2019-03-12T01:14:28.033Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgghlzltj30ia09wq35.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kggn7vgjj30fb05et8m.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kggt5ntuj313u0ij3z4.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgh0cme3j30v80gwmxw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgh6mwp0j30c50b0t8z.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kghfaj8fj30v80gwglo.jpg">
+<meta property="og:updated_time" content="2019-04-30T02:35:02.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh基于密钥认证登陆">
 <meta name="twitter:description" content="基于密钥的认证">
-<meta name="twitter:image" content="https://i.imgur.com/c00gcKQ.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgghlzltj30ia09wq35.jpg">
 
 
 
@@ -433,13 +433,13 @@
 连接工具：xshell
 IP:192.168.0.120
 </code></pre><h4 id="生成ssh认证的私钥和公钥"><a href="#生成ssh认证的私钥和公钥" class="headerlink" title="生成ssh认证的私钥和公钥"></a>生成ssh认证的私钥和公钥</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh-keygen</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/c00gcKQ.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgghlzltj30ia09wq35.jpg" alt=""></p>
 <h5 id="将公钥制作成key"><a href="#将公钥制作成key" class="headerlink" title="将公钥制作成key"></a>将公钥制作成key</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa<span class="selector-class">.pub</span> authorized_keys</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/LxQtRiw.png" alt=""></p>
-<h5 id="将私钥下载到本地"><a href="#将私钥下载到本地" class="headerlink" title="将私钥下载到本地"></a>将私钥下载到本地</h5><p><img src="https://i.imgur.com/WrZrBB2.png" alt=""></p>
-<h5 id="编辑配置文件允许公钥认证，关闭口令认证"><a href="#编辑配置文件允许公钥认证，关闭口令认证" class="headerlink" title="编辑配置文件允许公钥认证，关闭口令认证"></a>编辑配置文件允许公钥认证，关闭口令认证</h5><p><img src="https://i.imgur.com/XCtlIj0.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kggn7vgjj30fb05et8m.jpg" alt=""></p>
+<h5 id="将私钥下载到本地"><a href="#将私钥下载到本地" class="headerlink" title="将私钥下载到本地"></a>将私钥下载到本地</h5><p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kggt5ntuj313u0ij3z4.jpg" alt=""></p>
+<h5 id="编辑配置文件允许公钥认证，关闭口令认证"><a href="#编辑配置文件允许公钥认证，关闭口令认证" class="headerlink" title="编辑配置文件允许公钥认证，关闭口令认证"></a>编辑配置文件允许公钥认证，关闭口令认证</h5><p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgh0cme3j30v80gwmxw.jpg" alt=""></p>
 <h5 id="重启ssh服务"><a href="#重启ssh服务" class="headerlink" title="重启ssh服务"></a>重启ssh服务</h5><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service sshd restart</span></span><br></pre></td></tr></table></figure>
-<h4 id="利用密钥进行连接"><a href="#利用密钥进行连接" class="headerlink" title="利用密钥进行连接"></a>利用密钥进行连接</h4><p><img src="https://i.imgur.com/zgcoDHj.png" alt=""><br><img src="https://i.imgur.com/bp9WXn0.png" alt=""></p>
+<h4 id="利用密钥进行连接"><a href="#利用密钥进行连接" class="headerlink" title="利用密钥进行连接"></a>利用密钥进行连接</h4><p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kgh6mwp0j30c50b0t8z.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kghfaj8fj30v80gwglo.jpg" alt=""></p>
 
       
     </div>

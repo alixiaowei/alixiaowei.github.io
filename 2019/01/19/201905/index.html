@@ -93,14 +93,14 @@
 <meta property="og:site_name" content="小维的博客">
 <meta property="og:description" content="web基础$_POST-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/SwAIASF.png">
-<meta property="og:image" content="https://i.imgur.com/bzvGQPB.png">
-<meta property="og:image" content="https://i.imgur.com/NaQfO8k.png">
-<meta property="og:updated_time" content="2019-01-25T12:05:46.450Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjkgc20fj30e30apq36.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjko438rj30pf07o0ss.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjkscyq8j31190oq0tw.jpg">
+<meta property="og:updated_time" content="2019-04-30T04:22:10.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-web基础$_POST">
 <meta name="twitter:description" content="web基础$_POST-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/SwAIASF.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjkgc20fj30e30apq36.jpg">
 
 
 
@@ -425,8 +425,8 @@
       
 
       
-        <p><strong>web基础$_POST-writeup</strong><br><a id="more"></a><br>打开题目，这是一道简单的post题<br><img src="https://i.imgur.com/SwAIASF.png" alt=""><br>还是老规矩，点击访问链接，提示给出一串代码，分析代码，一道简单的代码审计。<br><img src="https://i.imgur.com/bzvGQPB.png" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$what=$_POST[<span class="string">'what'</span>]; <span class="comment">//post提交数据赋值给变量</span></span><br><span class="line"><span class="keyword">echo</span> $what;</span><br><span class="line"><span class="keyword">if</span>($what==<span class="string">'flag'</span>) <span class="comment">//判断post提交的数据是否等于flag，如果true输出flag</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;****&#125;'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>我们只要post提交的变量what=falg就可以了，这里用一款熟悉的插件工具HackBak<br><img src="https://i.imgur.com/NaQfO8k.png" alt=""><br>点击Execute提交，flag就出来了。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span>提交：向指定的资源提交要被处理的数据。</span><br></pre></td></tr></table></figure></p>
+        <p><strong>web基础$_POST-writeup</strong><br><a id="more"></a><br>打开题目，这是一道简单的post题<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjkgc20fj30e30apq36.jpg" alt=""><br>还是老规矩，点击访问链接，提示给出一串代码，分析代码，一道简单的代码审计。<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjko438rj30pf07o0ss.jpg" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$what=$_POST[<span class="string">'what'</span>]; <span class="comment">//post提交数据赋值给变量</span></span><br><span class="line"><span class="keyword">echo</span> $what;</span><br><span class="line"><span class="keyword">if</span>($what==<span class="string">'flag'</span>) <span class="comment">//判断post提交的数据是否等于flag，如果true输出flag</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'flag&#123;****&#125;'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>我们只要post提交的变量what=falg就可以了，这里用一款熟悉的插件工具HackBak<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kjkscyq8j31190oq0tw.jpg" alt=""><br>点击Execute提交，flag就出来了。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span>提交：向指定的资源提交要被处理的数据。</span><br></pre></td></tr></table></figure></p>
 <p><strong>浅析get与post的区别：</strong><br>定义了与服务器交互的不同方法，最基本的方法有4种，分别是GET，POST，PUT，DELETE（查、改、增、删）四个操作。<br>对资源的增，删，改，查操作，其实都可以通过GET/POST完成，不需要用到PUT和DELETE。  </p>
 <p>GET请求一般不应产生副作用。就是说，它仅仅是获取资源信息，就像数据库查询一样，不会修改，增加数据，不会影响资源的状态。<br>GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连。  </p>
 <p>POST把提交的数据则放置在是HTTP包的包体中。<br>POST的安全性要比GET的安全性高。  </p>

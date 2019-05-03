@@ -93,16 +93,16 @@
 <meta property="og:site_name" content="小维的博客">
 <meta property="og:description" content="你必须让他停下-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/mWS098U.png">
-<meta property="og:image" content="https://i.imgur.com/VAUzE5R.png">
-<meta property="og:image" content="https://i.imgur.com/gm5qjkG.png">
-<meta property="og:image" content="https://i.imgur.com/lgVKOpf.png">
-<meta property="og:image" content="https://i.imgur.com/k9rlz0l.png">
-<meta property="og:updated_time" content="2019-01-25T12:14:25.529Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kix0g3frj30dw0bqmx9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kix4rj1dj318s0iqjsh.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kixa52hgj31490kjaaz.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kixffo2yj30nz0b7glu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kixko12yj30wj0io76o.jpg">
+<meta property="og:updated_time" content="2019-04-30T03:59:41.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-你必须让他停下">
 <meta name="twitter:description" content="你必须让他停下-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/mWS098U.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kix0g3frj30dw0bqmx9.jpg">
 
 
 
@@ -427,10 +427,10 @@
       
 
       
-        <p><strong>你必须让他停下-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/mWS098U.png" alt=""><br>点击访问链接，无限刷新，查看源代码<br><img src="https://i.imgur.com/VAUzE5R.png" alt=""><br>发现js中，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myrefresh</span>(<span class="params"></span>)</span>&#123;   <span class="comment">//声明一个函数</span></span><br><span class="line"><span class="built_in">window</span>.location.reload();  <span class="comment">//重新加载当前文档。</span></span><br><span class="line">&#125;</span><br><span class="line">setTimeout(<span class="string">'myrefresh()'</span>,<span class="number">500</span>);  <span class="comment">//在指定得毫秒数（500）调用函数</span></span><br><span class="line"><span class="number">1000</span>毫秒 = <span class="number">1</span>秒</span><br></pre></td></tr></table></figure></p>
-<p>你也可以跟我一样，那么准，当显示10.jpg（大概有15张jpg）得页面得时候按pc上的ESC，让页面停止，按F12查看flag<br><img src="https://i.imgur.com/gm5qjkG.png" alt=""><br>想其flag显示在页面上可以把标签中得style=”display:none”中去掉就可以了（并没有什么用，能得到flag就可以了）<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">display</span>:none</span><br><span class="line">将元素的显示设为无，即在网页中不占任何的位置。</span><br></pre></td></tr></table></figure></p>
-<p>我讲一下其他几种方式吧，毕竟上面得操作有点看手速[掩面]<br><strong>view-source </strong><br>可以利用view-source:查看源代码，然后在当前页面一直刷新（F5），直到flag出现。<br><img src="https://i.imgur.com/lgVKOpf.png" alt=""></p>
-<p><strong>抓包工具</strong>(这里我用得是burp suite)<br>抓取到页面，发送到Repeater，一直点击go，很快就会出现得<br><img src="https://i.imgur.com/k9rlz0l.png" alt=""></p>
+        <p><strong>你必须让他停下-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kix0g3frj30dw0bqmx9.jpg" alt=""><br>点击访问链接，无限刷新，查看源代码<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kix4rj1dj318s0iqjsh.jpg" alt=""><br>发现js中，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myrefresh</span>(<span class="params"></span>)</span>&#123;   <span class="comment">//声明一个函数</span></span><br><span class="line"><span class="built_in">window</span>.location.reload();  <span class="comment">//重新加载当前文档。</span></span><br><span class="line">&#125;</span><br><span class="line">setTimeout(<span class="string">'myrefresh()'</span>,<span class="number">500</span>);  <span class="comment">//在指定得毫秒数（500）调用函数</span></span><br><span class="line"><span class="number">1000</span>毫秒 = <span class="number">1</span>秒</span><br></pre></td></tr></table></figure></p>
+<p>你也可以跟我一样，那么准，当显示10.jpg（大概有15张jpg）得页面得时候按pc上的ESC，让页面停止，按F12查看flag<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kixa52hgj31490kjaaz.jpg" alt=""><br>想其flag显示在页面上可以把标签中得style=”display:none”中去掉就可以了（并没有什么用，能得到flag就可以了）<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">display</span>:none</span><br><span class="line">将元素的显示设为无，即在网页中不占任何的位置。</span><br></pre></td></tr></table></figure></p>
+<p>我讲一下其他几种方式吧，毕竟上面得操作有点看手速[掩面]<br><strong>view-source </strong><br>可以利用view-source:查看源代码，然后在当前页面一直刷新（F5），直到flag出现。<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kixffo2yj30nz0b7glu.jpg" alt=""></p>
+<p><strong>抓包工具</strong>(这里我用得是burp suite)<br>抓取到页面，发送到Repeater，一直点击go，很快就会出现得<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kixko12yj30wj0io76o.jpg" alt=""></p>
 
       
     </div>

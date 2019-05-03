@@ -93,19 +93,19 @@
 <meta property="og:site_name" content="小维的博客">
 <meta property="og:description" content="阿里云Linux安装镜像源地址：https://opsx.alibaba.com/mirror">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/DS8vlVE.png">
-<meta property="og:image" content="https://i.imgur.com/nYcqvcx.png">
-<meta property="og:image" content="https://i.imgur.com/CS0aevJ.png">
-<meta property="og:image" content="https://i.imgur.com/M6GL4Ie.png">
-<meta property="og:image" content="https://i.imgur.com/049jCKe.png">
-<meta property="og:image" content="https://i.imgur.com/O1El3Gk.png">
-<meta property="og:image" content="https://i.imgur.com/Sf0G80e.png">
-<meta property="og:image" content="https://i.imgur.com/ZttyXHK.png">
-<meta property="og:updated_time" content="2019-03-12T01:18:27.216Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khtzva59j30di00n0si.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khu6lj9xj30wr02kq2u.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khubk9k1j30zq0fita7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khvkstmfj30zq0fi3z1.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khvq1gxsj30za050t8w.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khvvj7daj30su02mmx1.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khw1ngmqj30z70i0abu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khw5ycgyj30z606sdfy.jpg">
+<meta property="og:updated_time" content="2019-04-30T03:23:45.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7更换软件安装源">
 <meta name="twitter:description" content="阿里云Linux安装镜像源地址：https://opsx.alibaba.com/mirror">
-<meta name="twitter:image" content="https://i.imgur.com/DS8vlVE.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2khtzva59j30di00n0si.jpg">
 
 
 
@@ -432,13 +432,13 @@
       
         <h4 id="阿里云Linux安装镜像源地址：https-opsx-alibaba-com-mirror"><a href="#阿里云Linux安装镜像源地址：https-opsx-alibaba-com-mirror" class="headerlink" title="阿里云Linux安装镜像源地址：https://opsx.alibaba.com/mirror"></a>阿里云Linux安装镜像源地址：<a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">https://opsx.alibaba.com/mirror</a></h4><a id="more"></a>
 <h4 id="Centos7更换阿里云安装镜像源"><a href="#Centos7更换阿里云安装镜像源" class="headerlink" title="Centos7更换阿里云安装镜像源"></a>Centos7更换阿里云安装镜像源</h4><h5 id="备份原有的镜像文件，以免出错时可以恢复"><a href="#备份原有的镜像文件，以免出错时可以恢复" class="headerlink" title="备份原有的镜像文件，以免出错时可以恢复"></a>备份原有的镜像文件，以免出错时可以恢复</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/yum<span class="selector-class">.repos</span><span class="selector-class">.d</span>/CentOS-Base.repo&#123;,.backup&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/DS8vlVE.png" alt=""><br><img src="https://i.imgur.com/nYcqvcx.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khtzva59j30di00n0si.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khu6lj9xj30wr02kq2u.jpg" alt=""></p>
 <h5 id="下载更新的源文件-CentOS-Base-repo-到-etc-yum-repos-d"><a href="#下载更新的源文件-CentOS-Base-repo-到-etc-yum-repos-d" class="headerlink" title="下载更新的源文件(CentOS-Base.repo)到/etc/yum.repos.d/"></a>下载更新的源文件(CentOS-Base.repo)到/etc/yum.repos.d/</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 升级所有包以及升级软件和系统内核</span></span><br><span class="line"><span class="comment"># --skip-broken 忽略包的依赖问题</span></span><br><span class="line">yum <span class="keyword">update</span> <span class="comment">--skip-broken -y </span></span><br><span class="line"><span class="comment">#安装wget</span></span><br><span class="line">yum <span class="keyword">install</span> wget -y</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/CS0aevJ.png" alt=""><br><img src="https://i.imgur.com/M6GL4Ie.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khubk9k1j30zq0fita7.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khvkstmfj30zq0fi3z1.jpg" alt=""></p>
 <h5 id="更新下载源"><a href="#更新下载源" class="headerlink" title="更新下载源"></a>更新下载源</h5><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># CentOS 7</span></span><br><span class="line"><span class="meta"># wget -O 下载并以不同的文件名保存</span></span><br><span class="line"><span class="meta"># wget默认会以最后一个符合”/”的后面的字符来命名</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http:<span class="comment">//mirrors.aliyun.com/repo/Centos-7.repo</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/049jCKe.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khvq1gxsj30za050t8w.jpg" alt=""></p>
 <h5 id="生成新的缓存"><a href="#生成新的缓存" class="headerlink" title="生成新的缓存"></a>生成新的缓存</h5><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 清除缓存</span></span><br><span class="line">yum clean all</span><br><span class="line"><span class="meta"># 建立缓存</span></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/O1El3Gk.png" alt=""><br><img src="https://i.imgur.com/Sf0G80e.png" alt=""><br><img src="https://i.imgur.com/ZttyXHK.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khvvj7daj30su02mmx1.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khw1ngmqj30z70i0abu.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2khw5ycgyj30z606sdfy.jpg" alt=""></p>
 <h4 id="中国开源镜像网站"><a href="#中国开源镜像网站" class="headerlink" title="中国开源镜像网站"></a>中国开源镜像网站</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">网易开源镜像站：<span class="string">http:</span><span class="comment">//mirrors.163.com/</span></span><br><span class="line">阿里云开源镜像站：<span class="string">http:</span><span class="comment">//mirrors.aliyun.com/</span></span><br><span class="line">清华大学：<span class="string">http:</span><span class="comment">//mirrors.tuna.tsinghua.edu.cn/</span></span><br><span class="line">东软信息学院:<span class="string">http:</span><span class="comment">//mirrors.neusoft.edu.cn/</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
       
     </div>

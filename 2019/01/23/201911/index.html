@@ -93,20 +93,20 @@
 <meta property="og:site_name" content="小维的博客">
 <meta property="og:description" content="一个普通的压缩包(xp0intCTF)-writeup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/br7ClKo.png">
-<meta property="og:image" content="https://i.imgur.com/8Zx5SY2.png">
-<meta property="og:image" content="https://i.imgur.com/2bebiCl.png">
-<meta property="og:image" content="https://i.imgur.com/W1GVeUu.png">
-<meta property="og:image" content="https://i.imgur.com/3XL7cfN.png">
-<meta property="og:image" content="https://i.imgur.com/Tcnan9t.png">
-<meta property="og:image" content="https://i.imgur.com/76Pza6K.png">
-<meta property="og:image" content="https://i.imgur.com/sv0kS4u.png">
-<meta property="og:image" content="https://i.imgur.com/fZGIgia.png">
-<meta property="og:updated_time" content="2019-01-25T12:07:37.313Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj19ih38j30dx0b53yl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1fq7avj312x0gl0ug.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1k7jz7j30te0b0ab7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1ot6e6j30jf07ygnx.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1yve7sj30nq0cdmyp.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj27n4smj30p30cywee.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj2ehk35j30gr08yjs4.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj2kw6xij30g60b0jrp.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj2ptbj4j30tu0ifdhn.jpg">
+<meta property="og:updated_time" content="2019-04-30T04:04:42.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku-一个普通的压缩包(xp0intCTF)">
 <meta name="twitter:description" content="一个普通的压缩包(xp0intCTF)-writeup">
-<meta name="twitter:image" content="https://i.imgur.com/br7ClKo.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj19ih38j30dx0b53yl.jpg">
 
 
 
@@ -431,10 +431,10 @@
       
 
       
-        <p><strong>一个普通的压缩包(xp0intCTF)-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://i.imgur.com/br7ClKo.png" alt=""><br>下载得到一个rar压缩包附件，解压打开发现还有一个flag.rar，文件属性，详细信息各种查看确定没有隐藏信息，进行再次解压出现提示png文件损坏<br><img src="https://i.imgur.com/8Zx5SY2.png" alt=""><br>先打开里面的文本看一下，文本内容提示flag is not here，现在把flag.rar放在十六进制工具里看下，发现里面有一张secret.png文件，但是之前提示损坏了，刚开始用winrar自带的修复功能修复不成功，只能自己用010Editor进行手动修复了。<br><img src="https://i.imgur.com/2bebiCl.png" alt=""><br>检查rar头，没有问题，然后再看加密部分，检查各个文件的文件头<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文件头（FILE_HEAD）</span><br><span class="line">HEAD_TYPE <span class="number">1</span> 个字节 头类型：<span class="number">0x74</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/W1GVeUu.png" alt=""><br>更多可以点击<a href="https://wenku.baidu.com/view/b7889b64783e0912a2162aa4.html" title="RAR文件格式的研究" target="_blank" rel="noopener">RAR文件格式研究</a><br>我们回到我们的题目中来，检查发现png那的文件头类型A8 3C 7A，把7A修改为74，保存，查看是否修复成功。<br><img src="https://i.imgur.com/3XL7cfN.png" alt=""><br><img src="https://i.imgur.com/Tcnan9t.png" alt=""><br>得到secret.png，查看一张纯白的图片，用010Editor查看是一个gif的文件<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF文件头标识 (<span class="number">6</span> bytes) <span class="number">47</span> <span class="number">49</span> <span class="number">46</span> <span class="number">38</span> <span class="number">39</span>(<span class="number">37</span>) <span class="number">61</span>—— GIF89(<span class="number">7</span>)a</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/76Pza6K.png" alt=""><br>修改为gif用stegsolve查看得到gif的两帧每一帧有半张二维码(这里也可以用Photoshop进行分离图层)<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StegSolve</span><br><span class="line">Analyse下面几个功能键作简单介绍：</span><br><span class="line"><span class="keyword">File</span> <span class="keyword">Format</span>:文件格式，这个主要是查看图片的具体信息</span><br><span class="line">Data <span class="keyword">Extract</span>:数据抽取，图片中隐藏数据的抽取</span><br><span class="line"><span class="keyword">Frame</span> Browser:帧浏览器，主要是对GIF之类的动图进行分解，动图变成一张张图片，便于查看</span><br><span class="line"><span class="keyword">Image</span> Combiner:拼图，图片拼接</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/sv0kS4u.png" alt=""><br>用Photoshop将这两块进行拼接成完整的二维码，利用QR扫描（手机扫也一样的）得到flag<br><img src="https://i.imgur.com/fZGIgia.png" alt=""><br><strong><a href="https://coolshell.cn/articles/10590.html#jtss-tsina" title="二维码的生成细节和原理" target="_blank" rel="noopener">二维码的生成细节和原理</a></strong>有兴趣的可以去了解下。</p>
+        <p><strong>一个普通的压缩包(xp0intCTF)-writeup</strong><br><a id="more"></a><br>打开题目<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj19ih38j30dx0b53yl.jpg" alt=""><br>下载得到一个rar压缩包附件，解压打开发现还有一个flag.rar，文件属性，详细信息各种查看确定没有隐藏信息，进行再次解压出现提示png文件损坏<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1fq7avj312x0gl0ug.jpg" alt=""><br>先打开里面的文本看一下，文本内容提示flag is not here，现在把flag.rar放在十六进制工具里看下，发现里面有一张secret.png文件，但是之前提示损坏了，刚开始用winrar自带的修复功能修复不成功，只能自己用010Editor进行手动修复了。<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1k7jz7j30te0b0ab7.jpg" alt=""><br>检查rar头，没有问题，然后再看加密部分，检查各个文件的文件头<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文件头（FILE_HEAD）</span><br><span class="line">HEAD_TYPE <span class="number">1</span> 个字节 头类型：<span class="number">0x74</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1ot6e6j30jf07ygnx.jpg" alt=""><br>更多可以点击<a href="https://wenku.baidu.com/view/b7889b64783e0912a2162aa4.html" title="RAR文件格式的研究" target="_blank" rel="noopener">RAR文件格式研究</a><br>我们回到我们的题目中来，检查发现png那的文件头类型A8 3C 7A，把7A修改为74，保存，查看是否修复成功。<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj1yve7sj30nq0cdmyp.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj27n4smj30p30cywee.jpg" alt=""><br>得到secret.png，查看一张纯白的图片，用010Editor查看是一个gif的文件<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF文件头标识 (<span class="number">6</span> bytes) <span class="number">47</span> <span class="number">49</span> <span class="number">46</span> <span class="number">38</span> <span class="number">39</span>(<span class="number">37</span>) <span class="number">61</span>—— GIF89(<span class="number">7</span>)a</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj2ehk35j30gr08yjs4.jpg" alt=""><br>修改为gif用stegsolve查看得到gif的两帧每一帧有半张二维码(这里也可以用Photoshop进行分离图层)<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StegSolve</span><br><span class="line">Analyse下面几个功能键作简单介绍：</span><br><span class="line"><span class="keyword">File</span> <span class="keyword">Format</span>:文件格式，这个主要是查看图片的具体信息</span><br><span class="line">Data <span class="keyword">Extract</span>:数据抽取，图片中隐藏数据的抽取</span><br><span class="line"><span class="keyword">Frame</span> Browser:帧浏览器，主要是对GIF之类的动图进行分解，动图变成一张张图片，便于查看</span><br><span class="line"><span class="keyword">Image</span> Combiner:拼图，图片拼接</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj2kw6xij30g60b0jrp.jpg" alt=""><br>用Photoshop将这两块进行拼接成完整的二维码，利用QR扫描（手机扫也一样的）得到flag<br><img src="https://ws1.sinaimg.cn/large/006Gstfogy1g2kj2ptbj4j30tu0ifdhn.jpg" alt=""><br><strong><a href="https://coolshell.cn/articles/10590.html#jtss-tsina" title="二维码的生成细节和原理" target="_blank" rel="noopener">二维码的生成细节和原理</a></strong>有兴趣的可以去了解下。</p>
 
       
     </div>
