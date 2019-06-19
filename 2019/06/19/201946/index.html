@@ -84,13 +84,13 @@
 
 
 
-<meta name="description" content="XSS简介 跨站脚本(cross site script) 为了避免与样式css混淆，所以简称为XSS。XSS是一种经常出现web应用中的计算机安全漏洞，也是web中最主流的攻击方式。那么什么是XSS呢？XSS是恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些恶意代码，嵌入(HTML、JavaScript)到web页面中去。使别的用户访问都会执行相应的嵌入代码。从而">
+<meta name="description" content="XSS简介">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS跨站脚本攻击">
 <meta property="og:url" content="https://axiaowei.cn/2019/06/19/201946/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="XSS简介 跨站脚本(cross site script) 为了避免与样式css混淆，所以简称为XSS。XSS是一种经常出现web应用中的计算机安全漏洞，也是web中最主流的攻击方式。那么什么是XSS呢？XSS是恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些恶意代码，嵌入(HTML、JavaScript)到web页面中去。使别的用户访问都会执行相应的嵌入代码。从而">
+<meta property="og:description" content="XSS简介">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g27ydg1g1lj30rb0n3q5a.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g27t3lqh6dj31600krdgu.jpg">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g27zkucilmj30op0entaw.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g27zb4ug6cj30op0k4acq.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2819kfnfaj30s20f8gn2.jpg">
-<meta property="og:updated_time" content="2019-06-19T05:07:54.578Z">
+<meta property="og:updated_time" content="2019-06-19T05:16:36.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS跨站脚本攻击">
-<meta name="twitter:description" content="XSS简介 跨站脚本(cross site script) 为了避免与样式css混淆，所以简称为XSS。XSS是一种经常出现web应用中的计算机安全漏洞，也是web中最主流的攻击方式。那么什么是XSS呢？XSS是恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些恶意代码，嵌入(HTML、JavaScript)到web页面中去。使别的用户访问都会执行相应的嵌入代码。从而">
+<meta name="twitter:description" content="XSS简介">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g27ydg1g1lj30rb0n3q5a.jpg">
 
 
@@ -423,8 +423,9 @@
       
 
       
-        <h4 id="XSS简介"><a href="#XSS简介" class="headerlink" title="XSS简介"></a>XSS简介</h4><blockquote>
-<p>跨站脚本(cross site script) 为了避免与样式css混淆，所以简称为XSS。<br><br>XSS是一种经常出现web应用中的计算机安全漏洞，也是web中最主流的攻击方式。那么什么是XSS呢？<br><br>XSS是恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些恶意代码，嵌入(HTML、JavaScript)到web页面中去。使别的用户访问都会执行相应的嵌入代码。<br><br>从而盗取用户资料、利用用户身份进行某种动作或者对访问者进行病毒侵害的一种攻击方式。<br><br><br><br>XSS攻击的危害包括：<br><br>-盗取各类用户账号，如机器登陆账号、用户网银账号、各类管理员账号 <br><br>-控制企业数据，包括读取、篡改、添加、删除企业敏感数据的能力 <br><br>-盗窃企业重要的具有商业价值的资料 <br><br>-非法转账 <br><br>-强制发送电子邮件 <br><br>-网站挂马 <br><br>-DDOS<br>-控制受害者机器向其他网站发起攻击 <br><br>…<br><a id="more"></a></p>
+        <h4 id="XSS简介"><a href="#XSS简介" class="headerlink" title="XSS简介"></a>XSS简介</h4><a id="more"></a>
+<blockquote>
+<p>跨站脚本(cross site script) 为了避免与样式css混淆，所以简称为XSS。<br><br>XSS是一种经常出现web应用中的计算机安全漏洞，也是web中最主流的攻击方式。那么什么是XSS呢？<br><br>XSS是恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些恶意代码，嵌入(HTML、JavaScript)到web页面中去。使别的用户访问都会执行相应的嵌入代码。<br><br>从而盗取用户资料、利用用户身份进行某种动作或者对访问者进行病毒侵害的一种攻击方式。<br><br><br><br>XSS攻击的危害包括：<br><br>-盗取各类用户账号，如机器登陆账号、用户网银账号、各类管理员账号 <br><br>-控制企业数据，包括读取、篡改、添加、删除企业敏感数据的能力 <br><br>-盗窃企业重要的具有商业价值的资料 <br><br>-非法转账 <br><br>-强制发送电子邮件 <br><br>-网站挂马 <br><br>-DDOS<br>-控制受害者机器向其他网站发起攻击 <br><br>…</p>
 </blockquote>
 <h4 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h4><p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g27ydg1g1lj30rb0n3q5a.jpg" alt=""><br><a href="http://processon.com/chart_image/5cb7d7c0e4b09b16ffbc6c95.png" target="_blank" rel="noopener">http://processon.com/chart_image/5cb7d7c0e4b09b16ffbc6c95.png</a></p>
 <blockquote>
@@ -509,8 +510,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/19/201947/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/19/201947/" rel="prev" title="AWVS 介绍">
+                AWVS 介绍 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

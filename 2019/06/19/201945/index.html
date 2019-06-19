@@ -84,13 +84,13 @@
 
 
 
-<meta name="description" content="实验环境12目标靶机：OWASP_Broken_Web_Apps_VM_1.2测试渗透机：Windows10 /Kali nmapnmap简介123Nmap是安全渗透领域最强大的开源端口扫描器，能跨平台支持运行。https://nmap.org/http://sectools.org/ 扫描示例1234567891011主机发现： nmap -sn 192.168.203.16端口扫描： nmap">
+<meta name="description" content="实验环境12目标靶机：OWASP_Broken_Web_Apps_VM_1.2测试渗透机：Windows10 /Kali">
 <meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="目标信息收集">
 <meta property="og:url" content="https://axiaowei.cn/2019/06/19/201945/index.html">
 <meta property="og:site_name" content="小维的博客">
-<meta property="og:description" content="实验环境12目标靶机：OWASP_Broken_Web_Apps_VM_1.2测试渗透机：Windows10 /Kali nmapnmap简介123Nmap是安全渗透领域最强大的开源端口扫描器，能跨平台支持运行。https://nmap.org/http://sectools.org/ 扫描示例1234567891011主机发现： nmap -sn 192.168.203.16端口扫描： nmap">
+<meta property="og:description" content="实验环境12目标靶机：OWASP_Broken_Web_Apps_VM_1.2测试渗透机：Windows10 /Kali">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2b6ysj53sj30ki0epdn2.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2bicgh6c2j30lp0e20u3.jpg">
@@ -102,10 +102,10 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cmmay6dxj30r30j3q6o.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cmm57v4gj30ri0jsmzn.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cmmb3z23j30r50j1adl.jpg">
-<meta property="og:updated_time" content="2019-06-19T05:05:55.168Z">
+<meta property="og:updated_time" content="2019-06-19T05:16:07.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目标信息收集">
-<meta name="twitter:description" content="实验环境12目标靶机：OWASP_Broken_Web_Apps_VM_1.2测试渗透机：Windows10 /Kali nmapnmap简介123Nmap是安全渗透领域最强大的开源端口扫描器，能跨平台支持运行。https://nmap.org/http://sectools.org/ 扫描示例1234567891011主机发现： nmap -sn 192.168.203.16端口扫描： nmap">
+<meta name="twitter:description" content="实验环境12目标靶机：OWASP_Broken_Web_Apps_VM_1.2测试渗透机：Windows10 /Kali">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2b6ysj53sj30ki0epdn2.jpg">
 
 
@@ -410,6 +410,7 @@
 
       
         <h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标靶机：OWASP_Broke<span class="symbol">n_Web_Apps_VM_1</span><span class="number">.2</span></span><br><span class="line">测试渗透机：Wi<span class="symbol">ndows10</span> /Kali</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h4><h5 id="nmap简介"><a href="#nmap简介" class="headerlink" title="nmap简介"></a>nmap简介</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Nmap是安全渗透领域最强大的开源端口扫描器，能跨平台支持运行。</span><br><span class="line"><span class="symbol">https:</span>//nmap<span class="meta">.org</span>/</span><br><span class="line"><span class="symbol">http:</span>//sectools<span class="meta">.org</span>/</span><br></pre></td></tr></table></figure>
 <h5 id="扫描示例"><a href="#扫描示例" class="headerlink" title="扫描示例"></a>扫描示例</h5><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">主机发现： nmap -sn <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.16</span></span><br><span class="line">端口扫描： nmap -<span class="built_in">sS</span> -p1-<span class="number">1024</span> <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.16</span></span><br><span class="line">系统扫描： nmap -O <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.34</span></span><br><span class="line">版本扫描： nmap -sV <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.34</span></span><br><span class="line">综合扫描： nmap -A <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.34</span></span><br><span class="line"></span><br><span class="line">脚本扫描：   </span><br><span class="line"><span class="symbol">            root@kali:</span>/usr/share/nmap/scripts# </span><br><span class="line">            nmap --script=<span class="meta">default</span> <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.34</span></span><br><span class="line">            nmap --script=auth <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.34</span></span><br><span class="line">            nmap --script=brute <span class="number">192.168</span><span class="meta">.203</span><span class="meta">.34</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap参考指南</span><br><span class="line"><span class="symbol">https:</span>//nmap<span class="meta">.org</span>/man/<span class="built_in">zh</span>/</span><br></pre></td></tr></table></figure>
