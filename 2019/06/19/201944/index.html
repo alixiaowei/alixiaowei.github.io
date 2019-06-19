@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ZsntNucQnwgOG8NJsPVjhDxi8hx9YmTvgqa9eReuux0">
+
+
+
+  <meta name="msvalidate.01" content="A3C088EA1884107284C9F5B94B1C667F">
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="rLNDlRl5mo">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="信息收集概述1231、web信息收集(探测)即web踩点，主要是掌握目标web服务的方方面面，是实现web渗透入侵前的准备工作2、web踩点内容包括操作系统、服务器类型、数据库类型、web容器、web语言、域名信息、网站目录等3、web信息搜集涉及搜索引擎、网站扫描、域名遍历、指纹识别等工作">
+<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web信息收集之搜索引擎">
+<meta property="og:url" content="https://axiaowei.cn/2019/06/19/201944/index.html">
+<meta property="og:site_name" content="小维的博客">
+<meta property="og:description" content="信息收集概述1231、web信息收集(探测)即web踩点，主要是掌握目标web服务的方方面面，是实现web渗透入侵前的准备工作2、web踩点内容包括操作系统、服务器类型、数据库类型、web容器、web语言、域名信息、网站目录等3、web信息搜集涉及搜索引擎、网站扫描、域名遍历、指纹识别等工作">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g29fia0d3hj30sp0gbmyh.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vcrcqj314n0k2wgr.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vc6wrj314n0k2tan.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vd27xj314n0k2abi.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vf6ywj314n0k2wgp.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vao6fj314n0k240u.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2aayqjsd0j30m86tsx20.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2acuo0576j30so0nkn5l.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2acxrpylsj30z40mt0y3.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2ad5l1qoqj30z40mt43a.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2ad6ga2ktj30y10lq42f.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2ad8ydr5sj30y10lqwir.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2adfid2qaj30y10lq1gd.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2adkwm92uj31210lq4il.jpg">
+<meta property="og:updated_time" content="2019-06-19T05:04:17.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web信息收集之搜索引擎">
+<meta name="twitter:description" content="信息收集概述1231、web信息收集(探测)即web踩点，主要是掌握目标web服务的方方面面，是实现web渗透入侵前的准备工作2、web踩点内容包括操作系统、服务器类型、数据库类型、web容器、web语言、域名信息、网站目录等3、web信息搜集涉及搜索引擎、网站扫描、域名遍历、指纹识别等工作">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g29fia0d3hj30sp0gbmyh.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":10,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://axiaowei.cn/2019/06/19/201944/">
+
+
+
+
+
+  <title>Web信息收集之搜索引擎 | 小维的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小维的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Python | CTF | Writeup | Note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/06/19/201944/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小维同学">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小维的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web信息收集之搜索引擎</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T13:04:17+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,587字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="信息收集概述"><a href="#信息收集概述" class="headerlink" title="信息收集概述"></a>信息收集概述</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、web信息收集(探测)即web踩点，主要是掌握目标web服务的方方面面，是实现web渗透入侵前的准备工作</span><br><span class="line"><span class="number">2</span>、web踩点内容包括操作系统、服务器类型、数据库类型、web容器、web语言、域名信息、网站目录等</span><br><span class="line"><span class="number">3</span>、web信息搜集涉及搜索引擎、网站扫描、域名遍历、指纹识别等工作</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="项目实验环境"><a href="#项目实验环境" class="headerlink" title="项目实验环境"></a>项目实验环境</h4><h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标靶机<span class="selector-pseudo">:OWASP_Broken_Web_Apps_VM_1.2</span></span><br><span class="line"><span class="selector-tag">IP</span>：192<span class="selector-class">.168</span><span class="selector-class">.203</span><span class="selector-class">.21</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">测试渗透机：kali-linux<span class="number">-2018</span><span class="number">-4</span>-vm-amd64</span><br><span class="line">IP：<span class="number">192.168</span><span class="number">.203</span><span class="number">.34</span></span><br></pre></td></tr></table></figure>
+<h4 id="Google-Hacking"><a href="#Google-Hacking" class="headerlink" title="Google Hacking"></a>Google Hacking</h4><h5 id="site"><a href="#site" class="headerlink" title="site"></a>site</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">功能：搜索指定的域名的网页内容，可以用来搜索子域名、跟此域名相关的内容。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line">site:zhihu<span class="selector-class">.com</span> 搜索跟zhihu.com相关网页</span><br><span class="line">site:zhihu<span class="selector-class">.com</span> <span class="string">"web安全"</span> 搜索zhihu.com跟web安全相关的网页</span><br><span class="line">site:csdn<span class="selector-class">.net</span> <span class="string">"sql注入"</span> 搜索csdn.net跟sql注入相关的内容</span><br><span class="line">site:pan<span class="selector-class">.baidu</span><span class="selector-class">.com</span> <span class="string">"教程视频"</span> 搜索pan<span class="selector-class">.baidu</span><span class="selector-class">.com</span>跟教程视频相关的内容</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g29fia0d3hj30sp0gbmyh.jpg" alt=""></p>
+<h5 id="filetype"><a href="#filetype" class="headerlink" title="filetype"></a>filetype</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">功能：搜索指定文件类型</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"><span class="string">"web安全"</span> <span class="keyword">filetype</span>:pdf 搜索跟安全书籍相关的pdf文件</span><br><span class="line"><span class="keyword">filetype</span>:pdf <span class="string">"sql注入"</span> 搜索跟sql注入的pdf文件</span><br><span class="line"><span class="keyword">nmap</span> <span class="keyword">filetype</span>:ppt 搜索<span class="keyword">nmap</span>相关的ppt文件</span><br><span class="line">site:csdn.net <span class="keyword">filetype</span>:pdf 搜索csdn网站相关的pdf文件</span><br><span class="line"><span class="keyword">filetype</span>:pdf site:www.<span class="number">51</span>cto.<span class="keyword">com</span> 搜索<span class="number">51</span>cto的pdf文件</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vcrcqj314n0k2wgr.jpg" alt=""></p>
+<h5 id="inurl"><a href="#inurl" class="headerlink" title="inurl"></a>inurl</h5><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">功能：搜索url网址存在特定关键字的网页，可以用来搜寻有注入点的网站</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"><span class="symbol">inurl:</span>.php?id= 搜索网址中有<span class="string">"php?id"</span>的网页</span><br><span class="line"><span class="symbol">inurl:</span>view.php=? 搜索网址中有<span class="string">"view.php="</span>的网页</span><br><span class="line"><span class="symbol">inurl:</span>.jsp?id= 搜索网址中有<span class="string">"jsp?id"</span>的网页</span><br><span class="line"><span class="symbol">inurl:</span>.asp?id= 搜索网址中有<span class="string">"asp?id"</span>的网页</span><br><span class="line"><span class="symbol">inurl:</span><span class="meta-keyword">/admin/</span>login.php 搜索网址中有<span class="string">"/admin/login.php"</span>的网页</span><br><span class="line"><span class="symbol">inurl:</span><span class="meta-keyword">/public/</span>login.php 搜索网址中有<span class="string">"/public/login.php"</span>的网页</span><br><span class="line"><span class="symbol">inurl:</span>login 搜索网址中有<span class="string">"login"</span>等登录的网页</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vc6wrj314n0k2tan.jpg" alt=""></p>
+<h5 id="intitle"><a href="#intitle" class="headerlink" title="intitle"></a>intitle</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">功能：搜索标题存在特定关键字的网页</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"><span class="string">intitle:</span>后台登录 搜索网页标题是“后台登录”的相关网页</span><br><span class="line"><span class="string">intitle:</span>后台管理 <span class="string">filetype:</span>php 搜索网页标题是“后台管理”的php页面</span><br><span class="line"><span class="string">intitle:</span>index of <span class="string">"keyword"</span> 搜索此关键字相关索引目录信息</span><br><span class="line"><span class="string">intitle:</span>index of <span class="string">"parent directory"</span> 搜索根目录相关索引目录信息</span><br><span class="line"><span class="string">intitle:</span>index of <span class="string">"password"</span> 搜索密码相关的索引目录信息</span><br><span class="line"><span class="string">intitle:</span>index of <span class="string">"login"</span> 搜索登录页面信息</span><br><span class="line"><span class="string">intitle:</span>index of <span class="string">"admin"</span> 搜索后台管理页面的信息</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vd27xj314n0k2abi.jpg" alt=""></p>
+<h5 id="intext"><a href="#intext" class="headerlink" title="intext"></a>intext</h5><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">功能：搜索正文存在特定关键字网页</span><br><span class="line"><span class="symbol">intext:</span>powered <span class="keyword">by </span>wordpress 搜索wordpress制作的博客网址</span><br><span class="line"><span class="symbol">intext:</span>Powered <span class="keyword">by </span><span class="keyword">Discuz </span>搜索<span class="keyword">Discuz论坛相关页面</span></span><br><span class="line"><span class="keyword">intext:Powered </span><span class="keyword">by </span>*CMS 搜索*CMS相关页面</span><br><span class="line"><span class="symbol">intext:</span>powered <span class="keyword">by </span>xxx inurl:login 搜索此类网站的后台登录界面</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vf6ywj314n0k2wgp.jpg" alt=""></p>
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">搜索美女/电影等相关网站：</span><br><span class="line"><span class="string">inurl:</span>php?id= intitle:美剧</span><br><span class="line"><span class="string">inurl:</span>php?id= intitle:美女</span><br><span class="line"><span class="string">inurl:</span>php?id= intitle:美女图片 <span class="string">intext:</span>powered by disc</span><br><span class="line"><span class="string">inurl:</span>php?id= intitle:美女图片 <span class="string">intext:</span>powered by *cms</span><br><span class="line"></span><br><span class="line">搜索用Discuz搭建的论坛:</span><br><span class="line"><span class="string">inurl:</span>php?id intitle:电影 <span class="string">intext:</span>powered by discuz</span><br><span class="line"><span class="string">intext:</span><span class="string">"powered by discuz! 7.2"</span> <span class="string">inurl:</span>faq.php <span class="string">intitle:</span>论坛</span><br><span class="line"></span><br><span class="line">搜索使用Struts的相关网站</span><br><span class="line"><span class="string">intitle:</span><span class="string">"Struts Problem Report"</span></span><br><span class="line"><span class="string">intitle:</span><span class="string">"Struts Problem Report"</span> <span class="string">intext:</span><span class="string">"development mode is enabled."</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2cn6vao6fj314n0k240u.jpg" alt=""></p>
+<h5 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-keyword 强制结果不要出现此关键字，例如：电影 -黑客</span><br><span class="line"><span class="comment">*keyword 模糊搜索，强制结果包含此关键字，例如：电影 一个叫*决定*</span></span><br><span class="line"><span class="string">"keyword"</span> 强制搜索结果出现此关键字，例如：书籍 <span class="string">"web安全"</span></span><br></pre></td></tr></table></figure>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2aayqjsd0j30m86tsx20.jpg" alt=""><br>链接：<a href="https://pan.baidu.com/s/1kgpPq0HUIg5Pr5jubO2J8Q" target="_blank" rel="noopener">https://pan.baidu.com/s/1kgpPq0HUIg5Pr5jubO2J8Q</a><br>提取码：9oee </p>
+<h4 id="Shodan-Hacking"><a href="#Shodan-Hacking" class="headerlink" title="Shodan Hacking"></a>Shodan Hacking</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//www.shodan.io</span></span><br><span class="line"><span class="function"><span class="title">Shodan</span><span class="params">(撒旦搜索引擎)</span></span>是由Web工程师John Matherly（马瑟利）编写的，被称为“最可怕的搜索引擎”，可扫描一切联网的设备，除了常见的Web服务器，还能扫描防火墙、路由器、交换机、摄像头、打印机等一切联网设备。</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2acuo0576j30so0nkn5l.jpg" alt=""></p>
+<h5 id="ip"><a href="#ip" class="headerlink" title="ip"></a>ip</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">114<span class="selector-class">.114</span><span class="selector-class">.114</span><span class="selector-class">.114</span></span><br></pre></td></tr></table></figure>
+<h5 id="service-protocol"><a href="#service-protocol" class="headerlink" title="service/protocol"></a>service/protocol</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">http country:<span class="string">"DE"</span></span><br><span class="line">http country:<span class="string">"DE"</span> product:<span class="string">"Apache httpd"</span></span><br><span class="line">http produce:<span class="string">"Apache httpd"</span></span><br><span class="line"></span><br><span class="line">ssh</span><br><span class="line">ssh<span class="built_in"> default </span>password</span><br><span class="line">ssh<span class="built_in"> default </span>password contry:<span class="string">"JP"</span></span><br></pre></td></tr></table></figure>
+<h5 id="keyword"><a href="#keyword" class="headerlink" title="keyword"></a>keyword</h5><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基于关键字搜索的思路根据<span class="keyword">banner信息(设备指纹)来搜索</span></span><br><span class="line"><span class="keyword">"default </span>password<span class="string">" country:"</span>TH<span class="string">"</span></span><br><span class="line"><span class="string">FTP anon successful</span></span><br></pre></td></tr></table></figure>
+<h5 id="country"><a href="#country" class="headerlink" title="country"></a>country</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">country:</span>cn</span><br><span class="line"><span class="symbol">country:</span>us</span><br><span class="line"><span class="symbol">country:</span>jp</span><br></pre></td></tr></table></figure>
+<h5 id="product"><a href="#product" class="headerlink" title="product"></a>product</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">product:</span><span class="string">"Microsoft IIS httpd"</span></span><br><span class="line"><span class="symbol">product:</span><span class="string">"nginx"</span></span><br><span class="line"><span class="symbol">product:</span><span class="string">"Apache httpd"</span></span><br><span class="line"><span class="symbol">product:</span>MySQL</span><br></pre></td></tr></table></figure>
+<h5 id="version"><a href="#version" class="headerlink" title="version"></a>version</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">product:</span>MySQL <span class="string">version:</span><span class="string">"5.1.73"</span></span><br><span class="line"><span class="string">product:</span><span class="string">"Microsoft IIS httpd"</span> <span class="string">version:</span><span class="string">"7.5"</span></span><br></pre></td></tr></table></figure>
+<h5 id="hostname"><a href="#hostname" class="headerlink" title="hostname"></a>hostname</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">hostname:</span><span class="meta">.org</span></span><br><span class="line"><span class="symbol">hostname:</span>.edu</span><br></pre></td></tr></table></figure>
+<h5 id="os"><a href="#os" class="headerlink" title="os"></a>os</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">os:</span><span class="string">"Windows Server 2008 R2"</span></span><br><span class="line"><span class="symbol">os:</span><span class="string">"Windows 7 or 8"</span></span><br><span class="line"><span class="symbol">os:</span><span class="string">"Linux 2.6.x"</span></span><br></pre></td></tr></table></figure>
+<h5 id="net"><a href="#net" class="headerlink" title="net"></a>net</h5><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">net:</span><span class="number">59.39</span><span class="meta">.146</span><span class="meta">.0</span>/<span class="number">24</span></span><br><span class="line"><span class="number">200</span> ok net:<span class="number">59.39</span><span class="meta">.146</span><span class="meta">.0</span>/<span class="number">24</span></span><br><span class="line"><span class="number">200</span> ok country:cn net:<span class="number">59.39</span><span class="meta">.146</span><span class="meta">.0</span>/<span class="number">24</span></span><br></pre></td></tr></table></figure>
+<h5 id="port"><a href="#port" class="headerlink" title="port"></a>port</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">port:</span><span class="number">3389</span></span><br><span class="line"><span class="symbol">port:</span><span class="number">22</span></span><br><span class="line"><span class="symbol">port:</span><span class="number">80</span></span><br><span class="line"><span class="symbol">port:</span><span class="number">443</span></span><br></pre></td></tr></table></figure>
+<h5 id="综合实例"><a href="#综合实例" class="headerlink" title="综合实例"></a>综合实例</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">搜索日本区开启<span class="number">80</span>端口设备：</span><br><span class="line"><span class="string">country:</span>jp <span class="string">port:</span><span class="string">"80"</span></span><br><span class="line"><span class="string">country:</span>jp <span class="string">port:</span><span class="string">"80"</span> <span class="string">product:</span><span class="string">"Apache httpd"</span></span><br><span class="line"><span class="string">country:</span>jp <span class="string">port:</span><span class="string">"80"</span> <span class="string">product:</span><span class="string">"Apache httpd"</span> <span class="string">city:</span><span class="string">"Tokyo"</span></span><br><span class="line"><span class="string">country:</span>jp <span class="string">port:</span><span class="string">"80"</span> <span class="string">product:</span><span class="string">"Apache httpd"</span> <span class="string">city:</span><span class="string">"Tokyo"</span> <span class="string">os:</span><span class="string">"Linux 3.x"</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2acxrpylsj30z40mt0y3.jpg" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">搜索日本区使用的<span class="selector-tag">Linux2</span><span class="selector-class">.6</span><span class="selector-class">.x</span>系统设备：</span><br><span class="line"><span class="selector-tag">country</span><span class="selector-pseudo">:jp</span> <span class="selector-tag">os</span><span class="selector-pseudo">:"Linux</span> 2<span class="selector-class">.6</span><span class="selector-class">.x</span>"</span><br><span class="line"><span class="selector-tag">country</span><span class="selector-pseudo">:jp</span> <span class="selector-tag">os</span><span class="selector-pseudo">:"Linux</span> 2<span class="selector-class">.6</span><span class="selector-class">.x</span>" <span class="selector-tag">port</span><span class="selector-pseudo">:"80"</span></span><br><span class="line"><span class="selector-tag">country</span><span class="selector-pseudo">:jp</span> <span class="selector-tag">os</span><span class="selector-pseudo">:"Linux</span> 2<span class="selector-class">.6</span><span class="selector-class">.x</span>" <span class="selector-tag">port</span><span class="selector-pseudo">:"80"</span> <span class="selector-tag">product</span><span class="selector-pseudo">:"Apache</span> <span class="selector-tag">httpd</span>"</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2ad5l1qoqj30z40mt43a.jpg" alt=""><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">搜索日本区使用的Windows Server系统设备：</span><br><span class="line"><span class="string">country:</span>jp <span class="string">os:</span><span class="string">"Windows Server 2008 R2"</span></span><br><span class="line"><span class="string">country:</span>jp <span class="string">os:</span><span class="string">"Windows Server 2008 R2"</span> <span class="string">port:</span><span class="string">"445"</span></span><br><span class="line"><span class="string">country:</span>jp <span class="string">os:</span><span class="string">"Windows Server 2008 R2"</span> <span class="string">port:</span><span class="string">"80"</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2ad6ga2ktj30y10lq42f.jpg" alt=""><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">搜索日本区使用Microsoft IIS 的设备</span><br><span class="line"><span class="string">country:</span>jp <span class="string">product:</span><span class="string">"Microsoft IIS httpd"</span> <span class="string">version:</span><span class="string">"7.5"</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2ad8ydr5sj30y10lqwir.jpg" alt=""></p>
+<h5 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h5><p>链接：<a href="https://pan.baidu.com/s/1HFMJJt6VtsnpUkgz2ddPhQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1HFMJJt6VtsnpUkgz2ddPhQ</a><br>提取码：8f85 </p>
+<h4 id="Zoomeye-Hacking"><a href="#Zoomeye-Hacking" class="headerlink" title="Zoomeye Hacking"></a>Zoomeye Hacking</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span>//www.zoomeye<span class="meta">.org</span></span><br><span class="line">ZoomeEye（钟馗之眼）是一个面向空间的搜索引擎，“国产的Shodan”，由知道创宇出品。</span><br><span class="line"></span><br><span class="line">ZoomEye 支持公网设备指纹检索和 Web 指纹检索</span><br><span class="line">网站指纹包括应用名、版本、前端框架、后端框架、服务端语言、服务器操作系统、网站容器、内容管理系统和数据库等。设备指纹包括应用名、版本、开放端口、操作系统、服务名、地理位置等直接输入关键词即可开始检索。如果需要全词匹配，请使用引号闭合词组。</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2adfid2qaj30y10lq1gd.jpg" alt=""><br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ip</span><br><span class="line">os</span><br><span class="line">app</span><br><span class="line">service</span><br><span class="line">port</span><br><span class="line">product</span><br><span class="line">country</span><br><span class="line">ver</span><br><span class="line">hostname</span><br><span class="line">site</span><br><span class="line"><span class="built_in">title</span></span><br><span class="line"><span class="built_in">header</span></span><br><span class="line">keywords</span><br><span class="line">desc</span><br><span class="line"></span><br><span class="line">用户手册：</span><br><span class="line">https:<span class="comment">//www.zoomeye.org/doc?channel=user</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">帮助</span><br><span class="line"><span class="built_in">shift</span>+/</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2adkwm92uj31210lq4il.jpg" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-本文结束<i class="fa fa-paw"></i>感谢您的阅读-</div>
+    
+</div>
+		  
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/19/201943/" rel="next" title="burp suite介绍">
+                <i class="fa fa-chevron-left"></i> burp suite介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/19/201945/" rel="prev" title="目标信息收集">
+                目标信息收集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="小维同学">
+            
+              <p class="site-author-name" itemprop="name">小维同学</p>
+              <p class="site-description motion-element" itemprop="description">努力努力再努力</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+		  <!-- 网易音乐播放器 -->
+			<div id="music163player">
+				
+			</div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ximcx.cn/" title="西门吹雪's Blog" target="_blank">西门吹雪's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gcker.github.io" title="Allard博客" target="_blank">Allard博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://axiaowei.cn" title="互友链添加微信(ITxiaowei)" target="_blank">互友链添加微信(ITxiaowei)</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#信息收集概述"><span class="nav-text">信息收集概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目实验环境"><span class="nav-text">项目实验环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验环境"><span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Google-Hacking"><span class="nav-text">Google Hacking</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#site"><span class="nav-text">site</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#filetype"><span class="nav-text">filetype</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#inurl"><span class="nav-text">inurl</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#intitle"><span class="nav-text">intitle</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#intext"><span class="nav-text">intext</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例"><span class="nav-text">实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#符号"><span class="nav-text">符号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shodan-Hacking"><span class="nav-text">Shodan Hacking</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ip"><span class="nav-text">ip</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#service-protocol"><span class="nav-text">service/protocol</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#keyword"><span class="nav-text">keyword</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#country"><span class="nav-text">country</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#product"><span class="nav-text">product</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#version"><span class="nav-text">version</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hostname"><span class="nav-text">hostname</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#os"><span class="nav-text">os</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#net"><span class="nav-text">net</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#port"><span class="nav-text">port</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#综合实例"><span class="nav-text">综合实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考-1"><span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zoomeye-Hacking"><span class="nav-text">Zoomeye Hacking</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小维同学</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">❤  <a class="theme-link" target="_blank" href="https://axiaowei.cn">LZL</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

