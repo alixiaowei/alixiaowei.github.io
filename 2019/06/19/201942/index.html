@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g25q8opahoj30tv0ifk5s.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g25q92uqw7j30tv0ifwto.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/007JdRFxgy1g25q97np26j30tv0if7k8.jpg">
-<meta property="og:updated_time" content="2019-06-19T02:39:22.139Z">
+<meta property="og:updated_time" content="2019-06-19T02:56:00.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入攻击及防御">
 <meta name="twitter:description" content="123456在owasp年度top 10 安全问题中，注入高居榜首。SQL注入攻击指的是通过构建特殊的输入作为参数传入web应用程序，而在这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。- 对于web应用程序而言，用户核心数据存储在数据中，例如MySQL、SQL Server、Oracle、MSS">
@@ -472,6 +472,7 @@
 
       
         <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在owasp年度top 10 安全问题中，注入高居榜首。SQL注入攻击指的是通过构建特殊的输入作为参数传入web应用程序，而在这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>对于web应用程序而言，用户核心数据存储在数据中，例如MySQL、SQL Server、Oracle、MSSQL等</span><br><span class="line"><span class="bullet">- </span>通过SQL注入攻击，可以获取、修改、删除数据库信息，并且通过提权来控制web服务器等其他操作</span><br><span class="line"><span class="bullet">- </span>SQL注入即攻击者通过构造特殊的SQL语句，入侵目标系统，致使后台数据库泄露数据的过程</span><br><span class="line"><span class="bullet">- </span>因为SQL注入漏洞造成的严重危害性，所以常年稳居 OWASP TOP10的榜首！</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标靶机<span class="selector-pseudo">:OWASP_Broken_Web_Apps_VM_1.2</span></span><br><span class="line"><span class="selector-tag">IP</span>：192<span class="selector-class">.168</span><span class="selector-class">.203</span><span class="selector-class">.22</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">测试渗透机：kali-linux<span class="number">-2018</span><span class="number">-4</span>-vm-amd64</span><br><span class="line">IP：<span class="number">192.168</span><span class="number">.203</span><span class="number">.19</span></span><br></pre></td></tr></table></figure>
 <h4 id="SQL注入危害"><a href="#SQL注入危害" class="headerlink" title="SQL注入危害"></a>SQL注入危害</h4><ul>
